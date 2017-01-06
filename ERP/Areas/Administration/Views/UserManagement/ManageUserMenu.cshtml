@@ -1,0 +1,61 @@
+﻿@model ERP.Models.UserMenuVM
+
+@{
+    ViewBag.Title = "ManageUserMenu";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ManageUserMenu</h2>
+
+<div>
+    <h4>User</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserEmail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserEmail)
+        </dd>
+
+
+    </dl>
+</div>
+<p>
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |*@
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+
+<h3>Menus</h3>
+<table>
+    <tr>
+        @{
+            int cnt = 0;
+            var menues = Model.Menu;
+            foreach (var menu in menues)
+            {
+                if (cnt++ % 3 == 0)
+                {
+                    @:</tr><tr>
+                }
+        @:<td>
+            <input type="checkbox"
+                   name="selectedCourses"
+                   value="@menu.MenuID"
+                   @(Html.Raw(menu.IsSelectd ? "checked=\"checked\"" : "")) />
+            @menu.MenuID @: @menu.MenueName
+            @:</td>
+        }
+        @:</tr>
+        }
+    </table>

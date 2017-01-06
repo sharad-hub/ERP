@@ -1,0 +1,29 @@
+﻿@model IEnumerable<MenuForGui>
+@using ERP.Extensions
+@using ERP.APIWrappers
+@using ERP.Models
+@using ERP.Entities.SPModels
+
+@if (HttpContext.Current.User.Identity.IsAuthenticated)
+{  
+    foreach (MenuForGui module in Model)
+    {
+        if (module != null && module.Menu != null && module.Menu.Count() > 0)
+        {
+            <li id="left-sidebar-menu-charts" class="treeview">
+                <a href="#">
+                    <i class="fa fa-pie-chart"></i>
+                    <span>@module.Menu[0].ModuleName</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    @foreach (MenuDetails menu in module.Menu)
+                    {
+                        @*<li id="left-sidebar-menu-charts-chartjs"><a href="@Url.Action("ChartJs", "Charts")"><i class="fa fa-circle-o"></i> ChartJS</a></li>*@
+                        <li id="left-sidebar-menu-charts-chartjs"><a href="@Url.Action(menu.ActionName  , menu.ControllerName)"><i class="fa fa-circle-o"></i> @menu.MenuName</a></li>
+                    }
+                </ul>
+            </li>
+        }
+    }
+}

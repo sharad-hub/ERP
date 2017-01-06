@@ -1,0 +1,112 @@
+﻿@model IEnumerable<ERP.Entities.Menu>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        @*<th>
+            @Html.DisplayNameFor(model => model.ModuleId)
+        </th>*@
+        @*<th>
+            @Html.DisplayNameFor(model => model.ParentId)
+        </th>*@
+        @*<th>
+            @Html.DisplayNameFor(model => model.MenuCode)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.MenuName)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.ImageIndexNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NavigationPath)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.Orderby)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.ItemImageURL)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IconID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.backgroundColor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FontColor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ControllerName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ActionName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.ModuleId)
+        </td>*@
+        @*<td>
+            @Html.DisplayFor(modelItem => item.ParentId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MenuCode)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.MenuName)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.ImageIndexNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NavigationPath)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.Orderby)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.ItemImageURL)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IconID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.backgroundColor)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FontColor)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ControllerName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ActionName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "EditMenu", new { id=item.Id }) |
+            @Html.ActionLink("Details", "MenuDetails", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "DeleteMenu", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
