@@ -22,6 +22,12 @@ namespace ERP.Data.Models
             var UserID = new SqlParameter("@UserID", getUserMenu.UserID.ToString());
             return Database.SqlQuery<UserMenuMap>("GET_MENU_BY_USERID @UserID", UserID);
         }
+
+        IEnumerable<UserModuleDetails> GetModulesByUserName(string email)
+        {
+            var emailAddress = new SqlParameter("@UserEmail", email);
+            return Database.SqlQuery<UserModuleDetails>("[GET_USER_MODULES] @UserEmail", emailAddress);
+        }
         public IEnumerable<UserMenuDetails> GetUserMenus(GetUserMenu getUserMenu)
         {
             var emailAddress = new SqlParameter("@UserEmail", getUserMenu.EmailAddress);
@@ -34,11 +40,21 @@ namespace ERP.Data.Models
             var accessTypeID = new SqlParameter("@AccessTypeID", addUserMenu.AccessTypeID);
             return Database.ExecuteSqlCommand("ADD_USER_MENUE @MenuId,@UserID,@AccessTypeID", menuId, userID, accessTypeID);
         }
+
+
+        IEnumerable<UserModuleDetails> IERPStoredProcedure.GetModulesByUserName(string email)
+        {
+            var emailAddress = new SqlParameter("@UserEmail", email);
+            return Database.SqlQuery<UserModuleDetails>("[GET_USER_MODULES] @UserEmail", emailAddress);
+        }
     }
     public interface IERPStoredProcedure
     {
         int AssignMenueToUser(AddUserMenu addUserMenu);
         IEnumerable<UserMenuDetails> GetUserMenus(GetUserMenu getUserMenu);
         IEnumerable<UserMenuMap> GetMenuByUserID(GetUserMenu getUserMenu);
+
+        IEnumerable<UserModuleDetails> GetModulesByUserName(string email);
+        
     }
 }

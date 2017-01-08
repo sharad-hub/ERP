@@ -20,7 +20,7 @@ namespace ERP.Repository
         }
         public static User GetSingle(this IRepository<User> userRepository, int userId)
         {
-            return userRepository.Queryable().FirstOrDefault(x => x.ID == userId);
+            return userRepository.Queryable().FirstOrDefault(x => x.UserID == userId);
         }
         
         public static Role GetSingle(this IRepository<Role> repository, int roleId)

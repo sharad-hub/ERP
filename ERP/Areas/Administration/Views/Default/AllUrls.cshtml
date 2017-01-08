@@ -1,0 +1,55 @@
+﻿@model IEnumerable<ERP.Entities.Models.UrlContext>
+
+@{
+    ViewBag.Title = "AllUrls";
+} 
+
+<p>
+    @Html.ActionLink("Create New", "addurl")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.AreaName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ControllerName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ActionName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Active)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SortName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.AreaName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ControllerName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ActionName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Active)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SortName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.UrlContextID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.UrlContextID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.UrlContextID })
+        </td>
+    </tr>
+}
+
+</table>

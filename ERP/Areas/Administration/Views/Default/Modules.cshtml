@@ -1,0 +1,83 @@
+﻿@model IEnumerable<ERP.Entities.Module>
+
+@{
+    ViewBag.Title = "Modules";
+}
+
+ 
+
+<p>
+    @Html.ActionLink("Create New Module", "CreateModule")
+</p>
+
+
+<div class="col-xs-12">
+    <div class="box">
+        <div class="box-header">
+            <h3 class="box-title">Available Modules</h3>
+            <div class="box-tools">
+                <div class="input-group input-group-sm" style="width: 150px;">
+
+                </div>
+            </div>
+        </div>
+        <div class="box-body table-responsive no-padding">
+            <table class="table table-hover">
+                <tbody>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ModuleName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Orderby)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Active)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Level)
+                        </th>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.Description)
+                        </th>
+
+                    </tr>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ModuleName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Orderby)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Active)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Level)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ParentModuleID)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Description)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit Module", "EditModule", new { ID = item.Id })  
+                                @*@Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+ 

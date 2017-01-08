@@ -16,6 +16,9 @@ namespace ERP.Servicess
         int AssignMenueToUser(AddUserMenu addUserMenu);
         IEnumerable<UserMenuMap> GetMenuByUserID(GetUserMenu getUserMenu);
         IEnumerable<UserMenuDetails> GetMenuByUserName(GetUserMenu getUserMenu);
+
+
+        IEnumerable<UserModuleDetails> GetModulesByUserName(string  email);
     }
     public class StoredProcedureService:IStoredProcedureService
     {
@@ -43,6 +46,17 @@ namespace ERP.Servicess
         IEnumerable<UserMenuDetails> IStoredProcedureService.GetMenuByUserName(GetUserMenu getUserMenu)
         {
               return _storedProcedures.GetUserMenus(getUserMenu);
+        }
+
+        IEnumerable<UserModuleDetails> GetModulesByUserName(string email)
+        {
+            return _storedProcedures.GetModulesByUserName(email);
+        }
+
+
+        IEnumerable<UserModuleDetails> IStoredProcedureService.GetModulesByUserName(string email)
+        {
+            return _storedProcedures.GetModulesByUserName(email);
         }
     }
 }

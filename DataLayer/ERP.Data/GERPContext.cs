@@ -4,6 +4,7 @@ using ERP.Data.Models.Mapping;
 using ERP.Entities;
 using Repository.Pattern.Ef6;
 using ERP.Entities.Models;
+using ERP.Data.Mapping;
 namespace ERP.Data.Models
 {
     public partial class GERPContext : DataContext
@@ -27,7 +28,7 @@ namespace ERP.Data.Models
         public DbSet<Designation> Designations { get; set; }
         public DbSet<FYear> FYears { get; set; }
         public DbSet<Gender> Genders { get; set; }
-        public DbSet<Icon> Icons { get; set; }
+        //public DbSet<Icon> Icons { get; set; }
         public DbSet<MaritalStatus> MaritalStatuses { get; set; }
         public DbSet<Menu> Menus { get; set; }
         public DbSet<Module> Modules { get; set; }
@@ -38,7 +39,19 @@ namespace ERP.Data.Models
         public DbSet<UserRole> UserTypes { get; set; }
         public DbSet<Error> Errors { get; set; }
         public DbSet<ErrorLog> ErrorLog { get; set; }
-        //public DbSet<UserRole> UserTypes { get; set; }
+
+        public DbSet<ModuleGroup> ModuleGroups { get; set; }
+        public DbSet<Zone> Zones { get; set; }
+        public DbSet<UIStyle> UIStyles { get; set; }
+        public DbSet<Notification> Notifications { get; set; }
+        public DbSet<NotificationType> NotificationTypes { get; set; }
+        public DbSet<ERPObjectType> ERPObjectTypes { get; set; }
+        public DbSet<UrlContext> UrlContexts { get; set; }
+        public DbSet<SystemSetting> SystemSettingMaster { get; set; }
+        public DbSet<ModuleGroupAccess> ModuleGroupsAccess { get; set; }
+        public DbSet<UserModules> UsersModules { get; set; }
+        public DbSet<RolesProvider> RolesProviderMaster { get; set; }     
+        
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Configurations.Add(new AccessTypeMap());
@@ -48,7 +61,7 @@ namespace ERP.Data.Models
             modelBuilder.Configurations.Add(new DesignationMap());
             modelBuilder.Configurations.Add(new FYearMap());
             modelBuilder.Configurations.Add(new GenderMap());
-            modelBuilder.Configurations.Add(new IconMap());
+            //modelBuilder.Configurations.Add(new IconMap());
             modelBuilder.Configurations.Add(new MaritalStatusMap());
             modelBuilder.Configurations.Add(new MenuMap());
             modelBuilder.Configurations.Add(new ModuleMap());
@@ -57,6 +70,7 @@ namespace ERP.Data.Models
             modelBuilder.Configurations.Add(new UserRightMap());
             modelBuilder.Configurations.Add(new UserMap());
             modelBuilder.Configurations.Add(new UserTypeMap());
+            modelBuilder.Configurations.Add(new SystemSettingsMap());            
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿ 
+﻿
 
 using Repository.Pattern.Repositories;
 using Repository.Pattern.UnitOfWork;
@@ -15,7 +15,7 @@ using ERP.Entities;
 using ERP.Repository;
 namespace ERP.Services
 {
-    public class MembershipService : IMembershipService 
+    public class MembershipService : IMembershipService
     {
         #region Variables
         private readonly IRepositoryAsync<User> _userRepository;
@@ -23,16 +23,17 @@ namespace ERP.Services
         private readonly IRepositoryAsync<UserRole> _userRoleRepository;
         private readonly IEncryptionService _encryptionService;
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IUnitOfWorkAsync _unitOfWorkAsync;
+        private readonly IUnitOfWorkAsync _unitOfWorkAsync;      
         #endregion
         public MembershipService(IRepositoryAsync<User> userRepository, IRepositoryAsync<Role> roleRepository,
-     IRepositoryAsync<UserRole>  userRoleRepository , IEncryptionService encryptionService, IUnitOfWorkAsync unitOfWork)
+     IRepositoryAsync<UserRole> userRoleRepository, IEncryptionService encryptionService, IUnitOfWorkAsync unitOfWork)
         {
             _userRepository = userRepository;
-            _roleRepository = roleRepository;          
+            _roleRepository = roleRepository;
             _encryptionService = encryptionService;
             _unitOfWorkAsync = unitOfWork;
             _userRoleRepository = userRoleRepository;
+            
         }
 
         #region IMembershipService Implementation
@@ -55,7 +56,7 @@ namespace ERP.Services
 
             return membershipCtx;
         }
-        public User CreateUser(User  user,string password,int[] roles) //string username, string email, string password, int[] roles)
+        public User CreateUser(User user, string password, int[] roles) //string username, string email, string password, int[] roles)
         {
             var existingUser = _userRepository.GetUserByUsername(user.Email);
             if (existingUser != null)
@@ -64,35 +65,42 @@ namespace ERP.Services
             }
 
             var passwordSalt = _encryptionService.CreateSalt();
-
-            //var user = new User()
-            //{
-            //    Username   = username,
-            //    Salt = passwordSalt,
-            //    Email = email,
-            //    IsLocked = false,
-            //    HashedPassword = _encryptionService.EncryptPassword(password, passwordSalt),
-            //    DateCreated = DateTime.Now
-            //     CompId=user
-            //};'
             user.Salt = passwordSalt;
-            user.IsActive = true;
             user.IsLocked = false;
             user.HashedPassword = _encryptionService.EncryptPassword(password, passwordSalt);
             user.ObjectState = ObjectState.Added;
             _userRepository.Insert(user);
             _unitOfWorkAsync.SaveChangesAsync();
-          
-                 if (roles != null && roles.Length > 0)
-                 {
-                     foreach (var role in roles)
-                     {
-                         addUserToRole(user, role);
-                     }
-                 }
+            if (roles != null && roles.Length > 0)
+            {
+                foreach (var role in roles)
+                {
+                    addUserToRole(user, role);
+                }
+            }
             return user;
         }
 
+        public User CreateUserByManager(User user, string password, string CreatedByUserEmail)
+        {
+            var existingUser = _userRepository.GetUserByUsername(user.Email);
+            var manager = _userRepository.GetUserByUsername(CreatedByUserEmail);
+            if (existingUser != null)
+            {
+                throw new Exception("Username is already in use");
+            }
+            var passwordSalt = _encryptionService.CreateSalt();
+            user.Salt = passwordSalt;
+            user.IsLocked = false;
+            user.HashedPassword = _encryptionService.EncryptPassword(password, passwordSalt);
+            user.ObjectState = ObjectState.Added;
+            user.Manager = manager;
+            user.CreatedByUserID = manager.UserID;
+            user.ManagerID = manager.UserID;
+            _userRepository.Insert(user);
+            _unitOfWorkAsync.SaveChangesAsync();
+            return user;
+        }
         public User GetUser(int userId)
         {
             return _userRepository.GetSingle(userId);
@@ -122,12 +130,12 @@ namespace ERP.Services
             var role = _roleRepository.GetSingle(roleId);
             if (role == null)
                 return;
-                //throw new ApplicationException("Role doesn't exist.");
+            //throw new ApplicationException("Role doesn't exist.");
 
             var userRole = new UserRole()
             {
                 RoleId = role.ID,
-                UserId = user.ID,               
+                UserId = user.UserID,
             };
             _userRoleRepository.Insert(userRole);
         }
@@ -150,17 +158,34 @@ namespace ERP.Services
         public void ManageUserStatus(string email, bool status)
         {
             var existingUser = _userRepository.GetUserByUsername(email);
-            if (existingUser!=null)
+            if (existingUser != null)
             {
-                existingUser.IsActive = status;
+                existingUser.IsLocked = (!status);
                 existingUser.ObjectState = ObjectState.Modified;
                 _unitOfWorkAsync.SaveChangesAsync();
             }
-        }        
+        }
 
         List<UserRight> IMembershipService.GetUserRoles(string username)
         {
             throw new NotImplementedException();
+        }
+
+
+        public IEnumerable<User> GetUsersByManageEmail(string emailID)
+        {
+            var manager = _userRepository.GetUserByUsername(emailID);
+            if (manager != null)
+                return _userRepository.Queryable().Where(x => x.ManagerID == manager.UserID);
+            else
+            {
+                return null;
+            }
+        }
+
+        public User GetUsersByEmail(string emailID)
+        {
+            return _userRepository.GetUserByUsername(emailID);
         }
     }
 }

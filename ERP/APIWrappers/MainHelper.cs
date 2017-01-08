@@ -1,4 +1,5 @@
 ﻿using ERP.Entities;
+using ERP.Entities.Models;
 using ERP.Entities.SParams;
 using ERP.Entities.SPModels;
 using ERP.Models;
@@ -18,7 +19,7 @@ namespace ERP.APIWrappers
         static IModuleService _moduleService;
         static IStoredProcedureService _storedProcedureService;
 
-         static MainHelper()
+        static MainHelper()
         {
             //
             //_userService = new UserService();// userService;
@@ -56,6 +57,29 @@ namespace ERP.APIWrappers
                               ActionName = dto.ActionName,
                               ModuleId = dto.ModuleId,
                               ModuleName = dto.ModuleName
+                          }).ToList()
+                    });
+        }
+
+        public static IEnumerable<ModuleForGui> FormatModule(IEnumerable<UserModuleDetails> modules)
+        {
+            return (from log in modules
+                    group log by log.ModuleGroupId into g
+                    orderby g.Key
+                    select new ModuleForGui
+                    {
+                      ModuleGroupID = g.Key,
+                        Count = g.Count(),
+                        Modules = g.Select(dto =>
+                          new ModuleDetails
+                          {
+                             Id = dto.ModuleId,
+                             ModuleName = dto.ModuleName,                              
+                             Orderby = dto.ModuleOrder,
+                             UIStyle    = new Entities.Models.UIStyle{ FontIconClass= dto.FontIconClass, BackgroundColor= dto.backgroundColor, FontColor=dto.FontColor },
+                             UrlContext   = new UrlContext{ AreaName=dto.AreaName, ControllerName=dto.ControllerName,ActionName= dto.ActionName}  , 
+                             ModuleGroupName = dto.ModuleGroupName,
+                             
                           }).ToList()
                     });
         }

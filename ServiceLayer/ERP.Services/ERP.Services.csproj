@@ -50,9 +50,15 @@
     <Compile Include="IStoredProcedureService.cs" />
     <Compile Include="MembershipService.cs" />
     <Compile Include="MenuService.cs" />
+    <Compile Include="ModuleGroupAccessService.cs" />
+    <Compile Include="ModuleGroupService.cs" />
+    <Compile Include="AccessTypeService.cs" />
+    <Compile Include="UrlContextService.cs" />
+    <Compile Include="UserModulesService.cs" />
+    <Compile Include="UserSettingsService.cs" />
     <Compile Include="ModuleService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UerService.cs" />
+    <Compile Include="UserService.cs" />
     <Compile Include="Utilities\MembeshipContext.cs" />
   </ItemGroup>
   <ItemGroup>

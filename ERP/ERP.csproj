@@ -218,6 +218,17 @@
     <Compile Include="Areas\Administration\Controllers\DefaultController.cs" />
     <Compile Include="Areas\Administration\Controllers\MenuController.cs" />
     <Compile Include="Areas\Administration\Controllers\UserManagementController.cs" />
+    <Compile Include="Areas\Buyers\BuyersAreaRegistration.cs" />
+    <Compile Include="Areas\Buyers\Controllers\ManagementController.cs" />
+    <Compile Include="Areas\Buyers\Controllers\MarketingController.cs" />
+    <Compile Include="Areas\Buyers\Controllers\OrderController.cs" />
+    <Compile Include="Areas\Buyers\Controllers\SchemeController.cs" />
+    <Compile Include="Areas\Sales\Controllers\DefaultController.cs" />
+    <Compile Include="Areas\Sales\Controllers\InvoiceController.cs" />
+    <Compile Include="Areas\Sales\Controllers\ManagementController.cs" />
+    <Compile Include="Areas\Sales\Controllers\OrderController.cs" />
+    <Compile Include="Areas\Sales\Controllers\ProductController.cs" />
+    <Compile Include="Areas\Sales\SalesAreaRegistration.cs" />
     <Compile Include="Attribute\CustomHandleErrorAttribute.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CalendarController.cs" />
@@ -230,21 +241,26 @@
     <Compile Include="Controllers\MailboxController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ModulesController.cs" />
+    <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\TablesController.cs" />
     <Compile Include="Controllers\WidgetsController.cs" />
     <Compile Include="Extensions\ClaimsExtensions.cs" />
     <Compile Include="Extensions\ERPExtension.cs" />
+    <Compile Include="Extensions\URLExtension.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AddMenuVM.cs" />
     <Compile Include="Models\APIResponse.cs" />
+    <Compile Include="Models\AssignedModuleVm.cs" />
     <Compile Include="Models\ErrorModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MenuVM.cs" />
+    <Compile Include="Models\ModuleVM.cs" />
     <Compile Include="Models\UserMenuVM.cs" />
+    <Compile Include="Models\UserModuleVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -1093,6 +1109,31 @@
     <Content Include="Areas\Administration\Views\Menu\Index.cshtml" />
     <Content Include="Areas\Administration\Views\Menu\EditMenu.cshtml" />
     <Content Include="Areas\Administration\Views\UserManagement\ManageUserMenu.cshtml" />
+    <Content Include="Areas\Buyers\Views\web.config" />
+    <Content Include="Areas\Buyers\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Buyers\Views\Management\CreateUser.cshtml" />
+    <Content Include="Areas\Buyers\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Buyers\Views\Management\Index.cshtml" />
+    <Content Include="Areas\Buyers\Views\Management\Users.cshtml" />
+    <Content Include="Areas\Sales\Views\web.config" />
+    <Content Include="Areas\Sales\Views\Management\CreateUser.cshtml" />
+    <Content Include="Areas\Sales\Views\Management\Index.cshtml" />
+    <Content Include="Areas\Sales\Views\Management\Users.cshtml" />
+    <Content Include="Areas\Sales\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Sales\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Sales\Views\Default\Index.cshtml" />
+    <Content Include="Areas\Administration\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Administration\Views\Default\Modules.cshtml" />
+    <Content Include="Areas\Administration\Views\Default\EditModule.cshtml" />
+    <Content Include="Areas\Administration\Views\Shared\_Module.cshtml" />
+    <Content Include="Areas\Administration\Views\Default\CreateModule.cshtml" />
+    <Content Include="Areas\Administration\Views\Default\AllUrls.cshtml" />
+    <Content Include="Areas\Administration\Views\Default\AddURL.cshtml" />
+    <Content Include="Areas\Buyers\Views\Order\Index.cshtml" />
+    <Content Include="Areas\Buyers\Views\Order\OrderPosting.cshtml" />
+    <Content Include="Areas\Buyers\Views\Order\OrderTracker.cshtml" />
+    <Content Include="Areas\Buyers\Views\Scheme\Index.cshtml" />
+    <Content Include="Areas\Buyers\Views\Marketing\Index.cshtml" />
     <None Include="Properties\PublishProfiles\Default Settings %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\Default Settings %283%29.pubxml" />
     <None Include="Properties\PublishProfiles\Default Settings.pubxml" />
@@ -1241,11 +1282,19 @@
     <Content Include="Views\Modules\ManageCustomers.cshtml" />
     <Content Include="Views\Modules\ManageMeetings.cshtml" />
     <Content Include="Views\Modules\ManageTasks.cshtml" />
+    <Content Include="Views\Shared\_Module.cshtml" />
+    <Content Include="Views\Profile\Settings.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Administration\Models\" />
-    <Folder Include="Areas\Administration\Views\Default\" />
+    <Folder Include="Areas\Buyers\Models\" />
+    <Folder Include="Areas\Sales\Models\" />
+    <Folder Include="Areas\Sales\Views\Invoice\" />
+    <Folder Include="Areas\Sales\Views\Order\" />
+    <Folder Include="Areas\Sales\Views\Product\" />
+    <Folder Include="ERPApp\" />
+    <Folder Include="Scripts\App\" />
     <Folder Include="Scripts\ERPApp\" />
   </ItemGroup>
   <ItemGroup>

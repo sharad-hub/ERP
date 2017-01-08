@@ -10,6 +10,7 @@ using Repository.Pattern.Ef6;
 using ERP.Services;
 using ERP.Entities;
 using ERP.Servicess;
+using ERP.Entities.Models;
 //using Elmah;
 
 namespace ERP.App_Start
@@ -44,10 +45,8 @@ namespace ERP.App_Start
         {
             // NOTE: To load from web.config uncomment the line below. Make sure to add a Microsoft.Practices.Unity.Configuration to the using statements.
             // container.LoadConfiguration();
-
             // TODO: Register your types here
             // container.RegisterType<IProductRepository, ProductRepository>();
-
             container
          .RegisterType<IDataContextAsync, GERPContext>(new PerThreadLifetimeManager())
          .RegisterType<IUnitOfWorkAsync, UnitOfWork>(new PerThreadLifetimeManager())
@@ -56,12 +55,24 @@ namespace ERP.App_Start
          .RegisterType<IMembershipService, MembershipService>()
          .RegisterType<IMenuService, MenuService>()
          .RegisterType<IModuleService, ModuleService>()
-          .RegisterType<IUserService, UserService>()
+         .RegisterType<IUserService, UserService>()
          .RegisterType<IErrorService, ErrorService>()
+         .RegisterType<IModuleGroupService, ModuleGroupService>()
+         .RegisterType<IModuleGroupAccessService, ModuleGroupAccessService>()
+         .RegisterType<IUserSettingsService, UserSettingsService>()
+         .RegisterType<IAccessTypeService, AccessTypeService>()
+         .RegisterType<IUserModulesService, UserModulesService>()
+          .RegisterType<IUrlContextService, UrlContextService>()
          .RegisterType<IRepositoryAsync<User>, Repository<User>>()
-          .RegisterType<IRepositoryAsync<Module>, Repository<Module>>()
+         .RegisterType<IRepositoryAsync<AccessType>, Repository<AccessType>>()
+         .RegisterType<IRepositoryAsync<ModuleGroup>, Repository<ModuleGroup>>()
+         .RegisterType<IRepositoryAsync<ModuleGroupAccess>, Repository<ModuleGroupAccess>>()
+         .RegisterType<IRepositoryAsync<SystemSetting>, Repository<SystemSetting>>()
+         .RegisterType<IRepositoryAsync<Module>, Repository<Module>>()
          .RegisterType<IRepositoryAsync<UserRole>, Repository<UserRole>>()
          .RegisterType<IRepositoryAsync<Role>, Repository<Role>>()
+         .RegisterType<IRepositoryAsync<UserModules>, Repository<UserModules>>()
+          .RegisterType<IRepositoryAsync<UrlContext>, Repository<UrlContext>>()
          .RegisterType<IEncryptionService, EncryptionService>()
          .RegisterType<IStoredProcedureService, StoredProcedureService>()
         .RegisterType<IERPStoredProcedure, GERPContext>(new PerRequestLifetimeManager())

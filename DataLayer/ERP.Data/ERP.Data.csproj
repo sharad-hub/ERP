@@ -72,25 +72,58 @@
     <Compile Include="Mapping\MenuMap.cs" />
     <Compile Include="Mapping\ModuleMap.cs" />
     <Compile Include="Mapping\StateMap.cs" />
+    <Compile Include="Mapping\SystemSettingsMap.cs" />
     <Compile Include="Mapping\TitleMap.cs" />
     <Compile Include="Mapping\UserMap.cs" />
     <Compile Include="Mapping\UserRightMap.cs" />
     <Compile Include="Mapping\UserTypeMap.cs" />
-    <Compile Include="Migrations\201612281710439_init.cs" />
-    <Compile Include="Migrations\201612281710439_init.Designer.cs">
-      <DependentUpon>201612281710439_init.cs</DependentUpon>
+    <Compile Include="Migrations\201701070530255_init.cs" />
+    <Compile Include="Migrations\201701070530255_init.Designer.cs">
+      <DependentUpon>201701070530255_init.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201612291819508_errorlog.cs" />
-    <Compile Include="Migrations\201612291819508_errorlog.Designer.cs">
-      <DependentUpon>201612291819508_errorlog.cs</DependentUpon>
+    <Compile Include="Migrations\201701070629036_Modified_Module.cs" />
+    <Compile Include="Migrations\201701070629036_Modified_Module.Designer.cs">
+      <DependentUpon>201701070629036_Modified_Module.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201701010509579_menu path.cs" />
-    <Compile Include="Migrations\201701010509579_menu path.Designer.cs">
-      <DependentUpon>201701010509579_menu path.cs</DependentUpon>
+    <Compile Include="Migrations\201701070715350_UserModule.cs" />
+    <Compile Include="Migrations\201701070715350_UserModule.Designer.cs">
+      <DependentUpon>201701070715350_UserModule.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201701041934062_menu-user.cs" />
-    <Compile Include="Migrations\201701041934062_menu-user.Designer.cs">
-      <DependentUpon>201701041934062_menu-user.cs</DependentUpon>
+    <Compile Include="Migrations\201701070906546_Usersettings.cs" />
+    <Compile Include="Migrations\201701070906546_Usersettings.Designer.cs">
+      <DependentUpon>201701070906546_Usersettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701070933226_ModuleGroupAccess.cs" />
+    <Compile Include="Migrations\201701070933226_ModuleGroupAccess.Designer.cs">
+      <DependentUpon>201701070933226_ModuleGroupAccess.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701071221343_RemovedrestrictionFromUsers.cs" />
+    <Compile Include="Migrations\201701071221343_RemovedrestrictionFromUsers.Designer.cs">
+      <DependentUpon>201701071221343_RemovedrestrictionFromUsers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701071725502_UserModules.cs" />
+    <Compile Include="Migrations\201701071725502_UserModules.Designer.cs">
+      <DependentUpon>201701071725502_UserModules.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701072108370_SettingGropuAndSortName.cs" />
+    <Compile Include="Migrations\201701072108370_SettingGropuAndSortName.Designer.cs">
+      <DependentUpon>201701072108370_SettingGropuAndSortName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701080431142_AddedRoleProvider.cs" />
+    <Compile Include="Migrations\201701080431142_AddedRoleProvider.Designer.cs">
+      <DependentUpon>201701080431142_AddedRoleProvider.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701080435269_RenamesSettingsTable.cs" />
+    <Compile Include="Migrations\201701080435269_RenamesSettingsTable.Designer.cs">
+      <DependentUpon>201701080435269_RenamesSettingsTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701080508114_AlteredModuleTable.cs" />
+    <Compile Include="Migrations\201701080508114_AlteredModuleTable.Designer.cs">
+      <DependentUpon>201701080508114_AlteredModuleTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701080512324_AlteredModuleTableForstyle.cs" />
+    <Compile Include="Migrations\201701080512324_AlteredModuleTableForstyle.Designer.cs">
+      <DependentUpon>201701080512324_AlteredModuleTableForstyle.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -122,17 +155,41 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201612281710439_init.resx">
-      <DependentUpon>201612281710439_init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201701070530255_init.resx">
+      <DependentUpon>201701070530255_init.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612291819508_errorlog.resx">
-      <DependentUpon>201612291819508_errorlog.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201701070629036_Modified_Module.resx">
+      <DependentUpon>201701070629036_Modified_Module.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201701010509579_menu path.resx">
-      <DependentUpon>201701010509579_menu path.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201701070715350_UserModule.resx">
+      <DependentUpon>201701070715350_UserModule.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201701041934062_menu-user.resx">
-      <DependentUpon>201701041934062_menu-user.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201701070906546_Usersettings.resx">
+      <DependentUpon>201701070906546_Usersettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701070933226_ModuleGroupAccess.resx">
+      <DependentUpon>201701070933226_ModuleGroupAccess.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701071221343_RemovedrestrictionFromUsers.resx">
+      <DependentUpon>201701071221343_RemovedrestrictionFromUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701071725502_UserModules.resx">
+      <DependentUpon>201701071725502_UserModules.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701072108370_SettingGropuAndSortName.resx">
+      <DependentUpon>201701072108370_SettingGropuAndSortName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701080431142_AddedRoleProvider.resx">
+      <DependentUpon>201701080431142_AddedRoleProvider.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701080435269_RenamesSettingsTable.resx">
+      <DependentUpon>201701080435269_RenamesSettingsTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701080508114_AlteredModuleTable.resx">
+      <DependentUpon>201701080508114_AlteredModuleTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701080512324_AlteredModuleTableForstyle.resx">
+      <DependentUpon>201701080512324_AlteredModuleTableForstyle.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

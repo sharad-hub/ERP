@@ -73,11 +73,26 @@ namespace ERP.Controllers
 
             return PartialView("_Menu", GetAllMenu(User.Identity.GetUserNameIdentifier()));
         }
+
+        public PartialViewResult Module()
+        {
+
+            return PartialView("_Module", GetAllUsersModules(User.Identity.GetUserNameIdentifier()));
+        }
         private List<MenuForGui> GetAllMenu(string UserEmail)
         {
             var data = _storedProcedureService.GetMenuByUserName(new GetUserMenu { EmailAddress = UserEmail });
             if (data != null)
                 return MainHelper.FormatMenu(data).ToList();
+            else
+                return null;
+        }
+
+        private List<ModuleForGui> GetAllUsersModules(string userEmail)
+        {
+            var data = _storedProcedureService.GetModulesByUserName( userEmail );
+            if (data != null)
+                return MainHelper.FormatModule(data).ToList();
             else
                 return null;
         }

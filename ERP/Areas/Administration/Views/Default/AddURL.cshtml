@@ -1,0 +1,137 @@
+﻿@model ERP.Entities.Models.UrlContext
+
+@{
+    ViewBag.Title = "Add URL";
+}
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+@{
+    IEnumerable<SelectListItem> Areas = ViewBag.Areas;
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.AreaName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*@Html.EditorFor(model => model.AreaName, new { htmlAttributes = new { @class = "form-control" } })*@
+                @Html.DropDownListFor(model => model.AreaName, Areas, "--Select--", new { @id = "ddlArea", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.AreaName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ControllerName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div id="ControllerName">
+                    @Html.DropDownListFor(x => x.ControllerName, new List<SelectListItem>(), "--Select--", new { @id = "ddlControllerName", @class = "form-control" })
+                </div> 
+                @*@Html.EditorFor(model => model.ControllerName, new { htmlAttributes = new { @class = "form-control" } })*@
+                @Html.ValidationMessageFor(model => model.ControllerName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ActionName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*@Html.EditorFor(model => model.ActionName, new { htmlAttributes = new { @class = "form-control" } })*@
+
+                <div id="ActionName">
+                    @Html.DropDownListFor(x => x.ActionName, new List<SelectListItem>(), "--Select--", new { @id = "ddlActionName", @class = "form-control" })
+                </div>  
+                @Html.ValidationMessageFor(model => model.ActionName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Active, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.Active)
+                    @Html.ValidationMessageFor(model => model.Active, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SortName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SortName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.SortName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "allurls")
+</div>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $('#ddlArea').change(function () {
+            $.ajax({
+                type: "post",
+                url: "/ERP/Administration/Default/GetControllers",
+                data: { areaName: $('#ddlArea').val() },
+                datatype: "json",
+                traditional: true,
+                success: function (data) {
+                   // var district = "<select id='ddlControllerName' class='form-control'>";
+                    var district = district + '<option value="">--Select--</option>';
+                    for (var i = 0; i < data.length; i++) {
+                        district = district + '<option value=' + data[i].Value + '>' + data[i].Text + '</option>';
+                    }
+                    //district = district + '</select>';
+                    $('#ddlControllerName').html(district);
+                    //$('#ControllerName').html(district);
+                }
+            });
+        });
+
+        $('#ddlControllerName').change(function () {
+            $.ajax({
+                type: "post",
+                url: "/ERP/Administration/Default/GetActions",
+                data: { controllerName: $('#ddlControllerName').val(), areaName: $('#ddlArea').val() },
+                datatype: "json",
+                traditional: true,
+                success: function (data) {
+                    // var district = "<select id='ddlActionName' class='form-control'>";
+                    var items = "";
+                    items = "<option value=''>--Choose--</option>";
+                    $.each(data, function (i, item) {
+                        items += "<option value=\"" + item.Value + "\">" + item.Text + "</option>";
+                    });
+                    $('#ddlActionName').html(items);
+
+                   //var district = district + '<option value="">--Select--</option>';
+                   // for (var i = 0; i < data.length; i++) {
+                   //     district = district + '<option value=' + data[i].Value + '>' + data[i].Text + '</option>';
+                   // }
+                   // district = district + '</select>';
+                   // $('#ActionName').html(district);
+                }
+            });
+        });
+    });
+
+    //var items = "";
+    //items = "<option value=''>--Choose--</option>";
+    //$.each(data, function (i, item) {
+    //    items += "<option value=\"" + item.Value + "\">" + item.Text + "</option>";
+    //});
+    //$('#DropDownList').html(items);
+</script>

@@ -1,0 +1,104 @@
+﻿@model ERP.Models.CreateUser
+
+@{
+    ViewBag.Title = "CreateUser";
+}
+@using (Html.BeginForm("CreateUser", "Management", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.AntiForgeryToken()    
+    <div class="box-body">       
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.NameIdentifier, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NameIdentifier, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NameIdentifier, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ConfirmPassword, htmlAttributes: new { @class = "control-label col-sm-2" })
+            <div class="col-sm-10">
+                @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.UseDefaultPassword, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.UseDefaultPassword)
+                    @Html.ValidationMessageFor(model => model.UseDefaultPassword, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>             
+
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Available Modules</h3>
+                    <div class="box-tools">
+                        <div class="input-group input-group-sm" style="width: 150px;">
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="box-body table-responsive no-padding">
+                    <table class="table table-hover">
+                        <tbody>
+                            <tr>
+                                <th>SNo</th>
+                                <th>Module Name</th>
+                                <th>Select </th>
+                                <th>Access Type</th>
+
+                            </tr>
+                            @for (int i = 0; i < Model.AssignedModules.Count; i++)
+                            {
+                                <tr>
+                                    <td>@(i +1) </td>
+                                    <td>
+
+                                        @Html.Hidden("AssignedModules[" + (@i) + "].ModuleID", Model.AssignedModules[i].ModuleID)
+                                        @Html.Label("AssignedModules[" + (@i) + "].ModuleName", Model.AssignedModules[i].ModuleName)
+                                    </td>
+                                    <td>
+                                        @Html.CheckBox("AssignedModules[" + (@i) + "].Selected", Model.AssignedModules[i].Selected)
+                                    </td>
+                                    <td>
+                                        @Html.DropDownList("AssignedModules[" + (@i) + "].AccessTypeID", Model.AccessTypes, Model.AssignedModules[i].AccessTypeID)
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div> 
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

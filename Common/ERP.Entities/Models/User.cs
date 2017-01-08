@@ -1,7 +1,9 @@
 using ERP.Data.Models;
+using ERP.Entities.Models;
 using Repository.Pattern.Ef6;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ERP.Entities
 {
@@ -10,22 +12,32 @@ namespace ERP.Entities
     {
         public User()
         {
-            UserRoles = new List<UserRole>();
-            Menus = new HashSet<Menu>();
+            Modules = new HashSet<Module>();
+            Users = new HashSet<User>();
         }
-        public int ID { get; set; }
+        public int UserID { get; set; }
         public string Username { get; set; }
         public string Email { get; set; }
         public string HashedPassword { get; set; }
         public string Salt { get; set; }
         public bool IsLocked { get; set; }
-        public DateTime DateCreated { get; set; }       
-        public virtual ICollection<UserRole> UserRoles { get; set; }
-        //public virtual ICollection<Module> Modules { get; set; }
-        public bool IsActive { get; set; }
+        public Nullable<DateTime> DateCreated { get; set; } 
         public int CompId { get; set; }
 
-        public virtual ICollection<Menu> Menus { get; set; }
+        [ForeignKey("Manager")]
+        public Nullable<int> ManagerID { get; set; }
+        public virtual User Manager { get; set; }
+
+        [InverseProperty("Manager")]
+        public virtual ICollection<User> Users { get; set; }
+
+        public Nullable<int> CreatedByUserID { get; set; }
+       
+        public virtual ICollection<Module> Modules { get; set; }
+
+        [ForeignKey("Zone")]
+        public Nullable<int> ZoneID { get; set; }
+        public virtual Zone Zone { get; set; }
     }
     //public partial class User:Entity
     //{

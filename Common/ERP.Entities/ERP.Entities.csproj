@@ -55,8 +55,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="Constants.cs" />
     <Compile Include="Models\AccessType.cs" />
     <Compile Include="Models\City.cs" />
+    <Compile Include="Models\RoleGroup.cs" />
+    <Compile Include="Models\RoleProvider.cs" />
+    <Compile Include="Models\SettingsGroup.cs" />
+    <Compile Include="Models\UrlContext.cs" />
+    <Compile Include="Models\ModuleGroupAccess.cs" />
+    <Compile Include="Models\UserModules.cs" />
     <Compile Include="Models\ErrorLog.cs" />
     <Compile Include="Models\CompanyWiseModule.cs" />
     <Compile Include="Models\Country.cs" />
@@ -64,16 +71,21 @@
     <Compile Include="Models\Error.cs" />
     <Compile Include="Models\FYear.cs" />
     <Compile Include="Models\Gender.cs" />
-    <Compile Include="Models\Icon.cs" />
     <Compile Include="Models\MaritalStatus.cs" />
     <Compile Include="Models\Menu.cs" />
     <Compile Include="Models\Module.cs" />
+    <Compile Include="Models\ModuleGroup.cs" />
+    <Compile Include="Models\Notification.cs" />
+    <Compile Include="Models\NotificationType.cs" />
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\State.cs" />
     <Compile Include="Models\Title.cs" />
+    <Compile Include="Models\UIStyle.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserRight.cs" />
-    <Compile Include="Models\UserType.cs" />
+    <Compile Include="Models\UserRole.cs" />
+    <Compile Include="Models\UserSettings.cs" />
+    <Compile Include="Models\Zones.cs" />
     <Compile Include="Other\GenericAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SParams\AddMenu.cs" />

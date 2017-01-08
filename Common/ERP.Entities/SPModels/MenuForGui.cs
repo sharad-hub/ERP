@@ -15,9 +15,22 @@ namespace ERP.Entities.SPModels
         public IList<MenuDetails> Menu { get; set; }
     }
 
+  public class ModuleForGui
+  {
+      public int Count { get; set; }
+      public string ModuleGroupName { get; set; }
+      public int ModuleGroupID { get; set; }
+      public int ModuleGroupOrder { get; set; }
+      public IList<ModuleDetails> Modules { get; set; }
+  }
+
   public class MenuDetails : Menu
   {
       public string ModuleName { get; set; }
+  }
+  public class ModuleDetails : Module
+  {
+      public string ModuleGroupName { get; set; }
   }
   public class UserMenu
   {
@@ -48,5 +61,24 @@ namespace ERP.Entities.SPModels
       public int Orderby { get; set; }
       public int AccessTypeID { get; set; }
       public int UserID { get; set; }	
+  }
+
+  public class UserModuleDetails
+  {
+      public int ModuleId { get; set; }
+      public string ModuleName { get; set; }     
+      public int ModuleGroupId { get; set; }      
+      public string ModuleGroupName { get; set; }
+      public string UserEmail { get; set; }
+      public int UserID { get; set; }
+      public int ModuleOrder { get; set; }
+      public int ModuleGroupOrder { get; set; }
+      public string backgroundColor { get; set; }
+      public string FontIconClass { get; set; }
+      public string FontColor { get; set; }
+
+      public string ControllerName { get; set; }
+      public string ActionName { get; set; }
+      public string AreaName { get; set; }
   }
 }

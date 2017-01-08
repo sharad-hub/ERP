@@ -1,0 +1,52 @@
+﻿@model IEnumerable<ModuleForGui>
+@using ERP.Extensions
+@using ERP.APIWrappers
+@using ERP.Models
+@using ERP.Entities.SPModels
+
+@if (HttpContext.Current.User.Identity.IsAuthenticated)
+{
+    int index = 0;
+    string moduleClass="treeview";
+    foreach (ModuleForGui moduleGroup in Model)
+    {
+        index++;
+        if (moduleGroup != null && moduleGroup.Modules != null && moduleGroup.Modules.Count() > 0)
+        {
+            if(index==1)
+            {
+                moduleClass = "treeview active";
+            }
+            else
+            {
+                moduleClass = "treeview";
+            }
+            
+            <li id="left-sidebar-menu-charts" class="@moduleClass">
+
+
+
+                <a href="#">
+                    <i class="fa fa-pie-chart"></i>
+                    <span>@moduleGroup.Modules[0].ModuleGroupName</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    @foreach (ModuleDetails module in moduleGroup.Modules)
+                    {
+                        if (module.UrlContext.AreaName != null && module.UrlContext.AreaName != "main")
+                        {
+                            <li id="left-sidebar-menu-charts-chartjs"><a href="@Url.Action(module.UrlContext.ActionName, module.UrlContext.ControllerName, new { Area = module.UrlContext.AreaName })"><i class="fa fa-circle-o"></i> @module.ModuleName</a></li>
+                        }
+                        else
+                        {
+                            <li id="left-sidebar-menu-charts-chartjs"><a href="@Url.Action(module.UrlContext.ActionName, module.UrlContext.ControllerName)"><i class="fa fa-circle-o"></i> @module.ModuleName</a></li>
+                        }
+                    }
+
+                </ul>
+
+            </li>
+        }
+    }
+}

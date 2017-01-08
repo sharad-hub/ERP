@@ -9,10 +9,11 @@ namespace ERP.Data.Models.Mapping
         public UserMap()
         {
             // Primary Key
-            this.HasKey(t => new { t.ID ,t.CompId});
+            //this.HasKey(t => new { t.UserID, t.CompId });
+            this.HasKey(t =>t.UserID);
 
             // Properties
-            this.Property(t => t.ID)
+            this.Property(t => t.UserID)
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
 
             this.Property(t => t.CompId)
@@ -32,14 +33,18 @@ namespace ERP.Data.Models.Mapping
 
             // Table & Column Mappings
             this.ToTable("Users");
-            this.Property(t => t.ID).HasColumnName("ID");
+            this.Property(t => t.UserID).HasColumnName("UserID");
             this.Property(t => t.CompId).HasColumnName("CompId");
             //this.Property(t => t.UserLoginId).HasColumnName("UserLoginId");
             //this.Property(t => t.UserLoginPassword).HasColumnName("UserLoginPassword");
             this.Property(t => t.Username).HasColumnName("UserName");
             this.Property(t => t.HashedPassword).HasColumnName("HashedPassword");
             this.Property(t => t.IsLocked).HasColumnName("IsLocked");
-            this.Property(t => t.IsActive).HasColumnName("IsActive");
+            //this.Property(t => t.IsActive).HasColumnName("IsActive");
+
+            this.HasOptional(t => t.Manager)
+                .WithMany(t => t.Users)
+                .HasForeignKey(d => d.ManagerID);
         }
     }
 }

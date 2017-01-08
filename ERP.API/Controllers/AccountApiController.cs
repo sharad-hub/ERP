@@ -47,7 +47,7 @@ namespace ERP.API.Controllers
 
                     if (_userContext.User != null)
                     {
-                        response = request.CreateResponse(HttpStatusCode.OK, new { success = true, userId = _userContext.User.ID });
+                        response = request.CreateResponse(HttpStatusCode.OK, new { success = true, userId = _userContext.User.UserID });
                     }
                     else
                     {
