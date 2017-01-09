@@ -58,25 +58,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="GERPContext.cs" />
     <Compile Include="Mapping\AccessTypeMap.cs" />
-    <Compile Include="Mapping\CityMap.cs" />
+    <Compile Include="Mapping\BuyerMasterMap.cs" />
+    <Compile Include="Mapping\CityMasterMap.cs" />
     <Compile Include="Mapping\CompanyWiseModuleMap.cs" />
-    <Compile Include="Mapping\CountryMap.cs" />
-    <Compile Include="Mapping\DesignationMap.cs" />
+    <Compile Include="Mapping\CountryMasterMap.cs" />
+    <Compile Include="Mapping\DepartmentMasterMap.cs" />
+    <Compile Include="Mapping\DesignationMasterMap.cs" />
+    <Compile Include="Mapping\FactoryMasterMap.cs" />
     <Compile Include="Mapping\FYearMap.cs" />
     <Compile Include="Mapping\GenderMap.cs" />
     <Compile Include="Mapping\IconMap.cs" />
     <Compile Include="Mapping\MaritalStatusMap.cs" />
     <Compile Include="Mapping\MenuMap.cs" />
     <Compile Include="Mapping\ModuleMap.cs" />
-    <Compile Include="Mapping\StateMap.cs" />
+    <Compile Include="Mapping\SalesExecutiveMasterMap.cs" />
+    <Compile Include="Mapping\StateMasterMap.cs" />
     <Compile Include="Mapping\SystemSettingsMap.cs" />
+    <Compile Include="Mapping\ProductMap.cs" />
     <Compile Include="Mapping\TitleMap.cs" />
     <Compile Include="Mapping\UserMap.cs" />
     <Compile Include="Mapping\UserRightMap.cs" />
     <Compile Include="Mapping\UserTypeMap.cs" />
+    <Compile Include="Mapping\ZoneMasterMap.cs" />
     <Compile Include="Migrations\201701070530255_init.cs" />
     <Compile Include="Migrations\201701070530255_init.Designer.cs">
       <DependentUpon>201701070530255_init.cs</DependentUpon>
@@ -124,6 +129,14 @@
     <Compile Include="Migrations\201701080512324_AlteredModuleTableForstyle.cs" />
     <Compile Include="Migrations\201701080512324_AlteredModuleTableForstyle.Designer.cs">
       <DependentUpon>201701080512324_AlteredModuleTableForstyle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701081519330_ModuleGrp.cs" />
+    <Compile Include="Migrations\201701081519330_ModuleGrp.Designer.cs">
+      <DependentUpon>201701081519330_ModuleGrp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701091815328_addedBuyerAndMastersi.cs" />
+    <Compile Include="Migrations\201701091815328_addedBuyerAndMastersi.Designer.cs">
+      <DependentUpon>201701091815328_addedBuyerAndMastersi.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -190,6 +203,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201701080512324_AlteredModuleTableForstyle.resx">
       <DependentUpon>201701080512324_AlteredModuleTableForstyle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701081519330_ModuleGrp.resx">
+      <DependentUpon>201701081519330_ModuleGrp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701091815328_addedBuyerAndMastersi.resx">
+      <DependentUpon>201701091815328_addedBuyerAndMastersi.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

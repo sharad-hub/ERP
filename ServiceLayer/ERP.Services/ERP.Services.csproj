@@ -43,16 +43,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Buyers\BuyerService.cs" />
     <Compile Include="EncryptionService.cs" />
     <Compile Include="ErrorService.cs" />
+    <Compile Include="Factory\FactoryService.cs" />
     <Compile Include="IEncryptionService.cs" />
     <Compile Include="IMembershipService.cs" />
     <Compile Include="IStoredProcedureService.cs" />
+    <Compile Include="Masters\ZoneService.cs" />
+    <Compile Include="Masters\CityService.cs" />
+    <Compile Include="Masters\StateService.cs" />
+    <Compile Include="Masters\CountryService.cs" />
     <Compile Include="MembershipService.cs" />
     <Compile Include="MenuService.cs" />
     <Compile Include="ModuleGroupAccessService.cs" />
     <Compile Include="ModuleGroupService.cs" />
     <Compile Include="AccessTypeService.cs" />
+    <Compile Include="Product\ProductService.cs" />
+    <Compile Include="SalesExecutive\SalesExecutiveService.cs" />
     <Compile Include="UrlContextService.cs" />
     <Compile Include="UserModulesService.cs" />
     <Compile Include="UserSettingsService.cs" />

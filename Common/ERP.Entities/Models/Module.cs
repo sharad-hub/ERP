@@ -25,7 +25,7 @@ namespace ERP.Entities
         public virtual Module ParentModule { get; set; }
 
         [ForeignKey("ModuleGroup")]
-        public Nullable<int> ModuleGroupID { get; set; }
+        public int ModuleGroupID { get; set; }
         public virtual ModuleGroup ModuleGroup { get; set; }
 
         [ForeignKey("UrlContext")]
