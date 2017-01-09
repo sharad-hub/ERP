@@ -1,0 +1,4 @@
+D:\NON DC\MYProjects\ERP\ERP.Business\ERP.UserModule\bin\Release\ERP.UserModule.dll
+D:\NON DC\MYProjects\ERP\ERP.Business\ERP.UserModule\bin\Release\ERP.UserModule.pdb
+D:\NON DC\MYProjects\ERP\ERP.Business\ERP.UserModule\obj\Release\ERP.UserModule.dll
+D:\NON DC\MYProjects\ERP\ERP.Business\ERP.UserModule\obj\Release\ERP.UserModule.pdb

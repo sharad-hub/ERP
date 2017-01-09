@@ -34,7 +34,7 @@ namespace ERP.Data.Models
         public DbSet<Title> Titles { get; set; }
         public DbSet<UserRight> UserRights { get; set; }
         public DbSet<User> Users { get; set; }
-        public DbSet<UserRole> UserTypes { get; set; }
+        public DbSet<UserRole> UserRoles { get; set; }
         public DbSet<Error> Errors { get; set; }
         public DbSet<ErrorLog> ErrorLog { get; set; }
 
@@ -64,6 +64,7 @@ namespace ERP.Data.Models
         public DbSet<State> States { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Zone> Zones { get; set; }
+        //public DbSet<UserType> UserTypes { get; set; }
 
         
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -79,7 +80,7 @@ namespace ERP.Data.Models
             modelBuilder.Configurations.Add(new TitleMap());
             modelBuilder.Configurations.Add(new UserRightMap());
             modelBuilder.Configurations.Add(new UserMap());
-            modelBuilder.Configurations.Add(new UserTypeMap());
+            modelBuilder.Configurations.Add(new UserRoleMap());
             modelBuilder.Configurations.Add(new SystemSettingsMap());
 
             modelBuilder.Configurations.Add(new BuyerMasterMap());

@@ -81,11 +81,11 @@ namespace ERP.Data.Models.Mapping
             this.Property(t => t.ContactPersonEmailId)
                 .HasMaxLength(50);
 
-            this.Property(t => t.SuperUserLoginId)
-                .HasMaxLength(50);
+            //this.Property(t => t.SuperUserLoginId)
+            //    .HasMaxLength(50);
 
-            this.Property(t => t.SuperUserLoginPassword)
-                .HasMaxLength(50);
+            //this.Property(t => t.SuperUserLoginPassword)
+            //    .HasMaxLength(50);
 
             // Table & Column Mappings
             this.ToTable("BuyerMaster");
@@ -117,14 +117,14 @@ namespace ERP.Data.Models.Mapping
             this.Property(t => t.ContactPersonName).HasColumnName("ContactPersonName");
             this.Property(t => t.ContactPersonMobileNo).HasColumnName("ContactPersonMobileNo");
             this.Property(t => t.ContactPersonEmailId).HasColumnName("ContactPersonEmailId");
-            this.Property(t => t.SuperUserLoginId).HasColumnName("SuperUserLoginId");
-            this.Property(t => t.SuperUserLoginPassword).HasColumnName("SuperUserLoginPassword");
+            //this.Property(t => t.SuperUserLoginId).HasColumnName("SuperUserLoginId");
+            //this.Property(t => t.SuperUserLoginPassword).HasColumnName("SuperUserLoginPassword");
             this.Property(t => t.SalesTaxFormId).HasColumnName("SalesTaxFormId");
             this.Property(t => t.RoadPermitNoReq).HasColumnName("RoadPermitNoReq");
             this.Property(t => t.TaxType).HasColumnName("TaxType");
             this.Property(t => t.TaxPerc).HasColumnName("TaxPerc");
             this.Property(t => t.Status).HasColumnName("Status");
-            this.Property(t => t.CreatedBy).HasColumnName("CreatedBy");
+            //this.Property(t => t.CreatedBy).HasColumnName("CreatedBy");
             this.Property(t => t.CreatedDate).HasColumnName("CreatedDate");
         }
     }

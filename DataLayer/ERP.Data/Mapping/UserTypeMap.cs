@@ -4,9 +4,9 @@ using System.Data.Entity.ModelConfiguration;
 
 namespace ERP.Data.Models.Mapping
 {
-    public class UserTypeMap : EntityTypeConfiguration<UserRole>
+    public class UserRoleMap : EntityTypeConfiguration<UserRole>
     {
-        public UserTypeMap()
+        public UserRoleMap()
         {
             // Primary Key
             this.HasKey(t => t.RoleId);
@@ -20,7 +20,7 @@ namespace ERP.Data.Models.Mapping
             //    .HasMaxLength(5);
 
             // Table & Column Mappings
-            this.ToTable("UserType");
+            this.ToTable("UserRole");
             this.Property(t => t.RoleId).HasColumnName("RoleId");
             this.Property(t => t.UserId).HasColumnName("UserId");
             //this.Property(t => t.TypeCode).HasColumnName("TypeCode");

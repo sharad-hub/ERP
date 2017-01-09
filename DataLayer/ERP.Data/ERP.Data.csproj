@@ -138,6 +138,14 @@
     <Compile Include="Migrations\201701091815328_addedBuyerAndMastersi.Designer.cs">
       <DependentUpon>201701091815328_addedBuyerAndMastersi.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201701091925140_ModifiedBuyerAndFactory.cs" />
+    <Compile Include="Migrations\201701091925140_ModifiedBuyerAndFactory.Designer.cs">
+      <DependentUpon>201701091925140_ModifiedBuyerAndFactory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701091955474_USerTypeAndRef.cs" />
+    <Compile Include="Migrations\201701091955474_USerTypeAndRef.Designer.cs">
+      <DependentUpon>201701091955474_USerTypeAndRef.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StoredProcedure\ERPStoredProcedure.cs" />
@@ -209,6 +217,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201701091815328_addedBuyerAndMastersi.resx">
       <DependentUpon>201701091815328_addedBuyerAndMastersi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701091925140_ModifiedBuyerAndFactory.resx">
+      <DependentUpon>201701091925140_ModifiedBuyerAndFactory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701091955474_USerTypeAndRef.resx">
+      <DependentUpon>201701091955474_USerTypeAndRef.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

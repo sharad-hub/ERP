@@ -38,6 +38,15 @@ namespace ERP.Entities
         [ForeignKey("Zone")]
         public Nullable<int> ZoneID { get; set; }
         public virtual Zone Zone { get; set; }
+
+         [ForeignKey("UserType")]
+        public Nullable<int> UserTypeID { get; set; }
+        public virtual UserType UserType { get; set; }
+
+        /// <summary>
+        ///  To Refer Buyer / Factory .. usertype + Userref id
+        /// </summary>
+        public int UserReferenceID { get; set; }
     }
     //public partial class User:Entity
     //{

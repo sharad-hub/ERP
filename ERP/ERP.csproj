@@ -223,6 +223,7 @@
     <Compile Include="Areas\Buyers\Controllers\MarketingController.cs" />
     <Compile Include="Areas\Buyers\Controllers\OrderController.cs" />
     <Compile Include="Areas\Buyers\Controllers\SchemeController.cs" />
+    <Compile Include="Areas\Factory\FactoryAreaRegistration.cs" />
     <Compile Include="Areas\Sales\Controllers\DefaultController.cs" />
     <Compile Include="Areas\Sales\Controllers\InvoiceController.cs" />
     <Compile Include="Areas\Sales\Controllers\ManagementController.cs" />
@@ -254,6 +255,8 @@
     <Compile Include="Models\AddMenuVM.cs" />
     <Compile Include="Models\APIResponse.cs" />
     <Compile Include="Models\AssignedModuleVm.cs" />
+    <Compile Include="Models\CreateFactoryVM.cs" />
+    <Compile Include="Models\CreateBuyerVM.cs" />
     <Compile Include="Models\ErrorModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -1134,6 +1137,9 @@
     <Content Include="Areas\Buyers\Views\Order\OrderTracker.cshtml" />
     <Content Include="Areas\Buyers\Views\Scheme\Index.cshtml" />
     <Content Include="Areas\Buyers\Views\Marketing\Index.cshtml" />
+    <Content Include="Areas\Administration\Views\UserManagement\CreateBuyer.cshtml" />
+    <Content Include="Areas\Administration\Views\UserManagement\CreateFactory.cshtml" />
+    <Content Include="Areas\Factory\Views\web.config" />
     <None Include="Properties\PublishProfiles\Default Settings %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\Default Settings %283%29.pubxml" />
     <None Include="Properties\PublishProfiles\Default Settings.pubxml" />
@@ -1289,6 +1295,9 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Administration\Models\" />
     <Folder Include="Areas\Buyers\Models\" />
+    <Folder Include="Areas\Factory\Controllers\" />
+    <Folder Include="Areas\Factory\Models\" />
+    <Folder Include="Areas\Factory\Views\Shared\" />
     <Folder Include="Areas\Sales\Models\" />
     <Folder Include="Areas\Sales\Views\Invoice\" />
     <Folder Include="Areas\Sales\Views\Order\" />

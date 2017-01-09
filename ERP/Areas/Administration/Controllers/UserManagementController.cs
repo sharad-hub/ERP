@@ -1,4 +1,5 @@
 ﻿using ERP.APIWrappers;
+using ERP.Entities;
 using ERP.Entities.SParams;
 using ERP.Entities.SPModels;
 using ERP.Models;
@@ -21,7 +22,10 @@ namespace ERP.Areas.Administration.Controllers
         IModuleService _moduleService;
         IUnitOfWorkAsync _unitOfWorkAsync;
         IStoredProcedureService _storedProcedureService;
-        public UserManagementController(IMembershipService membershipService, IUserService userService, IMenuService menuService, IModuleService moduleService, IUnitOfWorkAsync unitOfWorkAsync, IStoredProcedureService storedProcedureService)
+        IBuyerService _buyerService;
+        public UserManagementController(IMembershipService membershipService, IUserService userService, 
+            IMenuService menuService, IModuleService moduleService,
+            IUnitOfWorkAsync unitOfWorkAsync, IStoredProcedureService storedProcedureService, IBuyerService buyerService)
         {
             _membershipService = membershipService;
             _userService = userService;
@@ -29,6 +33,7 @@ namespace ERP.Areas.Administration.Controllers
             _moduleService = moduleService;
             _unitOfWorkAsync = unitOfWorkAsync;
             _storedProcedureService = storedProcedureService;
+            _buyerService = buyerService;
         }
         // GET: Admin
         public ActionResult Index()
@@ -70,5 +75,27 @@ namespace ERP.Areas.Administration.Controllers
             else
                 return null;
         }
+
+        #region User Creation
+        public ActionResult CreateBuyer()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult CreateBuyer(Buyer buyer)
+        {
+            return View();
+        }
+
+        public ActionResult CreateFactory()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult CreateFactory(Buyer buyer)
+        {
+            return View();
+        }
+        #endregion
     }
 }

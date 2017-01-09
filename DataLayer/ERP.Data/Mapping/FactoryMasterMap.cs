@@ -66,11 +66,11 @@ namespace ERP.Data.Models.Mapping
             this.Property(t => t.Commissionarate)
                 .HasMaxLength(50);
 
-            this.Property(t => t.SuperUserLoginId)
-                .HasMaxLength(50);
+            //this.Property(t => t.SuperUserLoginId)
+            //    .HasMaxLength(50);
 
-            this.Property(t => t.SuperUserLoginPassword)
-                .HasMaxLength(50);
+            //this.Property(t => t.SuperUserLoginPassword)
+            //    .HasMaxLength(50);
 
             // Table & Column Mappings
             this.ToTable("FactoryMaster");
@@ -95,10 +95,10 @@ namespace ERP.Data.Models.Mapping
             this.Property(t => t.Range).HasColumnName("Range");
             this.Property(t => t.Division).HasColumnName("Division");
             this.Property(t => t.Commissionarate).HasColumnName("Commissionarate");
-            this.Property(t => t.SuperUserLoginId).HasColumnName("SuperUserLoginId");
-            this.Property(t => t.SuperUserLoginPassword).HasColumnName("SuperUserLoginPassword");
+            //this.Property(t => t.SuperUserLoginId).HasColumnName("SuperUserLoginId");
+            //this.Property(t => t.SuperUserLoginPassword).HasColumnName("SuperUserLoginPassword");
             this.Property(t => t.Status).HasColumnName("Status");
-            this.Property(t => t.CreatedBy).HasColumnName("CreatedBy");
+            //this.Property(t => t.CreatedBy).HasColumnName("CreatedBy");
             this.Property(t => t.CreatedDate).HasColumnName("CreatedDate");
         }
     }
