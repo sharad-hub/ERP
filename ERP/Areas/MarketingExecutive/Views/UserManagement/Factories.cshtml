@@ -1,0 +1,172 @@
+﻿@model IEnumerable<ERP.Entities.Factory>
+
+@{
+    ViewBag.Title = "Factories";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Factories</h2>
+
+<p>
+    @Html.ActionLink("Create New", "CreateFactory")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FactoryCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FactoryName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FactoryAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FactoryCityId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FactoryPinCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FactoryMobileNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FactoryPhoneNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FactoryFaxNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FactoryEmailId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FactoryWebSite)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FactoryTINNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FactoryPANNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FactoryCSTNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FactoryLSTNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FactoryGSTNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FactoryServiceTaxNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ECCCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Range)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Division)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Commissionarate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SuperUserId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreatedByUserId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreatedDate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FactoryCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FactoryName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FactoryAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FactoryCityId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FactoryPinCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FactoryMobileNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FactoryPhoneNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FactoryFaxNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FactoryEmailId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FactoryWebSite)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FactoryTINNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FactoryPANNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FactoryCSTNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FactoryLSTNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FactoryGSTNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FactoryServiceTaxNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ECCCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Range)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Division)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Commissionarate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SuperUserId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreatedByUserId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreatedDate)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.FactoryId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.FactoryId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.FactoryId })
+        </td>
+    </tr>
+}
+
+</table>

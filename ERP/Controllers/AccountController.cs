@@ -16,19 +16,35 @@ using ERP.Entities.SPModels;
 using ERP.Servicess;
 using ERP.Entities.SParams;
 using ERP.Extensions;
+using ERP.Entities;
+using Repository.Pattern.UnitOfWork;
+using ERP.Entities.Models;
 namespace ERP.Controllers
 {
     public class AccountController : Controller
     {
         //private ApplicationSignInManager _signInManager;
         //private ApplicationUserManager _userManager;
-        IMembershipService _membershipService;      
-      
+        IMembershipService _membershipService;
+        IModuleGroupAccessService _moduleGroupAccessService;
+        IModuleGroupService _moduleGroupService;
         static IStoredProcedureService _storedProcedureService;
-        public AccountController(IMembershipService membershipService, IStoredProcedureService storedProcedureService)
+        IUserModulesService _userModulesService;
+        IModuleService _moduleService;
+        IUnitOfWorkAsync _unitOfWorkAsync;
+        IUserTypeService _userTypeService;
+        public AccountController(IMembershipService membershipService, IStoredProcedureService storedProcedureService,
+             IModuleGroupAccessService moduleGroupAccessService, IModuleGroupService moduleGroupService, IUserTypeService userTypeService,
+             IUserModulesService userModulesService, IModuleService moduleService, IUnitOfWorkAsync unitOfWorkAsync)
         {
             _membershipService = membershipService;
             _storedProcedureService = storedProcedureService;
+            _moduleGroupAccessService = moduleGroupAccessService;
+            _moduleGroupService = moduleGroupService;
+            _userModulesService = userModulesService;
+            _moduleService = moduleService;
+            _unitOfWorkAsync = unitOfWorkAsync;
+            _userTypeService = userTypeService;
         }
 
         //public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
@@ -90,7 +106,7 @@ namespace ERP.Controllers
 
         private List<ModuleForGui> GetAllUsersModules(string userEmail)
         {
-            var data = _storedProcedureService.GetModulesByUserName( userEmail );
+            var data = _storedProcedureService.GetModulesByUserName(userEmail);
             if (data != null)
                 return MainHelper.FormatModule(data).ToList();
             else
@@ -112,10 +128,23 @@ namespace ERP.Controllers
             // var result = ControllersWrapper.Authenticate(model,"token");
             var result = _membershipService.ValidateUser(model.Email, model.Password);
 
+            //// TO DO  Get user default settings
             if (result != null && result.User != null)
             {
-                this.SignInUser(model.Email, true);
-                return RedirectToLocal(returnUrl);
+                var settings = SetClaimsAndSignin(model.Email);
+                //var settings = _storedProcedureService.GetDefaultSettingsForUser(new GetUserMenu { EmailAddress = model.Email }).FirstOrDefault();
+                if (settings != null && settings.UrlContextID != null)
+                {
+                    if (!string.IsNullOrWhiteSpace(settings.AreaName))
+                        return RedirectToAction(settings.ActionName, settings.ControllerName, new { area = settings.AreaName });
+                    else
+                        return RedirectToAction(settings.ActionName, settings.ControllerName);
+                    //RedirectToAction("DashboardV1", "Home");
+                }
+                else
+                {
+                    return RedirectToLocal(returnUrl);
+                }
             }
             else
             {
@@ -135,6 +164,26 @@ namespace ERP.Controllers
             //        ModelState.AddModelError("", "Invalid login attempt.");
             //        return View(model);
             //}
+        }
+
+        private UserClaims SetClaimsAndSignin(string Email)
+        {
+            List<Claim> userClaims = new List<Claim>();
+            userClaims.Add(new Claim(ClaimTypes.Name, Email));
+            var settings = _membershipService.GetUserClaims(Email);
+            if (settings != null)
+            {
+                if (settings.UserID != null)
+                    userClaims.Add(new Claim(CustomClaimTypes.UserID, settings.UserID.ToString()));
+                if (settings.UserType != null)
+                    userClaims.Add(new Claim(CustomClaimTypes.UserType, settings.UserType));
+                if (settings.ThemeSkin != null)
+                    userClaims.Add(new Claim(CustomClaimTypes.ThemeSkin, settings.ThemeSkin));
+                if (settings.UrlContextID != null)
+                    userClaims.Add(new Claim(CustomClaimTypes.DefaultUrl, settings.UrlContextID.ToString()));
+                this.SignInUser(Email, true, userClaims);
+            }
+            return settings;
         }
 
         //[AllowAnonymous]
@@ -191,7 +240,9 @@ namespace ERP.Controllers
             {
                 //var user = new ApplicationUser { UserName = model.Email, Email = model.Email, NameIdentifier = model.NameIdentifier };
                 // var result = await UserManager.CreateAsync(user, model.Password);
-                int compId=0;
+              var usertype= _userTypeService.Queryable().Where(x=>x.TypeCode=="SADM").FirstOrDefault();
+
+                int compId = 0;
                 string companyId = ConfigurationManager.AppSettings["COMP_ID"];
                 Int32.TryParse(companyId, out compId);
                 ERP.Entities.User user = new ERP.Entities.User
@@ -199,22 +250,46 @@ namespace ERP.Controllers
                     Username = model.Email,
                     Email = model.Email,
                     DateCreated = System.DateTime.Now,
-                    CompId = compId
+                    CompId = compId,
+                    UserTypeID = usertype.ID
+                      
                 };
                 user = _membershipService.CreateUser(user, model.Password, null);
                 if (user != null) //result.Succeeded)
                 {
-                    this.SignInUser(model.Email, true);
-                    //await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-                    // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-                    // Send an email with this link
-                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                    var moduleGroup = _moduleGroupService.Queryable().Where(x => x.TypeCode == "ADM").FirstOrDefault();
+                    _moduleGroupAccessService.Insert(new ModuleGroupAccess { Active = true, ModuleGroupID = moduleGroup.ModuleGroupID, UserID = user.UserID });
+                    _unitOfWorkAsync.SaveChanges();
+                    var modulesToAdd = _moduleService.Queryable().Where(x => x.ModuleGroupID == moduleGroup.ModuleGroupID).AsEnumerable().Select(x => new UserModules
+                    {
+                        AccessTypeID = 6,
+                        ModuleID = x.Id,
+                        UserID = user.UserID
+                    }).ToList();
+                    try
+                    {
+                        _userModulesService.InsertRange(modulesToAdd);
+                        _unitOfWorkAsync.SaveChanges();
+                    }
+                    catch (Exception)
+                    {
 
-                    return RedirectToAction("DashboardV1", "Home");
+                    }
+                    var settings = SetClaimsAndSignin(model.Email);
+                    //var settings = _storedProcedureService.GetDefaultSettingsForUser(new GetUserMenu { EmailAddress = model.Email }).FirstOrDefault();
+                    if (settings != null && settings.UrlContextID != null)
+                    {
+                        if (!string.IsNullOrWhiteSpace(settings.AreaName))
+                            return RedirectToAction(settings.ActionName, settings.ControllerName, new { area = settings.AreaName });
+                        else
+                            return RedirectToAction(settings.ActionName, settings.ControllerName);
+                        //RedirectToAction("DashboardV1", "Home");
+                    }
+                    else
+                    {
+                        return RedirectToAction("DashboardV1", "Home");
+                    }
                 }
-                //AddErrors(result);
             }
 
             // If we got this far, something failed, redisplay form
@@ -524,6 +599,29 @@ namespace ERP.Controllers
             {
                 // Setting    
                 claims.Add(new Claim(ClaimTypes.Name, username));
+                var claimIdenties = new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie);
+                var ctx = Request.GetOwinContext();
+                var authenticationManager = ctx.Authentication;
+                // Sign In.    
+                authenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = isPersistent }, claimIdenties);
+            }
+            catch (Exception ex)
+            {
+                // Info    
+                throw ex;
+            }
+        }
+
+        /// <summary>  
+        /// Sign In User method.    
+        /// </summary>  
+        /// <param name="username">Username parameter.</param>  
+        /// <param name="isPersistent">Is persistent parameter.</param>  
+        private void SignInUser(string username, bool isPersistent, List<Claim> claims)
+        {
+
+            try
+            {
                 var claimIdenties = new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie);
                 var ctx = Request.GetOwinContext();
                 var authenticationManager = ctx.Authentication;

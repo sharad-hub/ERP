@@ -11,8 +11,10 @@ namespace ERP.Models
 	{
         public Buyer Buyer { get; set; }
 
+        [System.Web.Mvc.Remote("IsUserExists", "UserManagement", ErrorMessage = "User Name already in use")]
         [Required]
         [EmailAddress]
+        [RegularExpression(@"[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}", ErrorMessage = "Please enter correct email")]
         [Display(Name = "User Name")]
         public string Email { get; set; }
 
@@ -26,6 +28,9 @@ namespace ERP.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Display(Name = "Use Default Password")]
+        public bool UseDefaultPassword { get; set; }
 
 	}
 }

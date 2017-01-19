@@ -15,17 +15,17 @@ namespace ERP.Data.Models.Mapping
             this.Property(t => t.ProductID)
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
 
-            this.Property(t => t.ProductTitle)
+            this.Property(t => t.ProductName)
                 .HasMaxLength(256);
 
-            this.Property(t => t.Type)
-                .HasMaxLength(50);
+            //this.Property(t => t.Type)
+            //    .HasMaxLength(50);
 
             // Table & Column Mappings
             this.ToTable("tblProducts");
             this.Property(t => t.ProductID).HasColumnName("ProductID");
-            this.Property(t => t.ProductTitle).HasColumnName("ProductTitle");
-            this.Property(t => t.Type).HasColumnName("Type");
+            this.Property(t => t.ProductName).HasColumnName("ProductTitle");
+            //this.Property(t => t.Type).HasColumnName("Type");
             this.Property(t => t.Price).HasColumnName("Price");
             this.Property(t => t.CreatedOn).HasColumnName("CreatedOn");
         }

@@ -1,0 +1,116 @@
+﻿@model IEnumerable<ERP.Entities.Buyer>
+
+@{
+    ViewBag.Title = "Buyers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Buyers</h2>
+
+<p>
+    @Html.ActionLink("Create New", "CreateBuyer")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.SalesExecId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BuyerCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BuyerName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BuyerAddress)
+        </th>       
+        <th>
+            @Html.DisplayNameFor(model => model.BuyerDeliveryAddress)
+        </th>        
+        <th>
+            @Html.DisplayNameFor(model => model.BuyerBillingPinCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BuyerDeliveryPinCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BuyerMobileNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BuyerPhoneNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BuyerFaxNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BuyerEmailId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BuyerWebSite)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BuyerTINNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BuyerPANNo)
+        </th>      
+       
+       
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.SalesExecId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BuyerCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BuyerName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BuyerAddress)
+        </td>
+      
+        <td>
+            @Html.DisplayFor(modelItem => item.BuyerDeliveryAddress)
+        </td>       
+        <td>
+            @Html.DisplayFor(modelItem => item.BuyerBillingPinCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BuyerDeliveryPinCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BuyerMobileNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BuyerPhoneNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BuyerFaxNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BuyerEmailId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BuyerWebSite)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BuyerTINNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BuyerPANNo)
+        </td>
+       
+        <td>
+            @*@Html.ActionLink("Edit", "EditBuyer", new { id = item.BuyerId }) |*@
+            @*@Html.ActionLink("Details", "Details", new { id=item.BuyerId }) |*@
+            @*@Html.ActionLink("Delete", "Delete", new { id=item.BuyerId })*@
+        </td>
+    </tr>
+}
+
+</table>

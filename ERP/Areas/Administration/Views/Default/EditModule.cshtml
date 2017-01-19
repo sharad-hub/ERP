@@ -7,8 +7,9 @@
  
 @{
     IEnumerable<SelectListItem> moduleGroups = ViewBag.ModuleGroups;
+    IEnumerable<SelectListItem> Urls = ViewBag.Urls;
 }
-@using (Html.BeginForm())
+@using (Html.BeginForm("EditModule", "Default", new { area = "Administration" }, FormMethod.Post))
 {
     @Html.AntiForgeryToken()
     
@@ -21,7 +22,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.ModuleGroupID, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("ModuleGroupID", moduleGroups, Model.ModuleGroupID)
+                @*@Html.DropDownList("ModuleGroupID", moduleGroups, Model.ModuleGroupID)*@
+                @Html.DropDownListFor(model => model.ModuleGroupID, moduleGroups, "--Select--", new { @id = "ddlmoduleGroups", @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.ModuleKeyCode, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -67,13 +69,13 @@
             </div>
         </div>
 
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.ParentModuleID, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.UrlContextID, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.ParentModuleID, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ParentModuleID, "", new { @class = "text-danger" })
+                @Html.DropDownListFor(model => model.UrlContextID, Urls, "--Select--", new { @id = "ddlUrls", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.UrlContextID, "", new { @class = "text-danger" })
             </div>
-        </div>*@
+        </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })

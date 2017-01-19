@@ -23,6 +23,13 @@ namespace ERP.Data.Models
             return Database.SqlQuery<UserMenuMap>("GET_MENU_BY_USERID @UserID", UserID);
         }
 
+        public IEnumerable<UserSetting> GetDefaultSettingsForUser(GetUserMenu getUserMenu)
+        {
+            var UserEmail = new SqlParameter("@UserEmail", getUserMenu.EmailAddress.ToString());
+            return Database.SqlQuery<UserSetting>("GetDefaultSettingsForUser @UserEmail", UserEmail);
+        }
+        
+
         IEnumerable<UserModuleDetails> GetModulesByUserName(string email)
         {
             var emailAddress = new SqlParameter("@UserEmail", email);
@@ -47,6 +54,13 @@ namespace ERP.Data.Models
             var emailAddress = new SqlParameter("@UserEmail", email);
             return Database.SqlQuery<UserModuleDetails>("[GET_USER_MODULES] @UserEmail", emailAddress);
         }
+
+
+        public IEnumerable<UserClaims> GetUserClaims(string userEmail)
+        {
+            var emailAddress = new SqlParameter("@UserEmail", userEmail);
+            return Database.SqlQuery<UserClaims>("[GetUserClaims] @UserEmail", emailAddress);
+        }
     }
     public interface IERPStoredProcedure
     {
@@ -55,6 +69,8 @@ namespace ERP.Data.Models
         IEnumerable<UserMenuMap> GetMenuByUserID(GetUserMenu getUserMenu);
 
         IEnumerable<UserModuleDetails> GetModulesByUserName(string email);
-        
+        IEnumerable<UserSetting> GetDefaultSettingsForUser(GetUserMenu getUserMenu);
+
+        IEnumerable<UserClaims> GetUserClaims(string  email);
     }
 }

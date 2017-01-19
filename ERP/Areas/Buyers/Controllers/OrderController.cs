@@ -18,8 +18,15 @@ namespace ERP.Areas.Buyers.Controllers
         {
             return View();
         }
-
+        public ActionResult OrderScheduling()
+        {
+            return View();
+        }
         public ActionResult OrderTracker()
+        {
+            return View();
+        }
+        public ActionResult OrderDetails()
         {
             return View();
         }

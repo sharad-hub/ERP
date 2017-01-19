@@ -1,4 +1,5 @@
-﻿@model ERP.Models.LoginViewModel
+﻿@using System.Configuration
+@model ERP.Models.LoginViewModel
 @{
     Layout = null;
     ViewBag.Title = "Log in";
@@ -9,21 +10,21 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>WebApplication</title>
+    <title>@ConfigurationManager.AppSettings["COMP_SName"]</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
-    @Styles.Render("~/AdminLTE/bootstrap/css")
+    @*@Styles.Render("~/AdminLTE/bootstrap/css")
     @Styles.Render("~/AdminLTE/plugins/font-awesome/css")
     @Styles.Render("~/AdminLTE/plugins/ionicons/css")
     @Styles.Render("~/AdminLTE/dist/css")
-    @Styles.Render("~/AdminLTE/plugins/icheck/css/sqare/blue")
+    @Styles.Render("~/AdminLTE/plugins/icheck/css/sqare/blue")*@
 
 
-    @*<link href="/AdminLTE/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/AdminLTE/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <link href="/AdminLTE/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
     <link href="/AdminLTE/plugins/ionicons/css/ionicons.min.css" rel="stylesheet" />
     <link href="/AdminLTE/dist/css/admin-lte.min.css" rel="stylesheet" />
-    <link href="/AdminLTE/plugins/icheck/css/sqare/blue.css" rel="stylesheet" />*@
+    <link href="/AdminLTE/plugins/icheck/css/sqare/blue.css" rel="stylesheet" />
 
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -36,7 +37,7 @@
 <body class="hold-transition login-page">
     <div class="login-box">
         <div class="login-logo">
-            <a href="@Url.Action("DashboardV1", "Home")">Welcome to <b>WebApplication!</b></a>
+            <a href="@Url.Action("DashboardV1", "Home")">Welcome to <b>@ConfigurationManager.AppSettings["COMP_Name"]</b></a>
         </div>
         <div class="login-box-body">
             <p class="login-box-msg">Sign in to start your session</p>
@@ -66,34 +67,36 @@
                     </div>
                 </div>
             }
-            <div class="social-auth-links text-center">
-                <p>- OR -</p>
-                <a href="#" class="btn btn-block btn-social btn-facebook btn-flat">
-                    <i class="fa fa-facebook"></i> Sign in using
-                    Facebook
-                </a>
-                <a href="#" class="btn btn-block btn-social btn-google btn-flat">
-                    <i class="fa fa-google-plus"></i> Sign in using
-                    Google+
-                </a>
-            </div>
+            @*<div class="social-auth-links text-center">
+                    <p>- OR -</p>
+                    <a href="#" class="btn btn-block btn-social btn-facebook btn-flat">
+                        <i class="fa fa-facebook"></i> Sign in using
+                        Facebook
+                    </a>
+                    <a href="#" class="btn btn-block btn-social btn-google btn-flat">
+                        <i class="fa fa-google-plus"></i> Sign in using
+                        Google+
+                    </a>
+                </div>*@
             <a href="#">I forgot my password</a><br>
-            <a href="@Url.Action("Register", "Account")" class="text-center">Register as a new user</a>
+            @*<a href="@Url.Action("Register", "Account")" class="text-center">Register as a new user</a>*@
         </div>
     </div>
 
-    @Scripts.Render("~/AdminLTE/plugins/jquery/js")
-    @Scripts.Render("~/AdminLTE/bootstrap/js")
-    @Scripts.Render("~/AdminLTE/plugins/icheck/js")
-    @Scripts.Render("~/AdminLTE/plugins/jquery-validate/js")
-    @Scripts.Render("~/Scripts/Account/Login")
+    @*
+        @Scripts.Render("~/AdminLTE/plugins/jquery/js")
+        @Scripts.Render("~/AdminLTE/bootstrap/js")
+        @Scripts.Render("~/AdminLTE/plugins/icheck/js")
+        @Scripts.Render("~/AdminLTE/plugins/jquery-validate/js")
+        @Scripts.Render("~/Scripts/Account/Login")
+    *@
 
-    @*<script src="/AdminLTE/plugins/jquery/js/jQuery-2.1.4.min.js"></script>
+    <script src="/AdminLTE/plugins/jquery/js/jQuery-2.1.4.min.js"></script>
     <script src="/AdminLTE/bootstrap/js/bootstrap.min.js"></script>
     <script src="/AdminLTE/plugins/icheck/js/icheck.min.js"></script>
     <script src="/AdminLTE/plugins/jquery-validate/js/jquery.validate.js"></script>
     <script src="/AdminLTE/plugins/jquery-validate/js/jquery.validate.unobtrusive.js"></script>
-    <script src="/Scripts/Account/Login.js"></script>*@
+    <script src="/Scripts/Account/Login.js"></script>
 
 
 

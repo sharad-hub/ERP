@@ -52,14 +52,6 @@
       <Project>{9c445f03-2246-4c5c-97a0-20b32c184b7c}</Project>
       <Name>ERP.DTO</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\DataLayer\POCO.DAL.Infra\POCO.DAL.Infra.csproj">
-      <Project>{6a247c5d-0c0a-4ee0-93a6-293fac6e3659}</Project>
-      <Name>POCO.DAL.Infra</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\DataLayer\POCO.DAL\POCO.DAL.csproj">
-      <Project>{9e7ec617-9235-449f-8489-4d48a4196c83}</Project>
-      <Name>POCO.DAL</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

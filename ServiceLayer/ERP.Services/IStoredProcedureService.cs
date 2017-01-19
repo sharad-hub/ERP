@@ -17,7 +17,7 @@ namespace ERP.Servicess
         IEnumerable<UserMenuMap> GetMenuByUserID(GetUserMenu getUserMenu);
         IEnumerable<UserMenuDetails> GetMenuByUserName(GetUserMenu getUserMenu);
 
-
+        IEnumerable<UserSetting> GetDefaultSettingsForUser(GetUserMenu getUserMenu);
         IEnumerable<UserModuleDetails> GetModulesByUserName(string  email);
     }
     public class StoredProcedureService:IStoredProcedureService
@@ -28,7 +28,10 @@ namespace ERP.Servicess
         {
             _storedProcedures = storedProcedures;
         }
-
+        //IEnumerable<UserSetting> GetDefaultSettingsForUser(GetUserMenu getUserMenu)
+        //{
+        //  return  _storedProcedures.GetDefaultSettingsForUser(getUserMenu);
+        //}
         public int AssignMenueToUser(AddUserMenu addUserMenu)
         {
             return _storedProcedures.AssignMenueToUser(addUserMenu);
@@ -57,6 +60,12 @@ namespace ERP.Servicess
         IEnumerable<UserModuleDetails> IStoredProcedureService.GetModulesByUserName(string email)
         {
             return _storedProcedures.GetModulesByUserName(email);
+        }
+
+
+        IEnumerable<UserSetting> IStoredProcedureService.GetDefaultSettingsForUser(GetUserMenu getUserMenu)
+        {
+            return _storedProcedures.GetDefaultSettingsForUser(getUserMenu);
         }
     }
 }

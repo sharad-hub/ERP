@@ -24,13 +24,8 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.DateCreated)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsActive)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CompId)
-        </th>
+        </th>       
+        
         <th></th>
     </tr>
 
@@ -49,18 +44,16 @@
         <td>
             @Html.DisplayFor(modelItem => item.DateCreated)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsActive)
-        </td>
+         
         <td>
             @Html.DisplayFor(modelItem => item.CompId)
         </td>
         <td>
             @*<button type="submit" class="btn btn-success btn-flat">Send</button>*@
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Edit", "Edit", new { id=item.UserID }) |
             @*@Html.ActionLink("Details", "Details", new { id=item.ID }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.ID })*@
-            @Html.ActionLink("Manage Menus", "ManageUserMenu", new { userId = item.ID })
+            @Html.ActionLink("Manage Menus", "ManageUserMenu", new { userId = item.UserID })
             
         </td>
     </tr>

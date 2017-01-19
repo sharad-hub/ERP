@@ -9,7 +9,7 @@ namespace ERP.Data.Models.Mapping
         public SalesExecutiveMasterMap()
         {
             // Primary Key
-            this.HasKey(t => t.SalesExecId);
+            this.HasKey(t => t.ID);
 
             // Properties
             this.Property(t => t.SalesExecName)
@@ -23,9 +23,9 @@ namespace ERP.Data.Models.Mapping
 
             // Table & Column Mappings
             this.ToTable("SalesExecutiveMaster");
-            this.Property(t => t.SalesExecId).HasColumnName("SalesExecId");
+            this.Property(t => t.ID).HasColumnName("SalesExecId");
             this.Property(t => t.SalesExecName).HasColumnName("SalesExecName");
-            this.Property(t => t.SalesExecDesignationId).HasColumnName("SalesExecDesignationId");
+            this.Property(t => t.DesignationId).HasColumnName("SalesExecDesignationId");
             this.Property(t => t.ParentId).HasColumnName("ParentId");
             this.Property(t => t.MobileNo).HasColumnName("MobileNo");
             this.Property(t => t.EmailId).HasColumnName("EmailId");

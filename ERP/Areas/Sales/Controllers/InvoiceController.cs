@@ -13,5 +13,9 @@ namespace ERP.Areas.Sales.Controllers
         {
             return View();
         }
+        public ActionResult SOWise()
+        {
+            return View();
+        }
     }
 }

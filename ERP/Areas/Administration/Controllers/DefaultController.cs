@@ -15,7 +15,7 @@ using ERP.Models;
 using ERP.Entities.Models;
 namespace ERP.Areas.Administration.Controllers
 {
-    public class DefaultController : Controller
+    public class DefaultController : BaseController
     {
 
         IMembershipService _membershipService;
@@ -78,16 +78,25 @@ namespace ERP.Areas.Administration.Controllers
         {
             var moduleGroups = _moduleGroupService.SelectQuery("SELECT *  FROM  [dbo].[ModuleGroups]");
             var mouleToEdit = _moduleService.SelectQuery("SELECT *  FROM  [dbo].[Modules] where id='" + ID + "'").FirstOrDefault();
+            var Urls = _urlContextService.Queryable().Where(x => x.Active).Select(x => new SelectListItem
+            {
+                Text = x.SortName,
+                Value = x.UrlContextID.ToString()
+            }).ToList();
             IEnumerable<SelectListItem> ModuleGroups = moduleGroups.OrderBy(o => o.Orderby).Select(x => new SelectListItem { Text = x.Name, Value = x.ModuleGroupID.ToString() });
             ViewBag.ModuleGroups = ModuleGroups;
+            ViewBag.Urls = Urls;
+           
             return View(mouleToEdit);
         }
         [HttpPost]
         public ActionResult EditModule(Module model)
         {
             _moduleService.Update(model);
-            _unitOfWorkAsync.SaveChangesAsync();
-            return View("Modules");
+            _unitOfWorkAsync.SaveChanges();
+            Success(string.Format("<b>{0}</b> was successfully updated.", "Module"), true);
+            return RedirectToAction("Modules");
+           // return View("Modules");
         }
         public ActionResult CreateModule()
         {
@@ -101,10 +110,12 @@ namespace ERP.Areas.Administration.Controllers
         public ActionResult CreateModule(Module model)
         {
             _moduleService.Insert(model);
-            _unitOfWorkAsync.SaveChangesAsync();
-            return View("Modules");
+            _unitOfWorkAsync.SaveChanges();
+            Success(string.Format("<b>{0}</b> was successfully added.", "Module"), true);
+            return  RedirectToAction("Modules");
         }
        
+
         #endregion 
 
         #region Pages URL
@@ -129,14 +140,15 @@ namespace ERP.Areas.Administration.Controllers
          public ActionResult AddURL(UrlContext model)
          {
              _urlContextService.Insert(model);
-              _unitOfWorkAsync.SaveChangesAsync();
+              _unitOfWorkAsync.SaveChanges();
               var Urls = new URLExtension().GetURLData().Select(x => new SelectListItem
               {
                   Value = x.Name,
                   Text = x.Name
               });
               ViewBag.Areas = Urls;
-              return View(new UrlContext());
+              Success(string.Format("<b>{0}</b> was successfully added.", "Link"), true);
+              return RedirectToAction("AllUrls");
          }
 
         [HttpPost]
@@ -177,7 +189,8 @@ namespace ERP.Areas.Administration.Controllers
         {
             _urlContextService.Update(model);
             _unitOfWorkAsync.SaveChangesAsync();
-            return View("AllUrls");
+            Success(string.Format("<b>{0}</b> was successfully updated.", "Link"), true);
+            return RedirectToAction("AllUrls");
         }
         public ActionResult EditURL()
         {
@@ -187,5 +200,19 @@ namespace ERP.Areas.Administration.Controllers
             return View(new Module());
         }
         #endregion
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult LogOff()
+        {
+            //AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+
+            var ctx = Request.GetOwinContext();
+            var authenticationManager = ctx.Authentication;
+            // Sign Out.    
+            authenticationManager.SignOut();
+
+            return RedirectToAction("DashboardV1", "Home", new { area = "" });
+        }
     }
 }

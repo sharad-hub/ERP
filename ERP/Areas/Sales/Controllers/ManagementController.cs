@@ -13,7 +13,7 @@ using ERP.Entities.Models;
 using System.Configuration;
 namespace ERP.Areas.Sales.Controllers
 {
-    public class ManagementController : Controller
+    public class ManagementController : BaseController
     {
 
         IMembershipService _membershipService;
@@ -76,7 +76,7 @@ namespace ERP.Areas.Sales.Controllers
             if (model != null && model.AssignedModules != null && model.AssignedModules.Count > 0)
             {
                 var useremail = User.Identity.GetUserNameIdentifier();
-                string passwordKEy = Keys.password.ToString();
+                string passwordKEy = Keys.Password.ToString();
                 int compId = 0;
                 string companyId = ConfigurationManager.AppSettings["COMP_ID"];
                 Int32.TryParse(companyId, out compId);
@@ -95,6 +95,7 @@ namespace ERP.Areas.Sales.Controllers
                 }).ToList();
                 _userModulesService.InsertRange(modulesToAdd);
                 _unitOfWorkAsync.SaveChangesAsync();
+                Success(string.Format("<b>User({0})</b> was successfully added.", model.Email), true);
             }
             return View("Users");
         }

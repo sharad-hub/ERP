@@ -28,11 +28,18 @@ namespace ERP.Services
           _userRepository = userRepository;
       }
       //public Localizer T { get; set; }
-      
 
-      
+
+
+
+      public IEnumerable<User> GetUsersByTypeCode(string typeCode)
+      {
+          throw new NotImplementedException();
+      }
     }
 
   public interface IUserService : IService<User>
-  { }
+  {
+      IEnumerable<User> GetUsersByTypeCode(string typeCode);      
+  }
 }

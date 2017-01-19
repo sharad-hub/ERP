@@ -81,4 +81,10 @@ namespace ERP.Entities.SPModels
       public string ActionName { get; set; }
       public string AreaName { get; set; }
   }
+
+  public class UserSetting
+  {
+      public string URL { get; set; }
+      public string SkinTheme { get; set; }
+  }
 }

@@ -13,5 +13,10 @@ namespace ERP.Areas.Buyers.Controllers
         {
             return View();
         }
+        public ActionResult Popup()
+        {
+            return View();
+        }
+        
     }
 }

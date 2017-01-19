@@ -11,6 +11,7 @@
                 <img src="~/AdminLTE/dist/img/user.svg" class="img-circle" alt="User Image">
                 <p>
                     <small>@User.Identity.GetUserEmail()</small>
+                    
                 </p>
             </li>
             <li class="user-body">
@@ -27,7 +28,7 @@
                 </div>
             </li>
             <li class="user-footer">
-                @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "" }))
+                @using (Html.BeginForm("LogOff", "Default", new { area = "Administration" }, FormMethod.Post, new { id = "logoutForm", @class = "" }))
                 {
                     @Html.AntiForgeryToken()
                     <div class="pull-left">

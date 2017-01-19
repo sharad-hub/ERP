@@ -1,0 +1,9 @@
+D:\NON DC\MYProjects\ERP\DataLayer\POCO.DAL.Infra\bin\Release\POCO.DAL.Infra.dll
+D:\NON DC\MYProjects\ERP\DataLayer\POCO.DAL.Infra\bin\Release\POCO.DAL.Infra.pdb
+D:\NON DC\MYProjects\ERP\DataLayer\POCO.DAL.Infra\bin\Release\ERP.DTO.dll
+D:\NON DC\MYProjects\ERP\DataLayer\POCO.DAL.Infra\bin\Release\ERP.DTO.pdb
+D:\NON DC\MYProjects\ERP\DataLayer\POCO.DAL.Infra\obj\Release\POCO.DAL.Infra.csprojResolveAssemblyReference.cache
+D:\NON DC\MYProjects\ERP\DataLayer\POCO.DAL.Infra\obj\Release\POCO.DAL.Infra.dll
+D:\NON DC\MYProjects\ERP\DataLayer\POCO.DAL.Infra\obj\Release\POCO.DAL.Infra.pdb
+D:\NON DC\MYProjects\ERP\DataLayer\POCO.DAL.Infra\bin\Release\EntityFramework.dll
+D:\NON DC\MYProjects\ERP\DataLayer\POCO.DAL.Infra\bin\Release\EntityFramework.xml

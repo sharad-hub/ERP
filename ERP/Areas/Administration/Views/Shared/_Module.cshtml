@@ -7,13 +7,13 @@
 @if (HttpContext.Current.User.Identity.IsAuthenticated)
 {
     int index = 0;
-    string moduleClass="treeview";
+    string moduleClass = "treeview";
     foreach (ModuleForGui moduleGroup in Model)
     {
         index++;
         if (moduleGroup != null && moduleGroup.Modules != null && moduleGroup.Modules.Count() > 0)
         {
-            if(index==1)
+            if (index == 1)
             {
                 moduleClass = "treeview active";
             }
@@ -21,7 +21,7 @@
             {
                 moduleClass = "treeview";
             }
-            
+
             <li id="left-sidebar-menu-charts" class="@moduleClass">
 
 
@@ -34,10 +34,18 @@
                 <ul class="treeview-menu">
                     @foreach (ModuleDetails module in moduleGroup.Modules)
                     {
-                        @*<li id="left-sidebar-menu-charts-chartjs"><a href="@Url.Action("ChartJs", "Charts")"><i class="fa fa-circle-o"></i> ChartJS</a></li>*@
-                        <li id="left-sidebar-menu-charts-chartjs"><a href="@Url.Action(module.UrlContext.ActionName, module.UrlContext.ControllerName)"><i class="fa fa-circle-o"></i> @module.ModuleName</a></li>
+
+                        @*<li id="left-sidebar-menu-charts-chartjs"><a href="@Url.Action(module.UrlContext.ActionName, module.UrlContext.ControllerName)"><i class="fa fa-circle-o"></i> @module.ModuleName</a></li>*@
+                        if (module.UrlContext.AreaName != null && module.UrlContext.AreaName != "main")
+                        {
+                            <li id="left-sidebar-menu-charts-chartjs"><a href="@Url.Action(module.UrlContext.ActionName, module.UrlContext.ControllerName, new { Area = module.UrlContext.AreaName })"><i class="fa fa-circle-o"></i> @module.ModuleName</a></li>
+                        }
+                        else
+                        {
+                            <li id="left-sidebar-menu-charts-chartjs"><a href="@Url.Action(module.UrlContext.ActionName, module.UrlContext.ControllerName)"><i class="fa fa-circle-o"></i> @module.ModuleName</a></li>
+                        }
                     }
-                     
+
                 </ul>
             </li>
         }

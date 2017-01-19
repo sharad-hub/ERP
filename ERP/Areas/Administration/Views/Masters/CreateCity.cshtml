@@ -1,0 +1,113 @@
+﻿@model ERP.Entities.City
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+@{
+    IEnumerable<SelectListItem> countries = ViewBag.Countries;
+}
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>City</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.ZoneId, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <label class="control-label col-md-2"> Country</label>
+            <div class="col-md-10">
+                @Html.DropDownList("Country", countries, "--Select--", new { @id = "ddlCountry", @class = "form-control" })
+                @*@Html.ValidationMessageFor(model => model.ZoneId, "", new { @class = "text-danger" })*@
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2"> Zone</label>
+            <div class="col-md-10">
+                @Html.DropDownList("Zone", new List<SelectListItem>(), "--Select--", new { @id = "ddlZone", @class = "form-control" })
+                
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.StateId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(x => x.StateId, new List<SelectListItem>(), "--Select--", new { @id = "ddlState", @class = "form-control" })
+                @*@Html.DropDownList("StateId", new List<SelectListItem>(), "--Select--", new { @id = "StateId", @class = "form-control" })*@
+                @*@Html.EditorFor(model => model.StateId, new { htmlAttributes = new { @class = "form-control" } })*@
+                @*@Html.ValidationMessageFor(model => model.StateId, "", new { @class = "text-danger" })*@
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CityName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CityName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CityName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Status, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @*@Html.ActionLink("Back to List", "Index")*@
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<script>
+    $(document).ready(function () {
+        $('#ddlCountry').change(function () {
+            $.ajax({
+                type: "post",
+                url: "/Administration/Masters/GetZones",
+                data: { countryId: $('#ddlCountry').val() },
+                datatype: "json",
+                traditional: true,
+                success: function (data) {
+                    // var district = "<select id='ddlControllerName' class='form-control'>                    
+                    var district = district + '<option value="">--Select--</option>';
+                    for (var i = 0; i < data.length; i++) {
+                        district = district + '<option value=' + data[i].Value + '>' + data[i].Text + '</option>';
+                    }
+                   district = district + '</select>';
+                    $('#ddlZone').html(district);
+                    //$('#ControllerName').html(district);
+                }
+            });
+        });
+
+        $('#ddlZone').change(function () {
+            $.ajax({
+                type: "post",
+                url: "/Administration/Masters/GetStates",
+                data: { countryId: $('#ddlCountry').val(), zoneId: $('#ddlZone').val() },
+                datatype: "json",
+                traditional: true,
+                success: function (data) {
+                    var items = "";
+                    items = "<option value=''>--Choose--</option>";
+                    $.each(data, function (i, item) {
+                        items += "<option value=\"" + item.Value + "\">" + item.Text + "</option>";
+                    });
+                    $('#ddlState').html(items);
+                }
+            });
+        });
+    });
+</script>

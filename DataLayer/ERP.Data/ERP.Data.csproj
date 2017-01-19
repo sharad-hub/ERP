@@ -146,6 +146,38 @@
     <Compile Include="Migrations\201701091955474_USerTypeAndRef.Designer.cs">
       <DependentUpon>201701091955474_USerTypeAndRef.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201701101542359_AddedsalesExecMapingInBuyer.cs" />
+    <Compile Include="Migrations\201701101542359_AddedsalesExecMapingInBuyer.Designer.cs">
+      <DependentUpon>201701101542359_AddedsalesExecMapingInBuyer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701102009409_addedTypeCodeprop.cs" />
+    <Compile Include="Migrations\201701102009409_addedTypeCodeprop.Designer.cs">
+      <DependentUpon>201701102009409_addedTypeCodeprop.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701102044427_skinMaster.cs" />
+    <Compile Include="Migrations\201701102044427_skinMaster.Designer.cs">
+      <DependentUpon>201701102044427_skinMaster.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701102106478_addedurllinkTousertype.cs" />
+    <Compile Include="Migrations\201701102106478_addedurllinkTousertype.Designer.cs">
+      <DependentUpon>201701102106478_addedurllinkTousertype.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701111752334_SalesExecutiveDB.cs" />
+    <Compile Include="Migrations\201701111752334_SalesExecutiveDB.Designer.cs">
+      <DependentUpon>201701111752334_SalesExecutiveDB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701111823168_SalesExecutiID.cs" />
+    <Compile Include="Migrations\201701111823168_SalesExecutiID.Designer.cs">
+      <DependentUpon>201701111823168_SalesExecutiID.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701111903305_updatedrelationshipformasters.cs" />
+    <Compile Include="Migrations\201701111903305_updatedrelationshipformasters.Designer.cs">
+      <DependentUpon>201701111903305_updatedrelationshipformasters.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701191531232_buyerorder.cs" />
+    <Compile Include="Migrations\201701191531232_buyerorder.Designer.cs">
+      <DependentUpon>201701191531232_buyerorder.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StoredProcedure\ERPStoredProcedure.cs" />
@@ -223,6 +255,30 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201701091955474_USerTypeAndRef.resx">
       <DependentUpon>201701091955474_USerTypeAndRef.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701101542359_AddedsalesExecMapingInBuyer.resx">
+      <DependentUpon>201701101542359_AddedsalesExecMapingInBuyer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701102009409_addedTypeCodeprop.resx">
+      <DependentUpon>201701102009409_addedTypeCodeprop.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701102044427_skinMaster.resx">
+      <DependentUpon>201701102044427_skinMaster.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701102106478_addedurllinkTousertype.resx">
+      <DependentUpon>201701102106478_addedurllinkTousertype.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701111752334_SalesExecutiveDB.resx">
+      <DependentUpon>201701111752334_SalesExecutiveDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701111823168_SalesExecutiID.resx">
+      <DependentUpon>201701111823168_SalesExecutiID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701111903305_updatedrelationshipformasters.resx">
+      <DependentUpon>201701111903305_updatedrelationshipformasters.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701191531232_buyerorder.resx">
+      <DependentUpon>201701191531232_buyerorder.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

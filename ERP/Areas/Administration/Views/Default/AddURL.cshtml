@@ -84,7 +84,7 @@
         $('#ddlArea').change(function () {
             $.ajax({
                 type: "post",
-                url: "/ERP/Administration/Default/GetControllers",
+                url: "/Administration/Default/GetControllers",
                 data: { areaName: $('#ddlArea').val() },
                 datatype: "json",
                 traditional: true,
@@ -104,7 +104,7 @@
         $('#ddlControllerName').change(function () {
             $.ajax({
                 type: "post",
-                url: "/ERP/Administration/Default/GetActions",
+                url: "/Administration/Default/GetActions",
                 data: { controllerName: $('#ddlControllerName').val(), areaName: $('#ddlArea').val() },
                 datatype: "json",
                 traditional: true,
@@ -115,14 +115,7 @@
                     $.each(data, function (i, item) {
                         items += "<option value=\"" + item.Value + "\">" + item.Text + "</option>";
                     });
-                    $('#ddlActionName').html(items);
-
-                   //var district = district + '<option value="">--Select--</option>';
-                   // for (var i = 0; i < data.length; i++) {
-                   //     district = district + '<option value=' + data[i].Value + '>' + data[i].Text + '</option>';
-                   // }
-                   // district = district + '</select>';
-                   // $('#ActionName').html(district);
+                    $('#ddlActionName').html(items);                 
                 }
             });
         });

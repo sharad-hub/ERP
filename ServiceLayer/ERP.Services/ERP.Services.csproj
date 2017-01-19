@@ -50,6 +50,8 @@
     <Compile Include="IEncryptionService.cs" />
     <Compile Include="IMembershipService.cs" />
     <Compile Include="IStoredProcedureService.cs" />
+    <Compile Include="Masters\DesignationService.cs" />
+    <Compile Include="Masters\UserTypeService.cs" />
     <Compile Include="Masters\ZoneService.cs" />
     <Compile Include="Masters\CityService.cs" />
     <Compile Include="Masters\StateService.cs" />
@@ -59,6 +61,18 @@
     <Compile Include="ModuleGroupAccessService.cs" />
     <Compile Include="ModuleGroupService.cs" />
     <Compile Include="AccessTypeService.cs" />
+    <Compile Include="Product\ProductSKUService.cs" />
+    <Compile Include="Product\TariffService.cs" />
+    <Compile Include="Product\UnitOfMaterialService.cs" />
+    <Compile Include="Product\ProductTypeService.cs" />
+    <Compile Include="Product\ProductGroupService.cs" />
+    <Compile Include="Product\ProductSubGroupService.cs" />
+    <Compile Include="Buyers\BuyerOrderService.cs" />
+    <Compile Include="Product\ProductOpeningBalanceService.cs" />
+    <Compile Include="Product\ProductFactoryAllocationService.cs" />
+    <Compile Include="Product\ProductImageService.cs" />
+    <Compile Include="Product\ProductColorService.cs" />
+    <Compile Include="Buyers\BuyerOrderItemService.cs" />
     <Compile Include="Product\ProductService.cs" />
     <Compile Include="SalesExecutive\SalesExecutiveService.cs" />
     <Compile Include="UrlContextService.cs" />

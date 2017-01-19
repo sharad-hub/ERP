@@ -13,6 +13,7 @@ using ERP.Data.Models;
 using ERP.Services.Utilities;
 using ERP.Entities;
 using ERP.Repository;
+using ERP.Entities.SPModels;
 namespace ERP.Services
 {
     public class MembershipService : IMembershipService
@@ -23,16 +24,19 @@ namespace ERP.Services
         private readonly IRepositoryAsync<UserRole> _userRoleRepository;
         private readonly IEncryptionService _encryptionService;
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IUnitOfWorkAsync _unitOfWorkAsync;      
+        private readonly IUnitOfWorkAsync _unitOfWorkAsync;
+        private readonly IERPStoredProcedure _storedProcedueRepository;      
         #endregion
         public MembershipService(IRepositoryAsync<User> userRepository, IRepositoryAsync<Role> roleRepository,
-     IRepositoryAsync<UserRole> userRoleRepository, IEncryptionService encryptionService, IUnitOfWorkAsync unitOfWork)
+     IRepositoryAsync<UserRole> userRoleRepository, IEncryptionService encryptionService, 
+            IUnitOfWorkAsync unitOfWork,IERPStoredProcedure storedProcedueRepository)
         {
             _userRepository = userRepository;
             _roleRepository = roleRepository;
             _encryptionService = encryptionService;
             _unitOfWorkAsync = unitOfWork;
             _userRoleRepository = userRoleRepository;
+            _storedProcedueRepository = storedProcedueRepository;
             
         }
 
@@ -70,7 +74,7 @@ namespace ERP.Services
             user.HashedPassword = _encryptionService.EncryptPassword(password, passwordSalt);
             user.ObjectState = ObjectState.Added;
             _userRepository.Insert(user);
-            _unitOfWorkAsync.SaveChangesAsync();
+            _unitOfWorkAsync.SaveChanges();
             if (roles != null && roles.Length > 0)
             {
                 foreach (var role in roles)
@@ -98,9 +102,59 @@ namespace ERP.Services
             user.CreatedByUserID = manager.UserID;
             user.ManagerID = manager.UserID;
             _userRepository.Insert(user);
-            _unitOfWorkAsync.SaveChangesAsync();
+            _unitOfWorkAsync.SaveChanges();
             return user;
         }
+
+        public User CreateUser(User user, string password, string CreatedByUserEmail, UserType userType)
+        {
+            var existingUser = _userRepository.GetUserByUsername(user.Email);
+            var manager = _userRepository.GetUserByUsername(CreatedByUserEmail);
+            if (existingUser != null)
+            {
+                throw new Exception("Username is already in use");
+            }
+            if (user.Username == null)
+                user.Username = user.Email;
+            var passwordSalt = _encryptionService.CreateSalt();
+            user.Salt = passwordSalt;
+            user.IsLocked = false;
+            user.HashedPassword = _encryptionService.EncryptPassword(password, passwordSalt);
+            user.ObjectState = ObjectState.Added;
+            //user.Manager = manager;
+            user.CreatedByUserID = manager.UserID;
+            user.ManagerID = manager.UserID;
+            user.UserType = userType;
+            user.UserTypeID = userType.ID;
+            _userRepository.Insert(user);
+            _unitOfWorkAsync.SaveChanges();
+            return user;
+        }
+
+        public User CreateUser(User user, string password, string CreatedByUserEmail, UserType userType, int userReferenceID)
+        {
+            var existingUser = _userRepository.GetUserByUsername(user.Email);
+            var manager = _userRepository.GetUserByUsername(CreatedByUserEmail);
+            if (existingUser != null)
+            {
+                throw new Exception("Username is already in use");
+            }
+            var passwordSalt = _encryptionService.CreateSalt();
+            user.Salt = passwordSalt;
+            user.IsLocked = false;
+            user.HashedPassword = _encryptionService.EncryptPassword(password, passwordSalt);
+            user.ObjectState = ObjectState.Added;
+            user.Manager = manager;
+            user.CreatedByUserID = manager.UserID;
+            user.ManagerID = manager.UserID;
+            user.UserType = userType;
+            user.UserTypeID = userType.ID;
+            user.UserReferenceID = userReferenceID;
+            _userRepository.Insert(user);
+            _unitOfWorkAsync.SaveChanges();
+            return user;
+        }
+       
         public User GetUser(int userId)
         {
             return _userRepository.GetSingle(userId);
@@ -186,6 +240,11 @@ namespace ERP.Services
         public User GetUsersByEmail(string emailID)
         {
             return _userRepository.GetUserByUsername(emailID);
+        }
+
+        public UserClaims GetUserClaims(string emailID)
+        {
+            return _storedProcedueRepository.GetUserClaims(emailID).FirstOrDefault();
         }
     }
 }

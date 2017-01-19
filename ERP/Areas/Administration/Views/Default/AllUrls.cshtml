@@ -24,7 +24,7 @@
         <th>
             @Html.DisplayNameFor(model => model.SortName)
         </th>
-        <th></th>
+        @*<th></th>*@
     </tr>
 
 @foreach (var item in Model) {
@@ -44,11 +44,11 @@
         <td>
             @Html.DisplayFor(modelItem => item.SortName)
         </td>
-        <td>
+        @*<td>
             @Html.ActionLink("Edit", "Edit", new { id=item.UrlContextID }) |
             @Html.ActionLink("Details", "Details", new { id=item.UrlContextID }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.UrlContextID })
-        </td>
+        </td>*@
     </tr>
 }
 

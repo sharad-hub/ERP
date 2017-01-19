@@ -13,5 +13,21 @@ namespace ERP.Areas.Sales.Controllers
         {
             return View();
         }
+        public ActionResult OrderShortlisting()
+        {
+            return View();
+        }
+        public ActionResult OrderAcceptance()
+        {
+            return View();
+        }
+        public ActionResult OrderPayment()
+        {
+            return View();
+        }
+        public ActionResult OrderForwording()
+        {
+            return View();
+        }
     }
 }

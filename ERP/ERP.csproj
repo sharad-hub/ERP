@@ -216,21 +216,31 @@
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
     <Compile Include="Areas\Administration\Controllers\BaseController.cs" />
     <Compile Include="Areas\Administration\Controllers\DefaultController.cs" />
-    <Compile Include="Areas\Administration\Controllers\MenuController.cs" />
+    <Compile Include="Areas\Administration\Controllers\MastersController.cs" />
+    <Compile Include="Areas\Administration\Controllers\ProductController.cs" />
     <Compile Include="Areas\Administration\Controllers\UserManagementController.cs" />
     <Compile Include="Areas\Buyers\BuyersAreaRegistration.cs" />
     <Compile Include="Areas\Buyers\Controllers\ManagementController.cs" />
     <Compile Include="Areas\Buyers\Controllers\MarketingController.cs" />
     <Compile Include="Areas\Buyers\Controllers\OrderController.cs" />
+    <Compile Include="Areas\Buyers\Controllers\PaymentController.cs" />
     <Compile Include="Areas\Buyers\Controllers\SchemeController.cs" />
+    <Compile Include="Areas\Factory\Controllers\ManagementController.cs" />
     <Compile Include="Areas\Factory\FactoryAreaRegistration.cs" />
+    <Compile Include="Areas\MarketingExecutive\Controllers\UserManagementController.cs" />
+    <Compile Include="Areas\MarketingExecutive\MarketingExecutiveAreaRegistration.cs" />
     <Compile Include="Areas\Sales\Controllers\DefaultController.cs" />
     <Compile Include="Areas\Sales\Controllers\InvoiceController.cs" />
     <Compile Include="Areas\Sales\Controllers\ManagementController.cs" />
     <Compile Include="Areas\Sales\Controllers\OrderController.cs" />
     <Compile Include="Areas\Sales\Controllers\ProductController.cs" />
+    <Compile Include="Areas\Sales\Controllers\ReportsController.cs" />
+    <Compile Include="Areas\Sales\Controllers\SalesOrderController.cs" />
+    <Compile Include="Areas\Sales\Controllers\SchemesController.cs" />
     <Compile Include="Areas\Sales\SalesAreaRegistration.cs" />
+    <Compile Include="Attribute\ClasClaimsAuthorizeAttributes.cs" />
     <Compile Include="Attribute\CustomHandleErrorAttribute.cs" />
+    <Compile Include="Attribute\ERPAuthorize.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CalendarController.cs" />
     <Compile Include="Controllers\ChartsController.cs" />
@@ -245,6 +255,7 @@
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\TablesController.cs" />
     <Compile Include="Controllers\WidgetsController.cs" />
+    <Compile Include="Extensions\BaseController.cs" />
     <Compile Include="Extensions\ClaimsExtensions.cs" />
     <Compile Include="Extensions\ERPExtension.cs" />
     <Compile Include="Extensions\URLExtension.cs" />
@@ -255,6 +266,7 @@
     <Compile Include="Models\AddMenuVM.cs" />
     <Compile Include="Models\APIResponse.cs" />
     <Compile Include="Models\AssignedModuleVm.cs" />
+    <Compile Include="Models\CreateSalesExecVM.cs" />
     <Compile Include="Models\CreateFactoryVM.cs" />
     <Compile Include="Models\CreateBuyerVM.cs" />
     <Compile Include="Models\ErrorModel.cs" />
@@ -1140,6 +1152,39 @@
     <Content Include="Areas\Administration\Views\UserManagement\CreateBuyer.cshtml" />
     <Content Include="Areas\Administration\Views\UserManagement\CreateFactory.cshtml" />
     <Content Include="Areas\Factory\Views\web.config" />
+    <Content Include="Areas\MarketingExecutive\Views\web.config" />
+    <Content Include="Areas\Factory\Views\Management\Index.cshtml" />
+    <Content Include="Areas\Administration\Views\UserManagement\CreateSalesExec.cshtml" />
+    <Content Include="Areas\Administration\Views\Masters\CreateCountry.cshtml" />
+    <Content Include="Areas\Administration\Views\Masters\CreateZone.cshtml" />
+    <Content Include="Areas\MarketingExecutive\Views\UserManagement\CreateBuyer.cshtml" />
+    <Content Include="Areas\MarketingExecutive\Views\UserManagement\Index.cshtml" />
+    <Content Include="Areas\MarketingExecutive\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\MarketingExecutive\Views\UserManagement\Buyers.cshtml" />
+    <Content Include="Areas\MarketingExecutive\Views\UserManagement\Factories.cshtml" />
+    <Content Include="Areas\Administration\Views\Masters\CreateState.cshtml" />
+    <Content Include="Areas\Administration\Views\Masters\CreateCity.cshtml" />
+    <Content Include="Areas\Administration\Views\UserManagement\SalesExecutives.cshtml" />
+    <Content Include="Areas\Administration\Views\UserManagement\Buyers.cshtml" />
+    <Content Include="Areas\MarketingExecutive\Views\UserManagement\CreateFactory.cshtml" />
+    <Content Include="Areas\Buyers\Views\Order\OrderDetails.cshtml" />
+    <Content Include="Areas\Buyers\Views\Scheme\Popup.cshtml" />
+    <Content Include="Areas\Buyers\Views\Payment\Index.cshtml" />
+    <Content Include="Areas\Sales\Views\Invoice\Index.cshtml" />
+    <Content Include="Areas\Buyers\Views\Order\OrderScheduling.cshtml" />
+    <Content Include="Areas\Sales\Views\Schemes\FestivalScheme.cshtml" />
+    <Content Include="Areas\Sales\Views\Schemes\BuyersDiscount.cshtml" />
+    <Content Include="Areas\Sales\Views\Schemes\GlobalDiscount.cshtml" />
+    <Content Include="Areas\Sales\Views\Reports\MIS.cshtml" />
+    <Content Include="Areas\Sales\Views\Order\OrderShortlisting.cshtml" />
+    <Content Include="Areas\Sales\Views\Order\OrderAcceptance.cshtml" />
+    <Content Include="Areas\Sales\Views\Order\OrderPayment.cshtml" />
+    <Content Include="Areas\Sales\Views\Order\OrderForwording.cshtml" />
+    <Content Include="Areas\Sales\Views\SalesOrder\SOTracker.cshtml" />
+    <Content Include="Areas\Sales\Views\Invoice\SOWise.cshtml" />
+    <Content Include="Areas\Factory\Views\Management\CreateUser.cshtml" />
+    <Content Include="Areas\Factory\Views\Management\Users.cshtml" />
+    <Content Include="Areas\Administration\Views\Product\AddProduct.cshtml" />
     <None Include="Properties\PublishProfiles\Default Settings %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\Default Settings %283%29.pubxml" />
     <None Include="Properties\PublishProfiles\Default Settings.pubxml" />
@@ -1219,7 +1264,7 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\_Layout_OLD.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
@@ -1290,21 +1335,26 @@
     <Content Include="Views\Modules\ManageTasks.cshtml" />
     <Content Include="Views\Shared\_Module.cshtml" />
     <Content Include="Views\Profile\Settings.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\_Alerts.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\BooleanButtonLabel.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\Person.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\BooleanButtonLabel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Administration\Models\" />
     <Folder Include="Areas\Buyers\Models\" />
-    <Folder Include="Areas\Factory\Controllers\" />
     <Folder Include="Areas\Factory\Models\" />
     <Folder Include="Areas\Factory\Views\Shared\" />
+    <Folder Include="Areas\MarketingExecutive\Models\" />
+    <Folder Include="Areas\MarketingExecutive\Views\Shared\" />
     <Folder Include="Areas\Sales\Models\" />
-    <Folder Include="Areas\Sales\Views\Invoice\" />
-    <Folder Include="Areas\Sales\Views\Order\" />
     <Folder Include="Areas\Sales\Views\Product\" />
     <Folder Include="ERPApp\" />
     <Folder Include="Scripts\App\" />
     <Folder Include="Scripts\ERPApp\" />
+    <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -1337,10 +1387,6 @@
     <ProjectReference Include="..\DataLayer\POCO.DAL\POCO.DAL.csproj">
       <Project>{9e7ec617-9235-449f-8489-4d48a4196c83}</Project>
       <Name>POCO.DAL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ERP.Business\ERP.UserModule\ERP.UserModule.csproj">
-      <Project>{1a880ebf-d4fe-4201-a7b8-9a21a41779b3}</Project>
-      <Name>ERP.UserModule</Name>
     </ProjectReference>
     <ProjectReference Include="..\Frameworks\Repository.Pattern.Ef6\Repository.Pattern.Ef6.csproj">
       <Project>{f68a1d19-93fb-47c1-a22b-42bea3e4fd8c}</Project>
