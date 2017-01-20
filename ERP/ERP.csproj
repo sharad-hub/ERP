@@ -1185,6 +1185,12 @@
     <Content Include="Areas\Factory\Views\Management\CreateUser.cshtml" />
     <Content Include="Areas\Factory\Views\Management\Users.cshtml" />
     <Content Include="Areas\Administration\Views\Product\AddProduct.cshtml" />
+    <Content Include="Areas\Administration\Views\Product\AddProductGroup.cshtml" />
+    <Content Include="Areas\Administration\Views\Product\AddProductSubGroup.cshtml" />
+    <Content Include="Areas\Administration\Views\Product\AddProductSKU.cshtml" />
+    <Content Include="Areas\Administration\Views\Product\AddProductColor.cshtml" />
+    <Content Include="Areas\Administration\Views\Product\AddProductType.cshtml" />
+    <Content Include="Areas\Administration\Views\Product\AddUnitOfMaterial.cshtml" />
     <None Include="Properties\PublishProfiles\Default Settings %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\Default Settings %283%29.pubxml" />
     <None Include="Properties\PublishProfiles\Default Settings.pubxml" />
