@@ -1192,6 +1192,12 @@
     <Content Include="Areas\Administration\Views\Product\AddProductColor.cshtml" />
     <Content Include="Areas\Administration\Views\Product\AddProductType.cshtml" />
     <Content Include="Areas\Administration\Views\Product\AddUnitOfMaterial.cshtml" />
+    <Content Include="Areas\Administration\Views\Product\ProductTypes.cshtml" />
+    <Content Include="Areas\Administration\Views\Product\ProductSubGroups.cshtml" />
+    <Content Include="Areas\Administration\Views\Product\ProductGroups.cshtml" />
+    <Content Include="Areas\Administration\Views\Product\ProductSKUs.cshtml" />
+    <Content Include="Areas\Administration\Views\Product\ProductColors.cshtml" />
+    <Content Include="Areas\Administration\Views\Product\UnitOfMaterials.cshtml" />
     <None Include="Properties\PublishProfiles\Default Settings %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\Default Settings %283%29.pubxml" />
     <None Include="Properties\PublishProfiles\Default Settings.pubxml" />

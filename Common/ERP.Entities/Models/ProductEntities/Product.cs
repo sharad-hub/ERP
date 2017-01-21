@@ -30,12 +30,7 @@ namespace ERP.Entities
         //[ForeignKey("UOMSecond")]
         //public int UOMSecondId { get; set; }
         //public virtual UnitOfMaterial UOMSecond { get; set; }  ///Move to different table 
-        //[ForeignKey("ProductType")]
-        //public int ProductTypeId { get; set; }
-        //public virtual ProductSubGroup ProductSubGroup { get; set; }
-        //[ForeignKey("ProductType")]
-        //public int ProductTypeId { get; set; }
-        //public virtual ProductSubGroup ProductType { get; set; }
+
         [ForeignKey("Color")]
         public int ColorId { get; set; }
         public virtual Color Color { get; set; }

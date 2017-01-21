@@ -61,7 +61,7 @@ namespace ERP.Extensions
         }
         static string GetUserThemeSkin(this ClaimsIdentity identity)
         {
-            return identity.Claims.FirstOrDefault(c => c.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/ThemeSkin").Value;
+            return identity.GetClaim( "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/ThemeSkin");           
         }
 
         public static string GetUserThemeSkin(this IIdentity identity)
@@ -69,6 +69,12 @@ namespace ERP.Extensions
             var defaultTheme = ConfigurationManager.AppSettings["Default_Theme"] == null ? "" : ConfigurationManager.AppSettings["Default_Theme"];
             var claimsIdentity = identity as ClaimsIdentity;
             return claimsIdentity != null ? GetUserThemeSkin(claimsIdentity) : defaultTheme;
+        }
+
+        public static string GetClaim(this ClaimsIdentity identity, string  claimype)
+        {
+            var claim= identity.Claims.Where(x => x.Type == claimype).FirstOrDefault();
+            return claim != null ? claim.Value : string.Empty;
         }
     }
 }
