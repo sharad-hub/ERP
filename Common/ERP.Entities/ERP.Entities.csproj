@@ -73,6 +73,8 @@
     <Compile Include="Models\ProductEntities\ProductGroup.cs" />
     <Compile Include="Models\ProductEntities\ProductSKU.cs" />
     <Compile Include="Models\ProductEntities\ProductType.cs" />
+    <Compile Include="Models\ProductEntities\Scheme.cs" />
+    <Compile Include="Models\ProductEntities\SchemeType.cs" />
     <Compile Include="Models\ProductEntities\UnitOfMaterial.cs" />
     <Compile Include="Models\User\RoleGroup.cs" />
     <Compile Include="Models\User\RoleProvider.cs" />

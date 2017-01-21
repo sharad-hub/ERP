@@ -26,6 +26,7 @@
     <SccLocalPath>SAK</SccLocalPath>
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -1385,14 +1386,6 @@
     <ProjectReference Include="..\DataLayer\ERP.Repository\ERP.Repository.csproj">
       <Project>{04bf0937-59d4-4b95-9f4e-77ecafa88783}</Project>
       <Name>ERP.Repository</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DataLayer\POCO.DAL.Infra\POCO.DAL.Infra.csproj">
-      <Project>{6a247c5d-0c0a-4ee0-93a6-293fac6e3659}</Project>
-      <Name>POCO.DAL.Infra</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DataLayer\POCO.DAL\POCO.DAL.csproj">
-      <Project>{9e7ec617-9235-449f-8489-4d48a4196c83}</Project>
-      <Name>POCO.DAL</Name>
     </ProjectReference>
     <ProjectReference Include="..\Frameworks\Repository.Pattern.Ef6\Repository.Pattern.Ef6.csproj">
       <Project>{f68a1d19-93fb-47c1-a22b-42bea3e4fd8c}</Project>
