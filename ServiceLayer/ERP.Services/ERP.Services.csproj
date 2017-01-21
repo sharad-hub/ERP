@@ -61,6 +61,7 @@
     <Compile Include="ModuleGroupAccessService.cs" />
     <Compile Include="ModuleGroupService.cs" />
     <Compile Include="AccessTypeService.cs" />
+    <Compile Include="Order\OrderStatusService.cs" />
     <Compile Include="Product\SchemeTypeService.cs" />
     <Compile Include="Product\SchemeService.cs" />
     <Compile Include="Product\ProductSKUService.cs" />

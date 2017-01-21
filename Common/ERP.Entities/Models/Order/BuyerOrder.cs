@@ -1,4 +1,5 @@
-﻿using Repository.Pattern.Ef6;
+﻿using ERP.Entities.Models.Order;
+using Repository.Pattern.Ef6;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -19,7 +20,9 @@ namespace ERP.Entities.Models
         public virtual FinYear FinYear { get; set; }
         public int BuyerOrderNo { get; set; }
         public DateTime OrderDate { get; set; }
-        public int BuyerOrderStatusId { get; set; }
+        [ForeignKey("OrderStatus")]
+        public Nullable<int> OrderStatusId { get; set; }
+        public virtual OrderStatus OrderStatus { get; set; }
         public int BuyerOrderTrackerStatusId { get; set; }
         public string Remarks { get; set; }
         public DateTime CreationDate { get; set; }

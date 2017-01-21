@@ -67,6 +67,7 @@
     <Compile Include="Models\FactoryMaster.cs" />
     <Compile Include="Models\Order\BuyerOrder.cs" />
     <Compile Include="Models\Order\BuyerOrderItems.cs" />
+    <Compile Include="Models\Order\OrderStatus.cs" />
     <Compile Include="Models\ProductEntities\Color.cs" />
     <Compile Include="Models\ProductEntities\ImageType.cs" />
     <Compile Include="Models\ProductEntities\ProductColor.cs" />

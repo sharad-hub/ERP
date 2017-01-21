@@ -5,6 +5,8 @@ using ERP.Entities;
 using Repository.Pattern.Ef6;
 using ERP.Entities.Models;
 using ERP.Data.Mapping;
+using ERP.Entities.Models.Order;
+
 namespace ERP.Data.Models
 {
     public partial class GERPContext : DataContext
@@ -89,6 +91,7 @@ namespace ERP.Data.Models
 
         #endregion
 
+        public DbSet<OrderStatus> OrderStatuses { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
