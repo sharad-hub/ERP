@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ERP", "ERP\ERP.csproj", "{2A529A62-4CF9-41B6-97CD-3F19BC9A167E}"
 EndProject
@@ -36,6 +36,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ERP.DTO", "Common\ERP.DTO\ERP.DTO.csproj", "{9C445F03-2246-4C5C-97A0-20B32C184B7C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ERP.Entities", "Common\ERP.Entities\ERP.Entities.csproj", "{871F0038-F629-4A87-8E24-4E37BA1328D0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ERP.Logging", "ERP.Logging\ERP.Logging.csproj", "{711597CA-B9E5-43FD-BCCA-DCD97A298A71}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -101,6 +103,14 @@ Global
 		{871F0038-F629-4A87-8E24-4E37BA1328D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{871F0038-F629-4A87-8E24-4E37BA1328D0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{871F0038-F629-4A87-8E24-4E37BA1328D0}.Release|x86.ActiveCfg = Release|Any CPU
+		{711597CA-B9E5-43FD-BCCA-DCD97A298A71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{711597CA-B9E5-43FD-BCCA-DCD97A298A71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{711597CA-B9E5-43FD-BCCA-DCD97A298A71}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{711597CA-B9E5-43FD-BCCA-DCD97A298A71}.Debug|x86.Build.0 = Debug|Any CPU
+		{711597CA-B9E5-43FD-BCCA-DCD97A298A71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{711597CA-B9E5-43FD-BCCA-DCD97A298A71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{711597CA-B9E5-43FD-BCCA-DCD97A298A71}.Release|x86.ActiveCfg = Release|Any CPU
+		{711597CA-B9E5-43FD-BCCA-DCD97A298A71}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -114,5 +124,6 @@ Global
 		{10E258D5-9479-460F-8EED-2ABBEB2C7A1E} = {C5F16BC4-5F95-48EF-805D-2AB4A778811B}
 		{9C445F03-2246-4C5C-97A0-20B32C184B7C} = {17A6A028-BC51-47BE-89CE-613D23C1A6A1}
 		{871F0038-F629-4A87-8E24-4E37BA1328D0} = {17A6A028-BC51-47BE-89CE-613D23C1A6A1}
+		{711597CA-B9E5-43FD-BCCA-DCD97A298A71} = {17A6A028-BC51-47BE-89CE-613D23C1A6A1}
 	EndGlobalSection
 EndGlobal

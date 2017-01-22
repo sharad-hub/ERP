@@ -48,8 +48,10 @@
     <Compile Include="ErrorService.cs" />
     <Compile Include="Factory\FactoryService.cs" />
     <Compile Include="IEncryptionService.cs" />
+    <Compile Include="ILoggerService.cs" />
     <Compile Include="IMembershipService.cs" />
     <Compile Include="IStoredProcedureService.cs" />
+    <Compile Include="LoggerService.cs" />
     <Compile Include="Masters\DesignationService.cs" />
     <Compile Include="Masters\UserTypeService.cs" />
     <Compile Include="Masters\ZoneService.cs" />
@@ -98,6 +100,10 @@
     <ProjectReference Include="..\..\DataLayer\ERP.Repository\ERP.Repository.csproj">
       <Project>{04bf0937-59d4-4b95-9f4e-77ecafa88783}</Project>
       <Name>ERP.Repository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ERP.Logging\ERP.Logging.csproj">
+      <Project>{711597ca-b9e5-43fd-bcca-dcd97a298a71}</Project>
+      <Name>ERP.Logging</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Frameworks\Repository.Pattern.Ef6\Repository.Pattern.Ef6.csproj">
       <Project>{f68a1d19-93fb-47c1-a22b-42bea3e4fd8c}</Project>

@@ -259,6 +259,7 @@
     <Compile Include="Extensions\BaseController.cs" />
     <Compile Include="Extensions\ClaimsExtensions.cs" />
     <Compile Include="Extensions\ERPExtension.cs" />
+    <Compile Include="Extensions\LogHelper.cs" />
     <Compile Include="Extensions\URLExtension.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -1076,6 +1077,7 @@
     <Content Include="App_Readme\Elmah.txt" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Documents\UOF_Help.txt" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -1198,6 +1200,7 @@
     <Content Include="Areas\Administration\Views\Product\ProductSKUs.cshtml" />
     <Content Include="Areas\Administration\Views\Product\ProductColors.cshtml" />
     <Content Include="Areas\Administration\Views\Product\UnitOfMaterials.cshtml" />
+    <Content Include="NLog.config" />
     <None Include="Properties\PublishProfiles\Default Settings %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\Default Settings %283%29.pubxml" />
     <None Include="Properties\PublishProfiles\Default Settings.pubxml" />

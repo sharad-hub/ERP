@@ -108,6 +108,7 @@
     <Compile Include="Models\User\UserSettings.cs" />
     <Compile Include="Models\Location\ZoneMaster.cs" />
     <Compile Include="Other\GenericAttribute.cs" />
+    <Compile Include="Other\LogEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SParams\AddMenu.cs" />
     <Compile Include="SPModels\MenuForGui.cs" />

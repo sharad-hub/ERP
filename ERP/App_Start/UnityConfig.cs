@@ -48,8 +48,8 @@ namespace ERP.App_Start
             // TODO: Register your types here
             // container.RegisterType<IProductRepository, ProductRepository>();
             container
-         .RegisterType<IDataContextAsync, GERPContext>(new PerThreadLifetimeManager())
-         .RegisterType<IUnitOfWorkAsync, UnitOfWork>(new PerThreadLifetimeManager())
+         .RegisterType<IDataContextAsync, GERPContext>(new PerRequestLifetimeManager())
+         .RegisterType<IUnitOfWorkAsync, UnitOfWork>(new PerRequestLifetimeManager())
          .RegisterType<IRepositoryAsync<Entities.Menu>, Repository<Entities.Menu>>()
          .RegisterType<IRepositoryAsync<Error>, Repository<Error>>()
          .RegisterType<IMembershipService, MembershipService>()
@@ -84,6 +84,7 @@ namespace ERP.App_Start
          .RegisterType<IProductSubGroupService, ProductSubGroupService>()
          .RegisterType<IProductTypeService, ProductTypeService>()
          .RegisterType<IUnitOfMaterialService, UnitOfMaterialService>()
+         .RegisterType<ILoggerService, LoggerService>()
           .RegisterType<IRepositoryAsync<UnitOfMaterial>, Repository<UnitOfMaterial>>()
          .RegisterType<IRepositoryAsync<ProductFactoryAllocation>, Repository<ProductFactoryAllocation>>()
          .RegisterType<IRepositoryAsync<ProductImage>, Repository<ProductImage>>()
