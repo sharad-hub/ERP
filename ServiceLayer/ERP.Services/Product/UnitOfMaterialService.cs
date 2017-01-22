@@ -10,16 +10,16 @@ using System.Threading.Tasks;
 
 namespace ERP.Services
 {
-    public class UnitOfMaterialService : Service<UnitOfMaterial>, IUnitOfMaterialService
+    public class UnitOfMaterialService : Service<UnitOfMeasurement>, IUnitOfMaterialService
     {
-        public readonly IRepositoryAsync<UnitOfMaterial> _repository;
-        public UnitOfMaterialService(IRepositoryAsync<UnitOfMaterial> repository)
+        public readonly IRepositoryAsync<UnitOfMeasurement> _repository;
+        public UnitOfMaterialService(IRepositoryAsync<UnitOfMeasurement> repository)
             : base(repository)
         {
             _repository = repository;
         }
     }
-    public interface IUnitOfMaterialService : IService<UnitOfMaterial>
+    public interface IUnitOfMaterialService : IService<UnitOfMeasurement>
     {
     }
 }

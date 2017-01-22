@@ -82,7 +82,7 @@ namespace ERP.Data.Models
 
         public DbSet<ImageType> ImageTypes { get; set; }
         public DbSet<Tariff> Tariffs { get; set; }
-        public DbSet<UnitOfMaterial> UnitOfMaterials { get; set; }
+        public DbSet<UnitOfMeasurement> UnitOfMaterials { get; set; }
 
         #endregion
         #region BUyers Relates

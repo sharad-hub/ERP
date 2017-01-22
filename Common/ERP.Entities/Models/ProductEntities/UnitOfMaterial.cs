@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ERP.Entities.Models
 {
-    public class UnitOfMaterial : Entity
+    public class UnitOfMeasurement : Entity
     {
         public int ID { get; set; }
         [Required]

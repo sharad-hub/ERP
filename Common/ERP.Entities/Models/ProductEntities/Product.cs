@@ -26,10 +26,10 @@ namespace ERP.Entities
         public virtual ProductType ProductType { get; set; }
         [ForeignKey("UOMMain")]
         public Nullable<int> UOMMainId { get; set; }
-        public virtual UnitOfMaterial UOMMain { get; set; }
+        public virtual UnitOfMeasurement UOMMain { get; set; }
         //[ForeignKey("UOMSecond")]
         //public int UOMSecondId { get; set; }
-        //public virtual UnitOfMaterial UOMSecond { get; set; }  ///Move to different table 
+        //public virtual UnitOfMeasurement UOMSecond { get; set; }  ///Move to different table 
 
         [ForeignKey("Color")]
         public Nullable<int> ColorId { get; set; }

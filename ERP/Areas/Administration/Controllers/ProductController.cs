@@ -283,7 +283,8 @@ namespace ERP.Areas.Administration.Controllers
         {
             return View();
         }
-        public ActionResult AddUnitOfMaterial(UnitOfMaterial uom)
+        [HttpPost]
+        public ActionResult AddUnitOfMaterial(UnitOfMeasurement uom)
         {
             if (ModelState.IsValid)
             {
@@ -330,8 +331,8 @@ namespace ERP.Areas.Administration.Controllers
         }
         public ActionResult Godowns()
         {
-            var productGroups = _productGroupService.Queryable().Where(x => x.Status == true).ToList();
-            return View(productGroups);
+            var godowns = _godownService.Queryable().Where(x => x.Status == true).ToList();
+            return View(godowns);
         }
     }
 }

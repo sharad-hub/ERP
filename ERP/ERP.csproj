@@ -1212,6 +1212,8 @@
     <Content Include="NLog.config" />
     <Content Include="Areas\Administration\Views\Masters\AddColor.cshtml" />
     <Content Include="Areas\Administration\Views\Masters\Colors.cshtml" />
+    <Content Include="Areas\Administration\Views\Product\AddGodown.cshtml" />
+    <Content Include="Areas\Administration\Views\Product\Godowns.cshtml" />
     <None Include="Properties\PublishProfiles\Default Settings %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\Default Settings %283%29.pubxml" />
     <None Include="Properties\PublishProfiles\Default Settings.pubxml" />
@@ -1425,6 +1427,9 @@
       <Project>{10e258d5-9479-460f-8eed-2abbeb2c7a1e}</Project>
       <Name>ERP.Services</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
