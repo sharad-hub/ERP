@@ -25,17 +25,17 @@ namespace ERP.Entities
         public Nullable<int> ProductTypeId { get; set; }
         public virtual ProductType ProductType { get; set; }
         [ForeignKey("UOMMain")]
-        public int UOMMainId { get; set; }
+        public Nullable<int> UOMMainId { get; set; }
         public virtual UnitOfMaterial UOMMain { get; set; }
         //[ForeignKey("UOMSecond")]
         //public int UOMSecondId { get; set; }
         //public virtual UnitOfMaterial UOMSecond { get; set; }  ///Move to different table 
 
         [ForeignKey("Color")]
-        public int ColorId { get; set; }
+        public Nullable<int> ColorId { get; set; }
         public virtual Color Color { get; set; }
         [ForeignKey("TariffCode")]
-        public int TariffCodeId { get; set; }
+        public Nullable<int> TariffCodeId { get; set; }
         public virtual Tariff TariffCode { get; set; }
         [ForeignKey("Godown")]
         public int GodownId { get; set; }

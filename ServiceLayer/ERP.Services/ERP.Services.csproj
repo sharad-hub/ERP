@@ -52,6 +52,7 @@
     <Compile Include="IMembershipService.cs" />
     <Compile Include="IStoredProcedureService.cs" />
     <Compile Include="LoggerService.cs" />
+    <Compile Include="Masters\ColorService.cs" />
     <Compile Include="Masters\DesignationService.cs" />
     <Compile Include="Masters\UserTypeService.cs" />
     <Compile Include="Masters\ZoneService.cs" />
@@ -64,6 +65,7 @@
     <Compile Include="ModuleGroupService.cs" />
     <Compile Include="AccessTypeService.cs" />
     <Compile Include="Order\OrderStatusService.cs" />
+    <Compile Include="Product\GodownService.cs" />
     <Compile Include="Product\SchemeTypeService.cs" />
     <Compile Include="Product\SchemeService.cs" />
     <Compile Include="Product\ProductSKUService.cs" />

@@ -1,6 +1,8 @@
 ﻿using ERP.Entities;
+using ERP.Entities.Models;
 using ERP.Extensions;
 using ERP.Services;
+using Newtonsoft.Json;
 using Repository.Pattern.UnitOfWork;
 using System;
 using System.Collections.Generic;
@@ -12,14 +14,18 @@ namespace ERP.Areas.Administration.Controllers
 {
     public class MastersController : BaseController
     {
+        IColorService _colorService;
         ICityService _cityService;
         IStateService _stateService;
         ICountryService _countryService;
         IZoneService _zoneService;
         IUnitOfWorkAsync _unitOfWorkAsync;
-        public MastersController(ICityService cityService, IStateService stateService,
+        ILoggerService _logservice;
+        public MastersController(ICityService cityService, IStateService stateService,IColorService colorService, ILoggerService logservice,
             ICountryService countryService, IZoneService zoneService,IUnitOfWorkAsync unitOfWorkAsync)
         {
+            _logservice = logservice;
+            _colorService = colorService;
             _cityService = cityService;
             _zoneService = zoneService;
             _countryService = countryService;
@@ -133,7 +139,36 @@ namespace ERP.Areas.Administration.Controllers
             Success(string.Format("<b>City ({0})</b> was successfully added to the database.", model.CityName), true);
             return View();
         }
+        public ActionResult AddColor()
+        {
+            return View(new Color());
+        }
+        [HttpPost]
+        public ActionResult AddColor(Color color)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {                   
+                    _logservice.LogInfo(LogHelper.GetLogString(User.Identity.GetUserNameIdentifier(), "AddProductSubGroup", JsonConvert.SerializeObject(color)));
+                    _colorService.Insert(color);
+                    _unitOfWorkAsync.SaveChanges();
+                    Success(string.Format("<b>Color({0})</b> was successfully added.", color.Name), true);
+                    return RedirectToAction("Colors");
+                }
+            }
+            catch (Exception ex)
+            {
+                _logservice.LogError(LogHelper.GetLogString(User.Identity.GetUserNameIdentifier(), "AddProductSubGroup", ex.Message));
+            }          
+            return View(color);
+        }
 
+        public ActionResult Colors()
+        {
+            var productSubGroup = _colorService.Queryable().Where(x => x.Status == true);
+            return View(productSubGroup);
+        }
         #region Cascading dropdowns
 
         [HttpPost]

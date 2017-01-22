@@ -72,6 +72,7 @@ namespace ERP.App_Start
          .RegisterType<IStateService, StateService>()
          .RegisterType<IZoneService, ZoneService>()
          .RegisterType<ICountryService, CountryService>()
+          .RegisterType<IColorService, ColorService>()
 
          .RegisterType<IProductColorService, ProductColorService>()
          .RegisterType<IProductFactoryAllocationService, ProductFactoryAllocationService>()
@@ -85,7 +86,8 @@ namespace ERP.App_Start
          .RegisterType<IProductTypeService, ProductTypeService>()
          .RegisterType<IUnitOfMaterialService, UnitOfMaterialService>()
          .RegisterType<ILoggerService, LoggerService>()
-          .RegisterType<IRepositoryAsync<UnitOfMaterial>, Repository<UnitOfMaterial>>()
+         .RegisterType<IRepositoryAsync<UnitOfMaterial>, Repository<UnitOfMaterial>>()
+         .RegisterType<IRepositoryAsync<Color>, Repository<Color>>()
          .RegisterType<IRepositoryAsync<ProductFactoryAllocation>, Repository<ProductFactoryAllocation>>()
          .RegisterType<IRepositoryAsync<ProductImage>, Repository<ProductImage>>()
          .RegisterType<IRepositoryAsync<ProductColor>, Repository<ProductColor>>()

@@ -186,6 +186,10 @@
     <Compile Include="Migrations\201701211402348_addedOrderStatusForeignKeyinBuyerOrder.Designer.cs">
       <DependentUpon>201701211402348_addedOrderStatusForeignKeyinBuyerOrder.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201701221647048_modified product relationships.cs" />
+    <Compile Include="Migrations\201701221647048_modified product relationships.Designer.cs">
+      <DependentUpon>201701221647048_modified product relationships.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StoredProcedure\ERPStoredProcedure.cs" />
@@ -293,6 +297,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201701211402348_addedOrderStatusForeignKeyinBuyerOrder.resx">
       <DependentUpon>201701211402348_addedOrderStatusForeignKeyinBuyerOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701221647048_modified product relationships.resx">
+      <DependentUpon>201701221647048_modified product relationships.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -26,11 +26,15 @@ namespace ERP.Areas.Administration.Controllers
         IProductTypeService _productTypeService;
         IProductSKUService _productSKUService;
         IUnitOfWorkAsync _unitOfWorkAsync;
+        IGodownService _godownService;
+        IColorService _colorService;
+        ITariffService _tariffService;
         ILoggerService _logservice;
         public ProductController(IProductGroupService productGroupService, IProductService productService,
              IProductSubGroupService productSubGroupService, IProductColorService productColorService,
              IProductTypeService productTypeService, IProductSKUService productSKUService, IUnitOfWorkAsync unitOfWorkAsync
-            , IUnitOfMaterialService unitOfMaterialService, ILoggerService logservice)
+            , IUnitOfMaterialService unitOfMaterialService, ILoggerService logservice
+            , IGodownService godownService, IColorService colorService, ITariffService tariffService)
         {
             _unitOfMaterialService = unitOfMaterialService;
             _unitOfWorkAsync = unitOfWorkAsync;
@@ -40,6 +44,10 @@ namespace ERP.Areas.Administration.Controllers
             _productTypeService = productTypeService;
             _productSKUService = productSKUService;
             _logservice = logservice;
+
+            _colorService = colorService;
+            _tariffService = tariffService;
+            _godownService = godownService;
         }
         // GET: Administration/Product
         public ActionResult Index()
@@ -48,12 +56,69 @@ namespace ERP.Areas.Administration.Controllers
         }
         public ActionResult AddProduct()
         {
+            #region Filling DropDowns       
+            var productSubGroups = _productSubGroupService.Queryable().Where(x => x.Status == true).ToList();
+            ViewBag.productSubGroups = productSubGroups.AsEnumerable()
+                .Select(x => new SelectListItem
+                {
+                    Text = x.ProductSubGroupName,
+                    Value = x.ID.ToString()
+                }).ToList();
+            var productTypes = _productTypeService.Queryable().Where(x => x.Status == true).ToList();
+            ViewBag.productTypes = productTypes.AsEnumerable()
+                .Select(x => new SelectListItem
+                {
+                    Text = x.TypeName,
+                    Value = x.ID.ToString()
+                }).ToList();
+
+            var productTariffs = _productSubGroupService.Queryable().Where(x => x.Status == true).ToList();
+            ViewBag.productSubGroups = productSubGroups.AsEnumerable()
+                .Select(x => new SelectListItem
+                {
+                    Text = x.ProductSubGroupName,
+                    Value = x.ID.ToString()
+                }).ToList();
+            var god0wns = _productSubGroupService.Queryable().Where(x => x.Status == true).ToList();
+            ViewBag.productSubGroups = productSubGroups.AsEnumerable()
+                .Select(x => new SelectListItem
+                {
+                    Text = x.ProductSubGroupName,
+                    Value = x.ID.ToString()
+                }).ToList();
+            var colors = _productSubGroupService.Queryable().Where(x => x.Status == true).ToList();
+            ViewBag.productSubGroups = productSubGroups.AsEnumerable()
+                .Select(x => new SelectListItem
+                {
+                    Text = x.ProductSubGroupName,
+                    Value = x.ID.ToString()
+                }).ToList();
+            #endregion
             return View();
         }
         [HttpPost]
         public ActionResult AddProduct(Product product)
         {
-            return View(new Product());
+
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    _logservice.LogInfo(LogHelper.GetLogString(User.Identity.GetUserNameIdentifier(), "AddProduct", JsonConvert.SerializeObject(product)));
+                    _productService.Insert(product);
+                    _unitOfWorkAsync.SaveChanges();
+                    Success(string.Format("<b>Product {0} </b> was successfully added.", product.ProductName), true);
+                    return RedirectToAction("ProductTypes");
+                }
+            }
+            catch (DataException ex)
+            {
+                Danger(string.Format("<b>Errored occured while saving the product details"), true);
+                ModelState.AddModelError("Error", "Errored occured while saving the product details");
+                _logservice.LogInfo(LogHelper.GetLogString(User.Identity.GetUserNameIdentifier(), "AddProduct", JsonConvert.SerializeObject(product)));
+            }
+
+            return View(product);
         }
 
         public ActionResult AddProductGroup()
@@ -81,10 +146,12 @@ namespace ERP.Areas.Administration.Controllers
         }
         public ActionResult AddProductSubGroup()
         {
-          var  productGroups = _productGroupService.Queryable().Where(x => x.Status == true).ToList();
+            var productGroups = _productGroupService.Queryable().Where(x => x.Status == true).ToList();
             ViewBag.productGroups = productGroups.AsEnumerable()
-                .Select(x=>new SelectListItem {
-                     Text=x.ProductGroupName, Value=x.ID.ToString()
+                .Select(x => new SelectListItem
+                {
+                    Text = x.ProductGroupName,
+                    Value = x.ID.ToString()
                 }).ToList();
             return View(new ProductSubGroup());
         }
@@ -99,13 +166,15 @@ namespace ERP.Areas.Administration.Controllers
                     _logservice.LogInfo(LogHelper.GetLogString(User.Identity.GetUserNameIdentifier(), "AddProductSubGroup", JsonConvert.SerializeObject(productsubGroup)));
                     _productSubGroupService.Insert(productsubGroup);
                     _unitOfWorkAsync.SaveChanges();
-                    Success(string.Format("<b>Product type({0})</b> was successfully added.", productsubGroup.ProductSubGroupName), true);
+                    Success(string.Format("<b>Product Sub group({0})</b> was successfully added.", productsubGroup.ProductSubGroupName), true);
                     return RedirectToAction("ProductSubGroups");
                 }
             }
-            catch (Exception ex)
+            catch (DataException ex)
             {
-                _logservice.LogError(LogHelper.GetLogString(User.Identity.GetUserNameIdentifier(), "AddProductSubGroup", ex.Message));
+                Danger(string.Format("<b>Errored occured while saving the product group"), true);
+                ModelState.AddModelError("Error", "Errored occured while saving the product group");
+                _logservice.LogInfo(LogHelper.GetLogString(User.Identity.GetUserNameIdentifier(), "AddProduct", JsonConvert.SerializeObject(productsubGroup)));
             }
 
             var productGroups = _productGroupService.Queryable().Where(x => x.Status == true).ToList();
@@ -157,7 +226,7 @@ namespace ERP.Areas.Administration.Controllers
             {
                 if (ModelState.IsValid)
                 {
-
+                    _logservice.LogInfo(LogHelper.GetLogString(User.Identity.GetUserNameIdentifier(), "AddProductColor", JsonConvert.SerializeObject(productColor)));
                     _productColorService.Insert(productColor);
                     _unitOfWorkAsync.SaveChanges();
                     Success(string.Format("<b>Product color </b> was successfully added."), true);
@@ -166,10 +235,11 @@ namespace ERP.Areas.Administration.Controllers
             }
             catch (DataException ex)
             {
-
-                throw;
+                Danger(string.Format("<b>Errored occured while saving the product color"), true);
+                ModelState.AddModelError("Error", "Errored occured while saving the product color group");
+                _logservice.LogInfo(LogHelper.GetLogString(User.Identity.GetUserNameIdentifier(), "AddProduct", JsonConvert.SerializeObject(productColor)));
             }
-           
+
             return View(productColor);
         }
         public ActionResult ProductColors()
@@ -184,13 +254,24 @@ namespace ERP.Areas.Administration.Controllers
         [HttpPost]
         public ActionResult AddProductType(ProductType productType)
         {
-            if (ModelState.IsValid)
+            try
             {
-                _productTypeService.Insert(productType);
-                _unitOfWorkAsync.SaveChanges();
-                Success(string.Format("<b>Product type({0})</b> was successfully added.", productType.TypeName), true);
-                return RedirectToAction("ProductTypes");
+                if (ModelState.IsValid)
+                {
+                    _logservice.LogInfo(LogHelper.GetLogString(User.Identity.GetUserNameIdentifier(), "AddProductType", JsonConvert.SerializeObject(productType)));
+                    _productTypeService.Insert(productType);
+                    _unitOfWorkAsync.SaveChanges();
+                    Success(string.Format("<b>Product type({0})</b> was successfully added.", productType.TypeName), true);
+                    return RedirectToAction("ProductTypes");
+                }
             }
+            catch (DataException ex)
+            {
+                Danger(string.Format("<b>Errored occured while saving the product type"), true);
+                ModelState.AddModelError("Error", "Errored occured while saving the product type");
+                _logservice.LogInfo(LogHelper.GetLogString(User.Identity.GetUserNameIdentifier(), "AddProductType", JsonConvert.SerializeObject(productType)));
+            }
+
             return View(productType);
         }
         public ActionResult ProductTypes()
@@ -217,6 +298,40 @@ namespace ERP.Areas.Administration.Controllers
         {
             var uoms = _unitOfMaterialService.Queryable().Where(x => x.Status).ToList();
             return View(uoms);
+        }
+
+
+        public ActionResult AddGodown()
+        {
+            return View(new Godown());
+        }
+        [HttpPost]
+        public ActionResult AddGodown(Godown godown)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    _godownService.Insert(godown);
+                    _logservice.LogInfo(LogHelper.GetLogString(User.Identity.GetUserNameIdentifier(), "AddGodown", JsonConvert.SerializeObject(godown)));
+                    _unitOfWorkAsync.SaveChanges();
+                    Success(string.Format("<b>Godown  ({0})</b> was successfully added.", godown.GodownName), true);
+                    return RedirectToAction("Godowns");
+                }
+            }
+            catch (DataException ex)
+            {
+                Danger(string.Format("<b>Errored occured while saving the  godown details"), true);
+                ModelState.AddModelError("Error", "Errored occured while saving the godown details");
+                _logservice.LogInfo(LogHelper.GetLogString(User.Identity.GetUserNameIdentifier(), "AddGodown", JsonConvert.SerializeObject(godown)));
+            }
+
+            return View(godown);
+        }
+        public ActionResult Godowns()
+        {
+            var productGroups = _productGroupService.Queryable().Where(x => x.Status == true).ToList();
+            return View(productGroups);
         }
     }
 }
