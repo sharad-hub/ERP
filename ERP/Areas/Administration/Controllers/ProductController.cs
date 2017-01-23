@@ -52,7 +52,8 @@ namespace ERP.Areas.Administration.Controllers
         // GET: Administration/Product
         public ActionResult Index()
         {
-            return View();
+            var products = _productService.Queryable().Where(x => x.Status).ToList();
+            return View(products);
         }
         public ActionResult AddProduct()
         {
@@ -72,25 +73,32 @@ namespace ERP.Areas.Administration.Controllers
                     Value = x.ID.ToString()
                 }).ToList();
 
-            var productTariffs = _productSubGroupService.Queryable().Where(x => x.Status == true).ToList();
-            ViewBag.productSubGroups = productSubGroups.AsEnumerable()
+            var productTariffs = _tariffService.Queryable().Where(x => x.Status == true).ToList();
+            ViewBag.productTariffs = productTariffs.AsEnumerable()
                 .Select(x => new SelectListItem
                 {
-                    Text = x.ProductSubGroupName,
+                    Text = x.TariffName + "-("+ x.TariffCode+")",
                     Value = x.ID.ToString()
                 }).ToList();
-            var god0wns = _productSubGroupService.Queryable().Where(x => x.Status == true).ToList();
-            ViewBag.productSubGroups = productSubGroups.AsEnumerable()
+            var godowns = _godownService.Queryable().Where(x => x.Status == true).ToList();
+            ViewBag.godowns = godowns.AsEnumerable()
                 .Select(x => new SelectListItem
                 {
-                    Text = x.ProductSubGroupName,
+                    Text = x.GodownName,
                     Value = x.ID.ToString()
                 }).ToList();
-            var colors = _productSubGroupService.Queryable().Where(x => x.Status == true).ToList();
-            ViewBag.productSubGroups = productSubGroups.AsEnumerable()
+            var colors = _colorService.Queryable().Where(x => x.Status == true).ToList();
+            ViewBag.colors = colors.AsEnumerable()
                 .Select(x => new SelectListItem
                 {
-                    Text = x.ProductSubGroupName,
+                    Text = x.Name,
+                    Value = x.ID.ToString()
+                }).ToList();
+            var uoms = _unitOfMaterialService.Queryable().Where(x => x.Status == true).ToList();
+            ViewBag.uoms = uoms.AsEnumerable()
+                .Select(x => new SelectListItem
+                {
+                    Text = x.UOM,
                     Value = x.ID.ToString()
                 }).ToList();
             #endregion
@@ -104,6 +112,7 @@ namespace ERP.Areas.Administration.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    product.CreatedOn = DateTime.Now;
                     _logservice.LogInfo(LogHelper.GetLogString(User.Identity.GetUserNameIdentifier(), "AddProduct", JsonConvert.SerializeObject(product)));
                     _productService.Insert(product);
                     _unitOfWorkAsync.SaveChanges();
@@ -284,16 +293,16 @@ namespace ERP.Areas.Administration.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult AddUnitOfMaterial(UnitOfMeasurement uom)
+        public ActionResult AddUnitOfMaterial(UnitOfMeasurement uomat)
         {
             if (ModelState.IsValid)
             {
-                _unitOfMaterialService.Insert(uom);
+                _unitOfMaterialService.Insert(uomat);
                 _unitOfWorkAsync.SaveChanges();
-                Success(string.Format("<b>UOM ({0})</b> was successfully added.", uom.UOM), true);
+                Success(string.Format("<b>UOM ({0})</b> was successfully added.", uomat.UOM), true);
                 return RedirectToAction("UnitOfMaterials");
             }
-            return View(uom);
+            return View(uomat);
         }
         public ActionResult UnitOfMaterials()
         {
@@ -333,6 +342,40 @@ namespace ERP.Areas.Administration.Controllers
         {
             var godowns = _godownService.Queryable().Where(x => x.Status == true).ToList();
             return View(godowns);
+        }
+
+
+        public ActionResult AddTariff()
+        {
+            return View(new Tariff());
+        }
+        [HttpPost]
+        public ActionResult AddTariff(Tariff model)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    _tariffService.Insert(model);
+                    _logservice.LogInfo(LogHelper.GetLogString(User.Identity.GetUserNameIdentifier(), "AddGodown", JsonConvert.SerializeObject(model)));
+                    _unitOfWorkAsync.SaveChanges();
+                    Success(string.Format("<b>Tariff  ({0})</b> was successfully added.", model.TariffName), true);
+                    return RedirectToAction("Tariffs");
+                }
+            }
+            catch (DataException ex)
+            {
+                Danger(string.Format("<b>Errored occured while saving the  godown details"), true);
+                ModelState.AddModelError("Error", "Errored occured while saving the godown details");
+                _logservice.LogInfo(LogHelper.GetLogString(User.Identity.GetUserNameIdentifier(), "AddGodown", JsonConvert.SerializeObject(model)));
+            }
+
+            return View(model);
+        }
+        public ActionResult Tariffs()
+        {
+            var tariffs = _tariffService.Queryable().Where(x => x.Status == true).ToList();
+            return View(tariffs);
         }
     }
 }

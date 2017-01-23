@@ -1214,6 +1214,9 @@
     <Content Include="Areas\Administration\Views\Masters\Colors.cshtml" />
     <Content Include="Areas\Administration\Views\Product\AddGodown.cshtml" />
     <Content Include="Areas\Administration\Views\Product\Godowns.cshtml" />
+    <Content Include="Areas\Administration\Views\Product\AddTariff.cshtml" />
+    <Content Include="Areas\Administration\Views\Product\Tariffs.cshtml" />
+    <Content Include="Areas\Administration\Views\Product\Index.cshtml" />
     <None Include="Properties\PublishProfiles\Default Settings %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\Default Settings %283%29.pubxml" />
     <None Include="Properties\PublishProfiles\Default Settings.pubxml" />

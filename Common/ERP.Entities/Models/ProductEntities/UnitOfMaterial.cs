@@ -12,8 +12,9 @@ namespace ERP.Entities.Models
     {
         public int ID { get; set; }
         [Required]
-        [MaxLength(50)]
+        //[MaxLength(50)]
         public string UOM { get; set; }
+        public string UOMCode { get; set; }
         public bool Status { get; set; }
     }
 }
