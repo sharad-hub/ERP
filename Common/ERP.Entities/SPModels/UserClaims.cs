@@ -14,7 +14,8 @@ namespace ERP.Entities.SPModels
         public string AreaName { get; set; }
         public string ActionName { get; set; }
         public string ControllerName { get; set; }
-        public int UrlContextID { get; set; }
+        public int? UrlContextID { get; set; }
+        public int? UserReferenceID { get; set; }
 
     }
 }

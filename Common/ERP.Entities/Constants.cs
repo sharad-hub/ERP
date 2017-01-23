@@ -31,6 +31,6 @@ namespace ERP.Entities
       public const string UserType = "http://schemas.xmlsoap.org/ws/2009/09/identity/claims/UserType";
       public const string DefaultUrl = "http://schemas.xmlsoap.org/ws/2009/09/identity/claims/DefaultUrl";
       public const string ThemeSkin = "http://schemas.xmlsoap.org/ws/2009/09/identity/claims/ThemeSkin";
-   
+      public const string UserReferenceID = "http://schemas.xmlsoap.org/ws/2009/09/identity/claims/UserReferenceID";   
   }
 }

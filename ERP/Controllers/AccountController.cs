@@ -181,6 +181,8 @@ namespace ERP.Controllers
                     userClaims.Add(new Claim(CustomClaimTypes.ThemeSkin, settings.ThemeSkin));
                 if (settings.UrlContextID != null)
                     userClaims.Add(new Claim(CustomClaimTypes.DefaultUrl, settings.UrlContextID.ToString()));
+                if (settings.UserReferenceID != null)
+                    userClaims.Add(new Claim(CustomClaimTypes.UserReferenceID, settings.UserReferenceID.ToString()));
                 this.SignInUser(Email, true, userClaims);
             }
             return settings;
