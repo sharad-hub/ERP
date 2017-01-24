@@ -194,6 +194,18 @@
     <Compile Include="Migrations\201701230518168_uom_code.Designer.cs">
       <DependentUpon>201701230518168_uom_code.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201701231506274_AddedLeveIinOrdeStatusAndData.cs" />
+    <Compile Include="Migrations\201701231506274_AddedLeveIinOrdeStatusAndData.Designer.cs">
+      <DependentUpon>201701231506274_AddedLeveIinOrdeStatusAndData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701231649385_AddedSchemesEntity.cs" />
+    <Compile Include="Migrations\201701231649385_AddedSchemesEntity.Designer.cs">
+      <DependentUpon>201701231649385_AddedSchemesEntity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701231717105_ProductIdentity_modified.cs" />
+    <Compile Include="Migrations\201701231717105_ProductIdentity_modified.Designer.cs">
+      <DependentUpon>201701231717105_ProductIdentity_modified.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StoredProcedure\ERPStoredProcedure.cs" />
@@ -307,6 +319,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201701230518168_uom_code.resx">
       <DependentUpon>201701230518168_uom_code.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701231506274_AddedLeveIinOrdeStatusAndData.resx">
+      <DependentUpon>201701231506274_AddedLeveIinOrdeStatusAndData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701231649385_AddedSchemesEntity.resx">
+      <DependentUpon>201701231649385_AddedSchemesEntity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701231717105_ProductIdentity_modified.resx">
+      <DependentUpon>201701231717105_ProductIdentity_modified.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

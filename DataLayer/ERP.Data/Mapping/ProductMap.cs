@@ -11,9 +11,9 @@ namespace ERP.Data.Models.Mapping
             // Primary Key
             this.HasKey(t => t.ProductID);
 
-            // Properties
+             //Properties
             this.Property(t => t.ProductID)
-                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
 
             this.Property(t => t.ProductName)
                 .HasMaxLength(256);

@@ -84,6 +84,9 @@ namespace ERP.Data.Models
         public DbSet<Tariff> Tariffs { get; set; }
         public DbSet<UnitOfMeasurement> UnitOfMaterials { get; set; }
 
+        public DbSet<SchemeType> SchemeTypes { get; set; }
+        public DbSet<Scheme> Schemes { get; set; }
+        
         #endregion
         #region BUyers Relates
         public DbSet<BuyerOrder> BuyerOrders { get; set; }

@@ -9,7 +9,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace ERP.Entities
 {
     public partial class Product : Entity
-    {
+    {   [Key]
         public int ProductID { get; set; }
         [DisplayName("Product Name")]
         public string ProductName { get; set; }

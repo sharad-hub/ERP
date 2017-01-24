@@ -1077,6 +1077,7 @@
     <Content Include="App_Readme\Elmah.txt" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Documents\UI_test.txt" />
     <Content Include="Documents\UOF_Help.txt" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -1217,6 +1218,8 @@
     <Content Include="Areas\Administration\Views\Product\AddTariff.cshtml" />
     <Content Include="Areas\Administration\Views\Product\Tariffs.cshtml" />
     <Content Include="Areas\Administration\Views\Product\Index.cshtml" />
+    <Content Include="Areas\Sales\Views\Schemes\TradeProduct.cshtml" />
+    <Content Include="Areas\Sales\Views\Schemes\TradeSchemes.cshtml" />
     <None Include="Properties\PublishProfiles\Default Settings %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\Default Settings %283%29.pubxml" />
     <None Include="Properties\PublishProfiles\Default Settings.pubxml" />
