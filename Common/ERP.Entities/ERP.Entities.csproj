@@ -59,6 +59,7 @@
     <Compile Include="Constants.cs" />
     <Compile Include="Models\Access\AccessType.cs" />
     <Compile Include="Models\BuyerMaster.cs" />
+    <Compile Include="Models\FYear.cs" />
     <Compile Include="Models\GodownMaster.cs" />
     <Compile Include="Models\Location\CityMaster.cs" />
     <Compile Include="Models\Location\CountryMaster.cs" />
@@ -92,7 +93,6 @@
     <Compile Include="Models\ErrorLog.cs" />
     <Compile Include="Models\CompanyWiseModule.cs" />
     <Compile Include="Models\Error.cs" />
-    <Compile Include="Models\FYear.cs" />
     <Compile Include="Models\Gender.cs" />
     <Compile Include="Models\MaritalStatus.cs" />
     <Compile Include="Models\Module\Menu.cs" />

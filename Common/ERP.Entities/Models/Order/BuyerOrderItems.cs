@@ -11,36 +11,42 @@ namespace ERP.Entities.Models
 {
     public class BuyerOrderItem : Entity
     {
-        public int ID { get; set; }
+        public long ID { get; set; }
 
         #region ForeignKeys
-        [ForeignKey("BuyerOrder")]
-        public int BuyerOrderId { get; set; }
-        public virtual BuyerOrder BuyerOrder { get; set; }
+       // [ForeignKey("BuyerOrder")]
+        public long BuyerOrderId { get; set; }
+        //public virtual BuyerOrder BuyerOrder { get; set; }
+       // [ForeignKey("FinYear")]
+        public int FinYearId { get; set; }
+        //public virtual FinYear FinYear { get; set; }
+        //[ForeignKey("BuyerOrderNo")]
+       // public string BuyerOrderNo { get; set; }//50
 
         [ForeignKey("Product")]
-        public int ProductId { get; set; }
+        public long ProductId { get; set; }
         public virtual Product Product { get; set; }
         #endregion
-        [DisplayName("Product Name")]
-        public string ProductName { get; set; }
-        public int UnitId { get; set; }
-        public int UnitPrice { get; set; }
-        public int MRP { get; set; }
-        public int Quintity { get; set; }
+        //[DisplayName("Product Name")]
+        //public string ProductName { get; set; }
+        public Nullable<int> ProductSkuID { get; set; } /// SKU
+        public float UnitPrice { get; set; }
+        public float MRP { get; set; }
+        public float Quintity { get; set; }
         public int SchemeId { get; set; }
-        public int SchemeFreeQty { get; set; }
-        public int TotalOrderQty { get; set; }
-        public int TotalOrderAmt { get; set; }
-        public int TotalSchemeFreeAmt { get; set; }
-        public int DiscPercentage { get; set; }
-        public int DiscAmount { get; set; }
-        [DisplayName("Sales Tax Amount")]
-        public int SalesTaxAmount { get; set; }
+        public float SchemeFreeQty { get; set; }
+        public float TotalOrderQty { get; set; }
+        public float TotalOrderAmt { get; set; }
+        public float TotalSchemeFreeAmt { get; set; }
+        public float DiscPercentage { get; set; }
+        public float DiscAmount { get; set; }        
         [DisplayName("Tax Percentage")]
-        public int TaxPercentage { get; set; }
+        public float TaxPercentage { get; set; }
+        [DisplayName("Tax Amount")]
+        public float TaxAmount { get; set; }
         [DisplayName("Total Order Cost")]
-        public int TotalOrderCost { get; set; }
+        public float TotalOrderCost { get; set; }
+        public int FactoryID { get; set; }
 
     }
 
