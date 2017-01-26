@@ -54,6 +54,7 @@
     <Compile Include="LoggerService.cs" />
     <Compile Include="Masters\ColorService.cs" />
     <Compile Include="Masters\DesignationService.cs" />
+    <Compile Include="Masters\FinancialYearService.cs" />
     <Compile Include="Masters\UserTypeService.cs" />
     <Compile Include="Masters\ZoneService.cs" />
     <Compile Include="Masters\CityService.cs" />

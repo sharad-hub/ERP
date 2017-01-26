@@ -11,6 +11,8 @@ using ERP.Services;
 using ERP.Entities;
 using ERP.Servicess;
 using ERP.Entities.Models;
+using ERP.Services.Masters;
+using ERP.Entities.Models.Order;
 //using Elmah;
 
 namespace ERP.App_Start
@@ -92,6 +94,14 @@ namespace ERP.App_Start
          .RegisterType<ISchemeTypeService, SchemeTypeService>()
          .RegisterType<IProductCategoryService, ProductCategoryService>()
          .RegisterType<IRepositoryAsync<ProductCategory>, Repository<ProductCategory>>()
+         .RegisterType<IFinancialYearService, FinancialYearService>()
+         .RegisterType<IRepositoryAsync<FinYear>, Repository<FinYear>>()
+         .RegisterType<IOrderStatusService, OrderStatusService>()
+         .RegisterType<IRepositoryAsync<OrderStatus>, Repository<OrderStatus>>()
+         .RegisterType<IBuyerOrderService, BuyerOrderService>()
+         .RegisterType<IRepositoryAsync<BuyerOrder>, Repository<BuyerOrder>>()
+         .RegisterType<IBuyerOrderItemService, BuyerOrderItemService>()
+         .RegisterType<IRepositoryAsync<BuyerOrderItem>, Repository<BuyerOrderItem>>()
          .RegisterType<IRepositoryAsync<Scheme>, Repository<Scheme>>()
          .RegisterType<IRepositoryAsync<SchemeType>, Repository<SchemeType>>()
          .RegisterType<IRepositoryAsync<Godown>, Repository<Godown>>()

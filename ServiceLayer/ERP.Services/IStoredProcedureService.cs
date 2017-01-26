@@ -4,6 +4,7 @@ using ERP.Data.Models;
 using ERP.Entities.SParams;
 using ERP.Entities.SPModels;
 using System.Collections.Generic;
+using System.Threading.Tasks;
  
 
 #endregion
@@ -19,6 +20,8 @@ namespace ERP.Servicess
 
         IEnumerable<UserSetting> GetDefaultSettingsForUser(GetUserMenu getUserMenu);
         IEnumerable<UserModuleDetails> GetModulesByUserName(string  email);
+        Task<OrderDetails> GetOrderDetails(OrderDetailsParam orderParams);
+        Task<FreeQuantityOnOrder> GetFreeQuantityOnOrder(GetFreeQuantityOnOrderParams param);
     }
     public class StoredProcedureService:IStoredProcedureService
     {
@@ -66,6 +69,14 @@ namespace ERP.Servicess
         IEnumerable<UserSetting> IStoredProcedureService.GetDefaultSettingsForUser(GetUserMenu getUserMenu)
         {
             return _storedProcedures.GetDefaultSettingsForUser(getUserMenu);
+        }
+        public Task<OrderDetails> GetOrderDetails(OrderDetailsParam orderParams)
+        {
+            return _storedProcedures.GetOrderDetails(orderParams);
+        }
+        public Task<FreeQuantityOnOrder> GetFreeQuantityOnOrder(GetFreeQuantityOnOrderParams param)
+        {
+            return _storedProcedures.GetFreeQuantityOnOrder(param);
         }
     }
 }

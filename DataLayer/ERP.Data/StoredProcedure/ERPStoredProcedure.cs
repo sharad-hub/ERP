@@ -3,6 +3,7 @@ using ERP.Entities.SPModels;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.SqlClient;
+using System.Threading.Tasks;
 
 namespace ERP.Data.Models
 {
@@ -61,6 +62,19 @@ namespace ERP.Data.Models
             var emailAddress = new SqlParameter("@UserEmail", userEmail);
             return Database.SqlQuery<UserClaims>("[GetUserClaims] @UserEmail", emailAddress);
         }
+
+        public Task<OrderDetails> GetOrderDetails(OrderDetailsParam orderParams)
+        {
+            var param = new SqlParameter("@OrderId", orderParams.OrderId);
+            return Database.SqlQuery<OrderDetails>("[GetOrderDetails] @OrderId", param).FirstAsync();
+        }
+        public Task<FreeQuantityOnOrder> GetFreeQuantityOnOrder(GetFreeQuantityOnOrderParams paramObj)
+        {
+
+            var productId = new SqlParameter("@ProductId", paramObj.ProductId);
+            var productQuantity = new SqlParameter("@ProductQuantity", paramObj.ProductQuantity);
+            return Database.SqlQuery<FreeQuantityOnOrder>("[GetFreeQuantityOnOrder] @ProductQuantity,@ProductId", productQuantity, productId).FirstAsync();
+        }
     }
     public interface IERPStoredProcedure
     {
@@ -72,5 +86,8 @@ namespace ERP.Data.Models
         IEnumerable<UserSetting> GetDefaultSettingsForUser(GetUserMenu getUserMenu);
 
         IEnumerable<UserClaims> GetUserClaims(string  email);
+
+        Task<OrderDetails> GetOrderDetails(OrderDetailsParam orderParams);
+        Task<FreeQuantityOnOrder> GetFreeQuantityOnOrder(GetFreeQuantityOnOrderParams param);
     }
 }

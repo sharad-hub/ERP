@@ -362,6 +362,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="SPs\BuyerOrderRelaredSP.sql" />
     <Content Include="SPs\GetUserClaims.sql" />
   </ItemGroup>
   <ItemGroup>
