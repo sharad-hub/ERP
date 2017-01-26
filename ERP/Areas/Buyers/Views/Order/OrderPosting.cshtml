@@ -1,7 +1,123 @@
-﻿
+﻿@model ERP.Models.OrderPostingVM
 @{
-    ViewBag.Title = "OrderPosting";
+    ViewBag.Title = "Buyer Order Posting";
 }
+<script src="~/Scripts/angular.js"></script>
+<script src="~/Scripts/angular-resource.js"></script>
+<script src="~/Scripts/linq.js"></script>
+<script src="~/app/app.module.js"></script>
+<script src="~/app/service/buyerOrderPostingService.js"></script>
+<script src="~/app/controller/buyerOrderPostingController.js"></script>
+<style>
+    .hide {
+        display: none;
+    }
 
-<h2>OrderPosting</h2>
+    .width8 {
+        width: 8%;
+    }
+</style>
+<div ng-app="erpApp" ng-controller="buyerOrderPostingController">
 
+    Order No:<label id="lblOrderNumber">{{MasterObject.OrderNumber}}</label><br />
+    Order Date:<input type="text" id="txtOrderDate" /><br />
+    Order Status: <label id="lblOrderStatus">{{MasterObject.OrderStatus}}</label><br />
+    <hr />
+    <input type="button" value="Add Product" class="btn-primary" ng-click="addProductToTable()" />
+
+    <table id="tblOrderProductList" class="table table-responsive">
+        <thead>
+            <tr>
+                <th class="hide">Product Id</th>
+                <th>Product Name</th>
+                <th>UOM</th>
+                <th>MRP	</th>
+                <th>SO Qty	</th>
+                <th>Free Qty</th>
+                <th>Unit Price</th>
+                <th>Unit Value</th>
+                <th>Scheme Qty Value</th>
+                <th>Tax %</th>
+                <th>Tax Amt	</th>
+                <th>Total Amt</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="product in OrderList">
+                <td class="hide">{{product.Product.ProductID}}</td>
+                <td>
+                  
+                    <select ng-model="product.SelectedProductId"
+                            ng-options="sp.Product.ProductID as sp.Product.ProductName for sp in  MasterProductList" ng-change="selectProduct(product,$index,product.SelectedProductId)">
+                        <option value="">---Select---</option>
+                    </select>
+                </td>
+                <td>
+                    {{product.Product.UOMMain.UOM}}
+                    <input type="text" placeholder="UOM" class="width8 hide" ng-model="product.Product.UOMMain.UOM" disabled="disabled" />
+                </td>
+                <td>
+                    {{product.Product.MRP}}
+                    <input type="number" placeholder="MRP" class="width8 hide" ng-model="product.Product.MRP" disabled="disabled" />
+                </td>
+                <td>
+                
+                    <input type="number" placeholder="quantity" class="" ng-model="product.TotalQuantity" ng-change="getSchemeQuantityValue(product,$index,product.SelectedProductId)" style="width:60px"/>
+                </td>
+                <td>
+                    {{product.FreeQuantity}}
+                    <input type="number" placeholder="free quantity" class="width8 hide" ng-model="product.FreeQuantity" disabled="disabled" />
+                </td>
+                <td>
+                    {{product.Product.UnitPrice}}
+                    <input type="number" placeholder="unit price" class="width8 hide" ng-model="product.Product.UnitPrice" disabled="disabled" />
+                </td>
+                <td>
+                    {{product.TotalUnitValue}}
+                    <input type="number" placeholder="total unit price" class="width8 hide" ng-model="product.TotalUnitValue" disabled="disabled" />
+                </td>
+                <td>
+                    {{product.SchemeQuantityValue}}
+                    <input type="number" placeholder="scheme quantity value" class="width8 hide" ng-model="product.SchemeQuantityValue" disabled="disabled" />
+                </td>
+                <td>
+                    {{product.Product.TaxPercentage}}
+                    <input type="number" placeholder="tax percent" class="width8 hide" ng-model="product.Product.TaxPercentage" disabled="disabled" />
+                </td>
+                <td>
+                    {{product.TaxAmount}}
+                    <input type="number" placeholder="tax amount" class="width8 hide" ng-model="product.TaxAmount" disable disabled="disabled" />
+                </td>
+                <td>
+                    {{product.TotalAmount}}
+                    <input type="number" placeholder="total amount" class="width8 hide" ng-model="product.TotalAmount" disab disabled="disabled" />
+                </td>
+                <td>
+                    <a href="javascript:void(0)" ng-click="deleteProduct($index)">Delete</a>
+                
+                                </td>
+            </tr>
+            <tr>
+                <<td class="hide">Product Id</td>
+                <td>Total:</td>
+                <td></td>
+                <td></td>
+                <td>{{MasterObject.TotalSalesQuantity}}</td>
+                <td>{{MasterObject.TotalFreeQuantity}}</td>
+                <td></td>
+                <td>{{MasterObject.TotalUnitValue}}</td>
+                <td>{{MasterObject.TotalSchemeQuantityValue}}</td>
+                <td></td>
+                <td>{{MasterObject.TotalTaxAmount}}</td>
+                <td>{{MasterObject.TotalOrderAmount}}</td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+    Remarks:  <input type="text" ng-model="MasterObject.Remarks">
+    <input type="button" value="Save Order" ng-click="saveOrder()" />
+    <input type="hidden" value="@Newtonsoft.Json.JsonConvert.SerializeObject(Model)" id="hdnMasterObject" />
+</div>
+
+   
