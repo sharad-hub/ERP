@@ -70,6 +70,7 @@ namespace ERP.Data.Models
 
         #region Product Related DBSets
         public DbSet<Product> Products { get; set; }
+        public DbSet<ProductCategory> ProductCategories { get; set; }
         public DbSet<Color> Colors { get; set; }
         public DbSet<ProductColor> ProductColors { get; set; }
         public DbSet<ProductSubGroup> ProductSubGroups { get; set; }
@@ -100,9 +101,10 @@ namespace ERP.Data.Models
         {
             modelBuilder.Configurations.Add(new AccessTypeMap());
             modelBuilder.Configurations.Add(new CompanyWiseModuleMap());
-            modelBuilder.Configurations.Add(new FYearMap());
+            //modelBuilder.Configurations.Add(new FYearMap());
             modelBuilder.Configurations.Add(new GenderMap());
-            //modelBuilder.Configurations.Add(new IconMap());
+            modelBuilder.Configurations.Add(new BuyerOrderMap());
+            modelBuilder.Configurations.Add(new BuyerOrderItemMap());
             modelBuilder.Configurations.Add(new MaritalStatusMap());
             modelBuilder.Configurations.Add(new MenuMap());
             modelBuilder.Configurations.Add(new ModuleMap());

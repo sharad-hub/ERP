@@ -9,18 +9,29 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace ERP.Entities
 {
     public partial class Product : Entity
-    {   [Key]
-        public int ProductID { get; set; }
+    {
+        public Product()
+        {
+            ProductSkus = new HashSet<ProductSKU>();
+        }
+        [Key]
+        public long ProductID { get; set; }
         [DisplayName("Product Name")]
         public string ProductName { get; set; }
         public Nullable<decimal> Price { get; set; }
         public Nullable<DateTime> CreatedOn { get; set; }
+        [DisplayName("Product Category")]
+        [ForeignKey("ProductCategory")]
+        public Nullable<int> ProductCategoryID { get; set; }
+        public virtual ProductCategory ProductCategory { get; set; }
         [Required]
         public string ProductCode { get; set; }
         #region ForeignKeys
+        [DisplayName("Product Subgroup")]
         [ForeignKey("ProductSubGroup")]
         public int ProductSubGroupId { get; set; }
         public virtual ProductSubGroup ProductSubGroup { get; set; }
+        [DisplayName("Product Type")]
         [ForeignKey("ProductType")]
         public Nullable<int> ProductTypeId { get; set; }
         public virtual ProductType ProductType { get; set; }
@@ -68,5 +79,7 @@ namespace ERP.Entities
         public bool Status { get; set; }
         public bool IsMultipleSKUs { get; set; }
         public bool IsMultipleColors { get; set; }
+
+        public virtual ICollection<ProductSKU> ProductSkus { get; set; }
     }
 }

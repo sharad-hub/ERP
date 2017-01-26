@@ -10,9 +10,9 @@ namespace ERP.Entities.Models
 {
     public class ProductColor : Entity
     {
-        public int ID { get; set; }
+        public long ID { get; set; }
         [ForeignKey("Product")]
-        public Nullable<int> ProductId { get; set; }
+        public Nullable<long> ProductId { get; set; }
         public virtual Product Product { get; set; }
         [ForeignKey("Color")]
         public int ColorId { get; set; }
@@ -22,7 +22,7 @@ namespace ERP.Entities.Models
 
     public class ProductOpeningBalance : Entity
     {
-        public int ID { get; set; }
+        public long ID { get; set; }
 
         public bool BatchNoFlag { get; set; }
         public bool PartNoFlag { get; set; }
@@ -35,7 +35,7 @@ namespace ERP.Entities.Models
         public int GodownId { get; set; }
         public virtual Godown Godown { get; set; }
         [ForeignKey("Product")]
-        public Nullable<int> ProductId { get; set; }
+        public Nullable<long> ProductId { get; set; }
         public virtual Product Product { get; set; }
 
         [ForeignKey("ProductSKU")]
@@ -53,9 +53,9 @@ namespace ERP.Entities.Models
     }
     public class ProductFactoryAllocation:Entity
     {
-        public int ID { get; set; }
+        public long ID { get; set; }
         [ForeignKey("Product")]
-        public int ProductId { get; set; }
+        public long ProductId { get; set; }
         public virtual Product Product { get; set; }
         [ForeignKey("Factory")]
         public int FactoryId { get; set; }
@@ -64,7 +64,7 @@ namespace ERP.Entities.Models
     }
     public class ProductImage:Entity
     {
-        public int ID { get; set; }
+        public long ID { get; set; }
         public int OrderNumber { get; set; }
 
         #region ForeignKeys
@@ -72,7 +72,7 @@ namespace ERP.Entities.Models
         public int ImageTypeId { get; set; }
         public virtual ImageType ImageType { get; set; }
         [ForeignKey("Product")]
-        public Nullable<int> ProductId { get; set; }
+        public Nullable<long> ProductId { get; set; }
         public virtual Product Product { get; set; }
 
         [ForeignKey("ProductSKU")]

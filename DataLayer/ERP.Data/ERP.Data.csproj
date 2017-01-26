@@ -61,13 +61,14 @@
     <Compile Include="GERPContext.cs" />
     <Compile Include="Mapping\AccessTypeMap.cs" />
     <Compile Include="Mapping\BuyerMasterMap.cs" />
+    <Compile Include="Mapping\BuyerOrderItemMap.cs" />
+    <Compile Include="Mapping\BuyerOrderMap.cs" />
     <Compile Include="Mapping\CityMasterMap.cs" />
     <Compile Include="Mapping\CompanyWiseModuleMap.cs" />
     <Compile Include="Mapping\CountryMasterMap.cs" />
     <Compile Include="Mapping\DepartmentMasterMap.cs" />
     <Compile Include="Mapping\DesignationMasterMap.cs" />
     <Compile Include="Mapping\FactoryMasterMap.cs" />
-    <Compile Include="Mapping\FYearMap.cs" />
     <Compile Include="Mapping\GenderMap.cs" />
     <Compile Include="Mapping\IconMap.cs" />
     <Compile Include="Mapping\MaritalStatusMap.cs" />
@@ -206,6 +207,24 @@
     <Compile Include="Migrations\201701231717105_ProductIdentity_modified.Designer.cs">
       <DependentUpon>201701231717105_ProductIdentity_modified.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201701241548472_Usertype-Masterdata.cs" />
+    <Compile Include="Migrations\201701241548472_Usertype-Masterdata.Designer.cs">
+      <DependentUpon>201701241548472_Usertype-Masterdata.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701241747022_Adding_other_Masterdata.cs" />
+    <Compile Include="Migrations\201701241747022_Adding_other_Masterdata.Designer.cs">
+      <DependentUpon>201701241747022_Adding_other_Masterdata.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701252156445_modifiedrelationshipforbuyerorder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Migrations\201701252156445_modifiedrelationshipforbuyerorder.Designer.cs">
+      <DependentUpon>201701252156445_modifiedrelationshipforbuyerorder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701252209323_AddedProductCategory.cs" />
+    <Compile Include="Migrations\201701252209323_AddedProductCategory.Designer.cs">
+      <DependentUpon>201701252209323_AddedProductCategory.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StoredProcedure\ERPStoredProcedure.cs" />
@@ -329,9 +348,24 @@
     <EmbeddedResource Include="Migrations\201701231717105_ProductIdentity_modified.resx">
       <DependentUpon>201701231717105_ProductIdentity_modified.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701241548472_Usertype-Masterdata.resx">
+      <DependentUpon>201701241548472_Usertype-Masterdata.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701241747022_Adding_other_Masterdata.resx">
+      <DependentUpon>201701241747022_Adding_other_Masterdata.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701252156445_modifiedrelationshipforbuyerorder.resx">
+      <DependentUpon>201701252156445_modifiedrelationshipforbuyerorder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701252209323_AddedProductCategory.resx">
+      <DependentUpon>201701252209323_AddedProductCategory.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Content Include="SPs\GetUserClaims.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="dbFiles\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

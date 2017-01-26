@@ -94,18 +94,18 @@ namespace ERP.Data.Migrations
                     })
                 .PrimaryKey(t => t.ID);
             
-            CreateTable(
-                "dbo.FYear",
-                c => new
-                    {
-                        CompId = c.Int(nullable: false),
-                        FinYear = c.String(nullable: false, maxLength: 20),
-                        Id = c.Int(nullable: false, identity: true),
-                        StartDate = c.DateTime(nullable: false),
-                        EndDate = c.DateTime(nullable: false),
-                        Status = c.Boolean(nullable: false),
-                    })
-                .PrimaryKey(t => new { t.CompId, t.FinYear });
+            //CreateTable(
+            //    "dbo.FYear",
+            //    c => new
+            //        {
+            //            CompId = c.Int(nullable: false),
+            //            FinYear = c.String(nullable: false, maxLength: 20),
+            //            Id = c.Int(nullable: false, identity: true),
+            //            StartDate = c.DateTime(nullable: false),
+            //            EndDate = c.DateTime(nullable: false),
+            //            Status = c.Boolean(nullable: false),
+            //        })
+            //    .PrimaryKey(t => new { t.CompId, t.FinYear });
             
             CreateTable(
                 "dbo.Genders",

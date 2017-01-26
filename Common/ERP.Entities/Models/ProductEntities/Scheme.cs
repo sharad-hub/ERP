@@ -13,7 +13,7 @@ namespace ERP.Entities.Models
     {
         public int ID { get; set; }
         [ForeignKey("Product")]
-        public Nullable<int> ProductId { get; set; }
+        public Nullable<long> ProductId { get; set; }
         public virtual Product Product { get; set; }
         [DataType(DataType.Date)]
         public DateTime FromDate { get; set; }
@@ -22,9 +22,9 @@ namespace ERP.Entities.Models
         [ForeignKey("SchemeType")]
         public Nullable<int> SchemeTypeId { get; set; }
         public virtual SchemeType SchemeType { get; set; }
-        public int SOQtyLimit { get; set; }
-        public int EveryPeriodforQty { get; set; }
-        public int FreeQty { get; set; }
+        public float SOQtyLimit { get; set; }
+        public float EveryPeriodforQty { get; set; }
+        public float FreeQty { get; set; }
         public bool Status { get; set; }
     }
 }

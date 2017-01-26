@@ -1,3 +1,4 @@
+using ERP.Entities.Models;
 using Repository.Pattern.Ef6;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,10 @@ namespace ERP.Entities
 {
     public partial class Buyer : Entity
     {
+        public Buyer()
+        {
+            BuyerOrders = new HashSet<BuyerOrder>();
+        }
         public long BuyerId { get; set; }
          [DisplayName("Sales Executive")]
         [ForeignKey("SalesExec")]
@@ -89,5 +94,6 @@ namespace ERP.Entities
         //[ForeignKey("UserType")]
         //public int UserTypeID { get; set; }
         //public virtual UserType UserType { get; set; }
+        public virtual ICollection<BuyerOrder> BuyerOrders { get; set; }
     }
 }

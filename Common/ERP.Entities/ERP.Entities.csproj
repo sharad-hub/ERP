@@ -70,6 +70,7 @@
     <Compile Include="Models\Order\OrderStatus.cs" />
     <Compile Include="Models\ProductEntities\Color.cs" />
     <Compile Include="Models\ProductEntities\ImageType.cs" />
+    <Compile Include="Models\ProductEntities\ProductCategory.cs" />
     <Compile Include="Models\ProductEntities\ProductColor.cs" />
     <Compile Include="Models\ProductEntities\ProductGroup.cs" />
     <Compile Include="Models\ProductEntities\ProductSKU.cs" />

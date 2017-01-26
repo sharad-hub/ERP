@@ -50,6 +50,10 @@ namespace ERP.Areas.Administration.Controllers
             _godownService = godownService;
         }
         // GET: Administration/Product
+       
+
+        #region Product 
+
         public ActionResult Index()
         {
             var products = _productService.Queryable().Where(x => x.Status).ToList();
@@ -57,7 +61,7 @@ namespace ERP.Areas.Administration.Controllers
         }
         public ActionResult AddProduct()
         {
-            #region Filling DropDowns       
+            #region Filling DropDowns
             var productSubGroups = _productSubGroupService.Queryable().Where(x => x.Status == true).ToList();
             ViewBag.productSubGroups = productSubGroups.AsEnumerable()
                 .Select(x => new SelectListItem
@@ -77,7 +81,7 @@ namespace ERP.Areas.Administration.Controllers
             ViewBag.productTariffs = productTariffs.AsEnumerable()
                 .Select(x => new SelectListItem
                 {
-                    Text = x.TariffName + "-("+ x.TariffCode+")",
+                    Text = x.TariffName + "-(" + x.TariffCode + ")",
                     Value = x.ID.ToString()
                 }).ToList();
             var godowns = _godownService.Queryable().Where(x => x.Status == true).ToList();
@@ -173,7 +177,9 @@ namespace ERP.Areas.Administration.Controllers
             #endregion
             return View(product);
         }
+        #endregion
 
+        #region MyRegion
         public ActionResult AddProductGroup()
         {
             return View(new ProductGroup());
@@ -197,6 +203,9 @@ namespace ERP.Areas.Administration.Controllers
             var productGroups = _productGroupService.Queryable().Where(x => x.Status == true).ToList();
             return View(productGroups);
         }
+        #endregion
+
+        #region Product supgroup
         public ActionResult AddProductSubGroup()
         {
             var productGroups = _productGroupService.Queryable().Where(x => x.Status == true).ToList();
@@ -245,6 +254,9 @@ namespace ERP.Areas.Administration.Controllers
             var productSubGroup = _productSubGroupService.Queryable().Where(x => x.Status == true);
             return View(productSubGroup);
         }
+        #endregion
+       
+
         public ActionResult AddProductSKU()
         {
             return View();
@@ -300,6 +312,8 @@ namespace ERP.Areas.Administration.Controllers
             var productColors = _productColorService.Queryable().Where(x => x.Status == true);
             return View(productColors);
         }
+
+        #region Product type
         public ActionResult AddProductType()
         {
             return View();
@@ -332,6 +346,9 @@ namespace ERP.Areas.Administration.Controllers
             var productType = _productTypeService.Queryable().Where(x => x.Status == true);
             return View(productType);
         }
+        #endregion
+
+        #region UOM
         public ActionResult AddUnitOfMaterial()
         {
             return View();
@@ -353,8 +370,9 @@ namespace ERP.Areas.Administration.Controllers
             var uoms = _unitOfMaterialService.Queryable().Where(x => x.Status).ToList();
             return View(uoms);
         }
+        #endregion
 
-
+        #region Godown
         public ActionResult AddGodown()
         {
             return View(new Godown());
@@ -387,8 +405,10 @@ namespace ERP.Areas.Administration.Controllers
             var godowns = _godownService.Queryable().Where(x => x.Status == true).ToList();
             return View(godowns);
         }
+        #endregion
 
 
+        #region Tariff
         public ActionResult AddTariff()
         {
             return View(new Tariff());
@@ -421,41 +441,13 @@ namespace ERP.Areas.Administration.Controllers
             var tariffs = _tariffService.Queryable().Where(x => x.Status == true).ToList();
             return View(tariffs);
         }
+        #endregion
+
+      
 
         #region Schemes
 
-        //public ActionResult AddTariff()
-        //{
-        //    return View(new Tariff());
-        //}
-        //[HttpPost]
-        //public ActionResult AddScheme(Tariff model)
-        //{
-        //    try
-        //    {
-        //        if (ModelState.IsValid)
-        //        {
-        //            _tariffService.Insert(model);
-        //            _logservice.LogInfo(LogHelper.GetLogString(User.Identity.GetUserNameIdentifier(), "AddGodown", JsonConvert.SerializeObject(model)));
-        //            _unitOfWorkAsync.SaveChanges();
-        //            Success(string.Format("<b>Tariff  ({0})</b> was successfully added.", model.TariffName), true);
-        //            return RedirectToAction("Tariffs");
-        //        }
-        //    }
-        //    catch (DataException ex)
-        //    {
-        //        Danger(string.Format("<b>Errored occured while saving the  godown details"), true);
-        //        ModelState.AddModelError("Error", "Errored occured while saving the godown details");
-        //        _logservice.LogInfo(LogHelper.GetLogString(User.Identity.GetUserNameIdentifier(), "AddGodown", JsonConvert.SerializeObject(model)));
-        //    }
-
-        //    return View(model);
-        //}
-        //public ActionResult Tariffs()
-        //{
-        //    var tariffs = _tariffService.Queryable().Where(x => x.Status == true).ToList();
-        //    return View(tariffs);
-        //}
+         
         #endregion
     }
 }

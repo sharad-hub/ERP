@@ -66,6 +66,7 @@
     <Compile Include="AccessTypeService.cs" />
     <Compile Include="Order\OrderStatusService.cs" />
     <Compile Include="Product\GodownService.cs" />
+    <Compile Include="Product\ProductCategoryService.cs" />
     <Compile Include="Product\SchemeTypeService.cs" />
     <Compile Include="Product\SchemeService.cs" />
     <Compile Include="Product\ProductSKUService.cs" />
