@@ -10,6 +10,8 @@
     $scope.selectProduct = function (product, index, selectedProductId) {
         if (selectedProductId || selectedProductId == 0) {
             $scope.OrderList[index] = angular.copy(Enumerable.From($scope.MasterProductList).Where(function (x) { return x.Product.ProductID == selectedProductId }).FirstOrDefault());
+            $scope.OrderList[index].SelectedProductId = selectedProductId;
+            $scope.calculateTotal();
         }
     };
     $scope.getSchemeQuantityValue = function (product, index, selectedProductId) {
