@@ -24,7 +24,8 @@ namespace ERP.Areas.Buyers.Controllers
         IOrderStatusService _orderStatusService;
         IFinancialYearService _financialYearService;
         IStoredProcedureService _storedProcedures;
-        IUnitOfMaterialService  _unitOfMeasurmentService;
+        IUnitOfMaterialService _unitOfMeasurmentService;
+        IProductSKUService _productSKUService;
         public OrderController(IProductService productService,
             ILoggerService logService,
             IBuyerOrderService orderService,
@@ -33,7 +34,8 @@ namespace ERP.Areas.Buyers.Controllers
             IOrderStatusService orderStatusSerice,
             IFinancialYearService financialYearService,
             IStoredProcedureService storedProcedures,
-            IUnitOfMaterialService unitOfMeasurmentService)
+            IUnitOfMaterialService unitOfMeasurmentService,
+            IProductSKUService productSKUService)
         {
             _productService = productService;
             _logService = logService;
@@ -44,6 +46,7 @@ namespace ERP.Areas.Buyers.Controllers
             _financialYearService = financialYearService;
             _storedProcedures = storedProcedures;
             _unitOfMeasurmentService = unitOfMeasurmentService;
+            _productSKUService = productSKUService;
         }
 
         // GET: Buyers/Order
@@ -54,8 +57,9 @@ namespace ERP.Areas.Buyers.Controllers
 
         public ActionResult OrderPosting()
         {
-            var productList = _productService.Queryable().Where(x => x.Status).ToList();
-            productList.ForEach(y => y.UOMMain = _unitOfMeasurmentService.Queryable().Where(z => z.ID == y.UOMMainId.Value).FirstOrDefault());
+
+            var productList = _productService.Query().Include(x => x.ProductSkus).Include(x => x.UOMMain).Select(x => x).ToList();
+            productList = productList.Where(x => x.Status).ToList();
             List<OrderProductVM> _products = null;
             if (productList != null && productList.Count > 0)
             {

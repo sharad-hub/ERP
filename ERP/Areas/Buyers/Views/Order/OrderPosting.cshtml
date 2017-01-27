@@ -30,6 +30,7 @@
             <tr>
                 <th class="hide">Product Id</th>
                 <th>Product Name</th>
+                <th>SKU</th>
                 <th>UOM</th>
                 <th>MRP	</th>
                 <th>SO Qty	</th>
@@ -47,31 +48,55 @@
             <tr ng-repeat="product in OrderList">
                 <td class="hide">{{product.Product.ProductID}}</td>
                 <td>
-                  
+
                     <select ng-model="product.SelectedProductId"
                             ng-options="sp.Product.ProductID as sp.Product.ProductName for sp in  MasterProductList" ng-change="selectProduct(product,$index,product.SelectedProductId)">
                         <option value="">---Select---</option>
                     </select>
                 </td>
+                <td ng-hide="!product.Product.IsMultipleSKUs">
+                    <select ng-model="product.SelectedProductSkuId"
+                            ng-options="sp.ID as sp.SKUSize for sp in  product.Product.ProductSkus" ng-change="selectProductSku(product,$index,product.SelectedProductSkuId)">
+                        <option value="">---Select---</option>
+                    </select>
+                </td>
+                <td ng-hide="product.Product.IsMultipleSKUs"> <b>N/A</b></td>
                 <td>
+
                     {{product.Product.UOMMain.UOM}}
                     <input type="text" placeholder="UOM" class="width8 hide" ng-model="product.Product.UOMMain.UOM" disabled="disabled" />
                 </td>
                 <td>
-                    {{product.Product.MRP}}
-                    <input type="number" placeholder="MRP" class="width8 hide" ng-model="product.Product.MRP" disabled="disabled" />
+                    <div ng-hide="product.Product.IsMultipleSKUs">
+                        {{product.Product.MRP}}
+                        <input type="number" placeholder="MRP" class="width8 hide" ng-model="product.Product.MRP" disabled="disabled" />
+                    </div>
+                    <div ng-hide="!product.Product.IsMultipleSKUs">
+                        <div ng-repeat="sku in product.Product.ProductSkus" ng-if="sku.ID==product.SelectedProductSkuId">
+                            {{sku.MRP}}
+                            <input type="number" placeholder="MRP" class="width8 hide" ng-model="sku.MRP" disabled="disabled" />
+                        </div>
+                    </div>
                 </td>
                 <td>
-                
-                    <input type="number" placeholder="quantity" class="" ng-model="product.TotalQuantity" ng-change="getSchemeQuantityValue(product,$index,product.SelectedProductId)" style="width:60px"/>
+
+                    <input type="number" placeholder="quantity" class="" ng-model="product.TotalQuantity" ng-change="getSchemeQuantityValue(product,$index,product.SelectedProductId)" style="width:60px" />
                 </td>
                 <td>
                     {{product.FreeQuantity}}
                     <input type="number" placeholder="free quantity" class="width8 hide" ng-model="product.FreeQuantity" disabled="disabled" />
                 </td>
                 <td>
-                    {{product.Product.UnitPrice}}
-                    <input type="number" placeholder="unit price" class="width8 hide" ng-model="product.Product.UnitPrice" disabled="disabled" />
+                    <div ng-hide="product.Product.IsMultipleSKUs">
+                        {{product.Product.UnitPrice}}
+                        <input type="number" placeholder="unit price" class="width8 hide" ng-model="product.Product.UnitPrice" disabled="disabled" />
+                    </div>
+                    <div ng-hide="!product.Product.IsMultipleSKUs">
+                        <div ng-repeat="sku in product.Product.ProductSkus" ng-if="sku.ID==product.SelectedProductSkuId">
+                            {{sku.UnitPrice}}
+                            <input type="number" placeholder="MRP" class="width8 hide" ng-model="sku.UnitPrice" disabled="disabled" />
+                        </div>
+                    </div>
                 </td>
                 <td>
                     {{product.TotalUnitValue}}
@@ -95,12 +120,14 @@
                 </td>
                 <td>
                     <a href="javascript:void(0)" ng-click="deleteProduct($index)">Delete</a>
-                
-                                </td>
+
+                </td>
             </tr>
             <tr>
-                <<td class="hide">Product Id</td>
+                <
+                <td class="hide">Product Id</td>
                 <td>Total:</td>
+                <td></td>
                 <td></td>
                 <td></td>
                 <td>{{MasterObject.TotalSalesQuantity}}</td>
@@ -117,7 +144,7 @@
     </table>
     Remarks:  <input type="text" ng-model="MasterObject.Remarks">
     <input type="button" value="Save Order" ng-click="saveOrder()" />
-    <input type="hidden" value="@Newtonsoft.Json.JsonConvert.SerializeObject(Model)" id="hdnMasterObject" />
+    <input type="hidden" value="@Newtonsoft.Json.JsonConvert.SerializeObject(Model, Newtonsoft.Json.Formatting.Indented, new Newtonsoft.Json.JsonSerializerSettings { ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore })" id="hdnMasterObject" />
 </div>
 
-   
+

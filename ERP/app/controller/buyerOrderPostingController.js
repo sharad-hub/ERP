@@ -1,6 +1,7 @@
 ﻿angular.module('erpApp').controller('buyerOrderPostingController', ['$scope', 'buyerOrderPostingService', function ($scope, buyerOrderPostingService) {
 
     $scope.MasterObject = JSON.parse($("#hdnMasterObject").val());
+    console.log($scope.MasterObject);
     $scope.MasterProductList = angular.copy($scope.MasterObject.Products);
     $scope.OrderList = [];
     $scope.addProductToTable = function () {
@@ -17,7 +18,21 @@
     $scope.getSchemeQuantityValue = function (product, index, selectedProductId) {
         var getFreeQuantityOnOrderSuccess = function (response) {
             $scope.OrderList[index].FreeQuantity = response.FreeQuantity;
-            $scope.OrderList[index].TotalUnitValue = $scope.OrderList[index].TotalQuantity * $scope.OrderList[index].Product.UnitPrice;
+            var skuProduct = Enumerable.From($scope.OrderList[index].Product.ProductSkus).Where(function (x) { return x.ID == $scope.OrderList[index].SelectedProductSkuId }).FirstOrDefault();
+            if ($scope.OrderList[index].Product.IsMultipleSKUs) {
+
+                $scope.OrderList[index].TotalUnitValue = $scope.OrderList[index].TotalQuantity * skuProduct.UnitPrice;
+            }
+            else {
+                $scope.OrderList[index].TotalUnitValue = $scope.OrderList[index].TotalQuantity * $scope.OrderList[index].Product.UnitPrice;
+            }
+            if ($scope.OrderList[index].Product.IsMultipleSKUs) {
+                $scope.OrderList[index].TotalUnitValue = $scope.OrderList[index].TotalQuantity * skuProduct.UnitPrice;
+            }
+            else {
+                $scope.OrderList[index].TotalUnitValue = $scope.OrderList[index].TotalQuantity * $scope.OrderList[index].Product.UnitPrice;
+            }
+
             $scope.OrderList[index].SchemeQuantityValue = $scope.OrderList[index].TotalQuantity * response.FreeQuantity;
             $scope.OrderList[index].TaxAmount = ($scope.OrderList[index].TotalUnitValue / 100) * $scope.OrderList[index].Product.TaxPercentage;
             $scope.OrderList[index].TotalAmount = $scope.OrderList[index].TotalUnitValue;
