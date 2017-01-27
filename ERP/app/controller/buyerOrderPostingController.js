@@ -8,12 +8,20 @@
         var _selectedProduct = angular.copy($scope.MasterProductList);//Enumerable.From($scope.MasterProductList).Where(function (x) { return x.Product.ProductID == $scope.SelectedProductId }).FirstOrDefault());
         $scope.OrderList.push(_selectedProduct);
     };
-    $scope.selectProduct = function (product, index, selectedProductId) {
-        if (selectedProductId || selectedProductId == 0) {
+    $scope.selectProduct = function (product, index, selectedProductId) {        
             $scope.OrderList[index] = angular.copy(Enumerable.From($scope.MasterProductList).Where(function (x) { return x.Product.ProductID == selectedProductId }).FirstOrDefault());
             $scope.OrderList[index].SelectedProductId = selectedProductId;
+            $scope.validateModel();
+            $scope.calculateTotal();        
+    };
+    $scope.selectProductSku = function (product, index, selectedProductSkuId) {      
+            var selectedProdId = product.SelectedProductId;
+            $scope.OrderList[index] = angular.copy(Enumerable.From($scope.MasterProductList).Where(function (x) { return x.Product.ProductID == product.SelectedProductId }).FirstOrDefault());
+            $scope.OrderList[index].SelectedProductSkuId = selectedProductSkuId;
+            $scope.OrderList[index].SelectedProductId = selectedProdId;
+            $scope.validateModel();
             $scope.calculateTotal();
-        }
+        
     };
     $scope.getSchemeQuantityValue = function (product, index, selectedProductId) {
         var getFreeQuantityOnOrderSuccess = function (response) {
@@ -97,5 +105,28 @@
         $scope.MasterObject.TotalSchemeQuantityValue = totalSchemeQuantityValue;
         $scope.MasterObject.TotalTaxAmount = totalTaxAmount;
         $scope.MasterObject.TotalOrderAmount = totalOrderAmount;
+    };
+    $scope.validateModel = function () {
+        var flag = true;
+        $.each($scope.OrderList, function (index, item) {
+            if (item.Product.IsMultipleSKUs) {
+                if (item.SelectedProductId >= 0 && item.SelectedProductSkuId > 0) {
+                    item.IsEnabled = true;
+                }
+                else {
+                    item.IsEnabled = false;
+                }
+            }
+            else {
+
+                if (item.SelectedProductId >= 0) {
+                    item.IsEnabled = true;
+                }
+                else {
+                    item.IsEnabled = false;
+                }
+            }
+
+        });
     }
 }]);

@@ -80,7 +80,7 @@
                 </td>
                 <td>
 
-                    <input type="number" placeholder="quantity" class="" ng-model="product.TotalQuantity" ng-change="getSchemeQuantityValue(product,$index,product.SelectedProductId)" style="width:60px" />
+                    <input type="number" placeholder="quantity" class="" ng-model="product.TotalQuantity" ng-change="getSchemeQuantityValue(product,$index,product.SelectedProductId)" style="width:60px" ng-disabled="!product.IsEnabled" />
                 </td>
                 <td>
                     {{product.FreeQuantity}}

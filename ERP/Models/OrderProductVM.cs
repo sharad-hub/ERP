@@ -18,6 +18,7 @@ namespace ERP.Models
         public float TotalAmount { get; set; }
         public int SelectedProductId { get; set; }
         public int? SelectedProductSkuId { get; set; }
+        public bool IsEnabled { get; set; }
         public Product Product { get; set; }
     }
 }
