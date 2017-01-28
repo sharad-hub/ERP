@@ -39,7 +39,7 @@ namespace ERP.Entities.Models
         public virtual Product Product { get; set; }
 
         [ForeignKey("ProductSKU")]
-        public int ProductSKUsId { get; set; }
+        public long ProductSKUsId { get; set; }
         public virtual ProductSKU ProductSKU { get; set; }
         [ForeignKey("Factory")]
         public int FactoryId { get; set; }
@@ -51,40 +51,8 @@ namespace ERP.Entities.Models
 
 
     }
-    public class ProductFactoryAllocation:Entity
-    {
-        public long ID { get; set; }
-        [ForeignKey("Product")]
-        public long ProductId { get; set; }
-        public virtual Product Product { get; set; }
-        [ForeignKey("Factory")]
-        public int FactoryId { get; set; }
-        public virtual Factory Factory { get; set; }
-        public int CapacityInDays { get; set; }
-    }
-    public class ProductImage:Entity
-    {
-        public long ID { get; set; }
-        public int OrderNumber { get; set; }
-
-        #region ForeignKeys
-        [ForeignKey("ImageType")]
-        public int ImageTypeId { get; set; }
-        public virtual ImageType ImageType { get; set; }
-        [ForeignKey("Product")]
-        public Nullable<long> ProductId { get; set; }
-        public virtual Product Product { get; set; }
-
-        [ForeignKey("ProductSKU")]
-        public int ProductSKUsId { get; set; }
-        public virtual ProductSKU ProductSKU { get; set; }
-        #endregion
-       
-        public string ProductImagePath { get; set; }
-        public byte[] ImageByte { get; set; }
-        public string ImageDescription { get; set; }
-    }
-
+   
+   
 
     //Factory Master			
     //    Id	int

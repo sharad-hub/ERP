@@ -1,4 +1,4 @@
-﻿angular.module('erpApp', ["ngResource", , "ds.clock"]).constant('RESOURCES', (function () {
+﻿angular.module('erpApp', ["ngResource", "ds.clock"]).constant('RESOURCES', (function () {
 	var resource = "http://"+location.host;
 	return {
 		USERS_DOMAIN: resource,

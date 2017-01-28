@@ -9,7 +9,7 @@ namespace ERP.Data.Models.Mapping
         public BuyerOrderItemMap()
         {
             // Primary Key
-            this.HasKey(t => new { t.BuyerOrderId, t.ProductId });
+            this.HasKey(t => new { t.BuyerOrderId, t.ProductId,t.ProductSkuID });
 
             // Properties
             this.Property(t => t.ID)

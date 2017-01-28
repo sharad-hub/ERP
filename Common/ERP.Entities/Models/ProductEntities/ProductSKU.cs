@@ -11,9 +11,9 @@ namespace ERP.Entities.Models
     public class ProductSKU : Entity
     {
 
-        public int ID { get; set; }
+        public long ID { get; set; }
         [ForeignKey("Product")]
-        public Nullable<long> ProductId { get; set; }
+        public long ProductId { get; set; }
         public virtual Product Product { get; set; }
         public string SKUSize { get; set; }
         public float MRP { get; set; }

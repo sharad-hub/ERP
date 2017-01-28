@@ -6,6 +6,7 @@ using Repository.Pattern.Ef6;
 using ERP.Entities.Models;
 using ERP.Data.Mapping;
 using ERP.Entities.Models.Order;
+using ERP.Entities.Models.ProductEntities;
 
 namespace ERP.Data.Models
 {

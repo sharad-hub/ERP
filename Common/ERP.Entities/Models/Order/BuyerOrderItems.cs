@@ -29,7 +29,7 @@ namespace ERP.Entities.Models
         #endregion
         //[DisplayName("Product Name")]
         //public string ProductName { get; set; }
-        public Nullable<int> ProductSkuID { get; set; } /// SKU
+        public long ProductSkuID { get; set; } /// SKU
         public float UnitPrice { get; set; }
         public float MRP { get; set; }
         public float Quintity { get; set; }

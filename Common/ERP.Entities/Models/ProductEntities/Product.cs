@@ -1,4 +1,5 @@
 using ERP.Entities.Models;
+using ERP.Entities.Models.ProductEntities;
 using Repository.Pattern.Ef6;
 using System;
 using System.Collections.Generic;

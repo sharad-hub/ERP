@@ -1,7 +1,94 @@
-﻿
+﻿@model IEnumerable<ERP.Entities.Models.BuyerOrder>
+
 @{
-    ViewBag.Title = "Order Scheduling";
+    ViewBag.Title = "OrderScheduling";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
- 
 
+<h2>OrderScheduling</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        @*<th>
+            @Html.DisplayNameFor(model => model.BuyerID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FinYearId)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.BuyerOrderNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderStatus.Name)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.Remarks)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.CreationDate)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.CreatedById)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastmodifiedDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastModifiedById)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.TentativeOrderDate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.BuyerID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FinYearId)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.BuyerOrderNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderStatus.Name)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.Remarks)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.CreationDate)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.CreatedById)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastmodifiedDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastModifiedById)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.TentativeOrderDate)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

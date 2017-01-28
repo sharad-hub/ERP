@@ -13,7 +13,7 @@ namespace ERP.Entities.DTO
 {
 	public class ProductSKUDTO
     {
-		public Int32 ID { get; set; }
+        public Int64 ID { get; set; }
 		public Int64? ProductId { get; set; }
 		public String SKUSize { get; set; }
 		public Single MRP { get; set; }

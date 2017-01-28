@@ -1,5 +1,6 @@
 ﻿using ERP.Entities;
 using ERP.Entities.Models;
+using ERP.Entities.Models.ProductEntities;
 using Repository.Pattern.Repositories;
 using Service.Pattern;
 using System;

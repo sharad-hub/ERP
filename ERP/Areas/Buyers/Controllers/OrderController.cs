@@ -15,7 +15,7 @@ using ERP.Extensions;
 using Repository.Pattern.UnitOfWork;
 namespace ERP.Areas.Buyers.Controllers
 {
-    public class OrderController : Controller
+    public class OrderController : BaseController
     {
         IProductService _productService;
         ILoggerService _logService;
@@ -151,15 +151,19 @@ namespace ERP.Areas.Buyers.Controllers
                     _buyerOrderItemService.InsertRange(buyerOrderItems);
                     _unitOfWorkAsync.SaveChanges();
                     _unitOfWorkAsync.Commit();
+
+                    Success(string.Format("<b>Order({0})</b> was successfully added.", orderModel.OrderNumber), true);
+
                 }
                 catch (Exception ex)
                 {
                     _unitOfWorkAsync.Rollback();
                     _logService.LogError(ex.Message);
+                    Danger("Looks like something went wrong. Please check your form.");
                      
                 }
                 #endregion
-
+                
                 #region add items to order and map order to order items
 
                 #endregion
@@ -179,7 +183,14 @@ namespace ERP.Areas.Buyers.Controllers
         }
         public ActionResult OrderScheduling()
         {
-            return View();
+            int userId = 0;
+            var tempId = User.Identity.GetUserID();
+            Int32.TryParse(tempId, out userId);
+            var userReferenceID = User.Identity.GetUserReferenceID();
+            double buyerId = 0;
+
+            var products = _buyerOrderService.Query().Include(x => x.OrderStatus).Select(x => x).Where(Y=>Y.BuyerID==buyerId).ToList();
+            return View(products);
         }
         public ActionResult OrderTracker()
         {

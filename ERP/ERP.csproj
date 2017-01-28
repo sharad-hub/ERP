@@ -244,6 +244,8 @@
     <Compile Include="Areas\Factory\FactoryAreaRegistration.cs" />
     <Compile Include="Areas\MarketingExecutive\Controllers\UserManagementController.cs" />
     <Compile Include="Areas\MarketingExecutive\MarketingExecutiveAreaRegistration.cs" />
+    <Compile Include="Areas\Process\Controllers\OrdersController.cs" />
+    <Compile Include="Areas\Process\ProcessAreaRegistration.cs" />
     <Compile Include="Areas\Sales\Controllers\DefaultController.cs" />
     <Compile Include="Areas\Sales\Controllers\InvoiceController.cs" />
     <Compile Include="Areas\Sales\Controllers\ManagementController.cs" />
@@ -1271,6 +1273,7 @@
     <Content Include="Areas\Administration\Views\Product\Index.cshtml" />
     <Content Include="Areas\Sales\Views\Schemes\TradeProduct.cshtml" />
     <Content Include="Areas\Sales\Views\Schemes\TradeSchemes.cshtml" />
+    <Content Include="Areas\Process\Views\web.config" />
     <None Include="Properties\PublishProfiles\Default Settings %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\Default Settings %283%29.pubxml" />
     <None Include="Properties\PublishProfiles\Default Settings.pubxml" />
@@ -2183,6 +2186,9 @@
     <Folder Include="Areas\Factory\Views\Shared\" />
     <Folder Include="Areas\MarketingExecutive\Models\" />
     <Folder Include="Areas\MarketingExecutive\Views\Shared\" />
+    <Folder Include="Areas\Process\Models\" />
+    <Folder Include="Areas\Process\Views\Orders\" />
+    <Folder Include="Areas\Process\Views\Shared\" />
     <Folder Include="Areas\Sales\Models\" />
     <Folder Include="Areas\Sales\Views\Product\" />
     <Folder Include="ERPApp\" />
