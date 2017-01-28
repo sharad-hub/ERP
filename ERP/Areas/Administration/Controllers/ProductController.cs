@@ -56,7 +56,10 @@ namespace ERP.Areas.Administration.Controllers
 
         public ActionResult Index()
         {
-            var products = _productService.Queryable().Where(x => x.Status).ToList();
+            var products = _productService.Query()
+                .Include(t=>t.ProductType)
+                .Include(s=>s.ProductSubGroup)                
+                .Select().ToList();
             return View(products);
         }
         public ActionResult AddProduct()
@@ -257,9 +260,9 @@ namespace ERP.Areas.Administration.Controllers
         #endregion
        
 
-        public ActionResult AddProductSKU()
+        public ActionResult AddProductSKU(long id)
         {
-            return View();
+            return View(id);
         }
         [HttpPost]
         public ActionResult AddProductSKU(ProductSKU productSku)

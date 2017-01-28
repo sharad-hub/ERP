@@ -199,6 +199,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApiControllers\CommonApi.cs" />
+    <Compile Include="ApiControllers\OrderApiController.cs" />
+    <Compile Include="ApiControllers\ProductApiController.cs" />
+    <Compile Include="ApiControllers\ProductSKUAPIController.cs" />
     <Compile Include="APIWrappers\CommonWrapper.cs" />
     <Compile Include="APIWrappers\ControllersWrapper.cs" />
     <Compile Include="APIWrappers\Json\HttpVerb.cs" />

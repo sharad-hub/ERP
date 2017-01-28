@@ -57,6 +57,9 @@
     <Compile Include="Alerts\Alert.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="Constants.cs" />
+    <Compile Include="DTO\ProductDTO.cs" />
+    <Compile Include="DTO\ProductSKUDTO.cs" />
+    <Compile Include="DTO\SelectItemDTO.cs" />
     <Compile Include="Models\Access\AccessType.cs" />
     <Compile Include="Models\BuyerMaster.cs" />
     <Compile Include="Models\FYear.cs" />

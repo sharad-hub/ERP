@@ -13,6 +13,11 @@ namespace ERP.Entities
         public Product()
         {
             ProductSkus = new HashSet<ProductSKU>();
+            ProductColors = new HashSet<ProductColor>();
+            ProductImages = new HashSet<ProductImage>();
+            ProductOpeningBalances = new HashSet<ProductOpeningBalance>();
+            Schemes = new HashSet<Scheme>();
+            ProductFactoryAllocations = new HashSet<ProductFactoryAllocation>();
         }
         [Key]
         public long ProductID { get; set; }
@@ -81,5 +86,10 @@ namespace ERP.Entities
         public bool IsMultipleColors { get; set; }
 
         public virtual ICollection<ProductSKU> ProductSkus { get; set; }
+        public virtual ICollection<ProductColor> ProductColors { get; set; }
+        public virtual ICollection<ProductImage> ProductImages { get; set; }
+        public virtual ICollection<Scheme> Schemes { get; set; }
+        public virtual ICollection<ProductOpeningBalance> ProductOpeningBalances { get; set; }    
+        public virtual ICollection<ProductFactoryAllocation> ProductFactoryAllocations { get; set; }
     }
 }
