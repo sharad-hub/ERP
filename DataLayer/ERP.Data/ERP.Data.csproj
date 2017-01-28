@@ -225,6 +225,10 @@
     <Compile Include="Migrations\201701252209323_AddedProductCategory.Designer.cs">
       <DependentUpon>201701252209323_AddedProductCategory.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201701281033504_addedgroupfororderstatus.cs" />
+    <Compile Include="Migrations\201701281033504_addedgroupfororderstatus.Designer.cs">
+      <DependentUpon>201701281033504_addedgroupfororderstatus.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StoredProcedure\ERPStoredProcedure.cs" />
@@ -359,6 +363,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201701252209323_AddedProductCategory.resx">
       <DependentUpon>201701252209323_AddedProductCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701281033504_addedgroupfororderstatus.resx">
+      <DependentUpon>201701281033504_addedgroupfororderstatus.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

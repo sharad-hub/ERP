@@ -1,4 +1,5 @@
-﻿using System.Configuration;
+﻿using ERP.Entities;
+using System.Configuration;
 using System.Linq;
 using System.Security.Claims;
 using System.Security.Principal;
@@ -70,7 +71,11 @@ namespace ERP.Extensions
             var claimsIdentity = identity as ClaimsIdentity;
             return claimsIdentity != null ? GetUserThemeSkin(claimsIdentity) : defaultTheme;
         }
-
+       public static   string GetUserReferenceID(this IIdentity identity)
+        {
+            var claimsIdentity = identity as ClaimsIdentity;
+            return claimsIdentity.GetClaim(CustomClaimTypes.UserReferenceID);
+        }
         public static string GetClaim(this ClaimsIdentity identity, string  claimype)
         {
             var claim= identity.Claims.Where(x => x.Type == claimype).FirstOrDefault();

@@ -16,6 +16,7 @@ namespace ERP.Entities.Models.Order
 
         public int ID { get; set; }
         public string TypeCode { get; set; }
+        public string GroupName { get; set; }
         public string Name { get; set; }
         public bool Status { get; set; }
         public int Level { get; set; }

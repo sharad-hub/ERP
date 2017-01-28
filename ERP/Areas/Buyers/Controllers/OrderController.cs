@@ -11,21 +11,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
+using ERP.Extensions;
+using Repository.Pattern.UnitOfWork;
 namespace ERP.Areas.Buyers.Controllers
 {
     public class OrderController : Controller
     {
         IProductService _productService;
         ILoggerService _logService;
-        IBuyerOrderItemService _orderItemService;
-        IBuyerOrderService _orderService;
+        IBuyerOrderItemService _buyerOrderItemService;
+        IBuyerOrderService _buyerOrderService;
         IBuyerService _buyerService;
         IOrderStatusService _orderStatusService;
         IFinancialYearService _financialYearService;
         IStoredProcedureService _storedProcedures;
         IUnitOfMaterialService _unitOfMeasurmentService;
         IProductSKUService _productSKUService;
+        IUnitOfWorkAsync _unitOfWorkAsync;
         public OrderController(IProductService productService,
             ILoggerService logService,
             IBuyerOrderService orderService,
@@ -35,18 +37,20 @@ namespace ERP.Areas.Buyers.Controllers
             IFinancialYearService financialYearService,
             IStoredProcedureService storedProcedures,
             IUnitOfMaterialService unitOfMeasurmentService,
-            IProductSKUService productSKUService)
+            IProductSKUService productSKUService,
+            IUnitOfWorkAsync unitOfWorkAsync)
         {
             _productService = productService;
             _logService = logService;
-            _orderService = orderService;
-            _orderItemService = orderItemService;
+            _buyerOrderService = orderService;
+            _buyerOrderItemService = orderItemService;
             _buyerService = buyerService;
             _orderStatusService = orderStatusSerice;
             _financialYearService = financialYearService;
             _storedProcedures = storedProcedures;
             _unitOfMeasurmentService = unitOfMeasurmentService;
             _productSKUService = productSKUService;
+            _unitOfWorkAsync = unitOfWorkAsync;
         }
 
         // GET: Buyers/Order
@@ -81,24 +85,89 @@ namespace ERP.Areas.Buyers.Controllers
         [HttpPost]
         public JsonResult PlaceOrder(OrderPostingVM orderModel)
         {
-            var buyer = _buyerService.Queryable().Where(x => x.BuyerId == 123456).FirstOrDefault();
-            var orderStatus = _orderStatusService.Queryable().Where(x => x.ID == 1).FirstOrDefault();
-            var finYear = _financialYearService.Queryable().Where(x => x.ID == 1).FirstOrDefault();
-
-            #region Create Order
-            BuyerOrder orderObject = new BuyerOrder
+            //TODO - move all logic to business rule -engile // PHASE 2 task
+            var userType = User.Identity.GetUserType();
+            if (userType == "BUYR")
             {
-                Buyer = buyer,
-                OrderStatus = orderStatus,
-                FinYear = finYear,
+                int userId = 0;
+                var tempId = User.Identity.GetUserID();
+                Int32.TryParse(tempId, out userId);
+                var userReferenceID = User.Identity.GetUserReferenceID();
+                double buyerId = 0;
+                double.TryParse(userReferenceID, out buyerId);
+                var buyer = _buyerService.Queryable().Where(x => x.BuyerId == buyerId).FirstOrDefault();
+                var orderStatus = _orderStatusService.Queryable().Where(x => x.TypeCode == "BY-ORD-ENTR").FirstOrDefault();
+                var finYear = _financialYearService.Queryable().Where(x => x.FinYearName == "2016-2017").FirstOrDefault();
 
-            };
-            #endregion
+                #region Create Order
+                BuyerOrder orderObject = new BuyerOrder
+                {
+                    //Buyer = buyer,
+                    BuyerID=buyer.BuyerId,
+                    OrderStatusId=orderStatus.ID,
+                    //OrderStatus = orderStatus,
+                    FinYear = finYear,
+                    BuyerOrderNo = Guid.NewGuid().ToString(),
+                    CreatedById = userId,
+                    CreationDate = DateTime.Now,
+                    FinYearId = finYear.ID,
+                    LastModifiedById = userId,
+                    LastmodifiedDate = DateTime.Now,
+                    Remarks = orderModel.Remarks,
+                    OrderDate = DateTime.Now, // orderModel.OrderDate,
+                    TentativeOrderDate = DateTime.Now.AddDays(30) // to be entred from UI,                  
 
-            #region add items to order and map order to order items
+                };
+                List<BuyerOrderItem> buyerOrderItems = new List<BuyerOrderItem>();
 
-            #endregion
+                _unitOfWorkAsync.BeginTransaction();
+                try
+                {
+                    _logService.LogInfo(orderModel.ToJSON());
+                    _buyerOrderService.Insert(orderObject);
+                    _unitOfWorkAsync.SaveChanges();
+                    foreach (OrderProductVM opr in orderModel.Products)
+                    {
+                        BuyerOrderItem obj = new BuyerOrderItem
+                        {
+                            BuyerOrderId = orderObject.ID,
+                            MRP = opr.Product.MRP,
+                            //Product =opr.Product ,
+                            ProductSkuID = opr.SelectedProductSkuId,
+                            Quintity = opr.TotalQuantity,
+                            SchemeFreeQty = opr.SchemeQuantityValue,
+                            ProductId = opr.SelectedProductId,
+                            TaxAmount = opr.TaxAmount,
+                            TotalOrderAmt = opr.TotalAmount,
+                            TotalOrderCost = opr.TotalAmount,
+                            FinYearId = finYear.ID,
+                            TotalSchemeFreeAmt = opr.FreeQuantity,
+                            TotalOrderQty = opr.TotalQuantity,
+                            UnitPrice = opr.TotalUnitValue,
+                        };
+                        buyerOrderItems.Add(obj);
+                    }
+                    if (buyerOrderItems.Count>0)
+                    _buyerOrderItemService.InsertGraphRange(buyerOrderItems);
+                    _unitOfWorkAsync.SaveChanges();
+                    _unitOfWorkAsync.Commit();
+                }
+                catch (Exception ex)
+                {
+                    _unitOfWorkAsync.Rollback();
+                    _logService.LogError(ex.Message);
+                     
+                }
+                #endregion
 
+                #region add items to order and map order to order items
+
+                #endregion
+            }
+            else
+            {
+                // UN AUTHORISED ACCESS --
+            }
             return Json(null);
         }
 

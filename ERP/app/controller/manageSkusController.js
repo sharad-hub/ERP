@@ -2,7 +2,10 @@
     $scope.MasterObject = JSON.parse($("#hdnMasterObject").val());
     console.log($scope.MasterObject);
     var ProductID = $scope.MasterObject.ProductID
-    $scope.sku = {};
+    $scope.sku = {
+        ProductId: ProductID,
+        ID: 0
+    };
     $scope.ProductSkusList = angular.copy($scope.MasterObject.ProductSKUs);
     if (!$scope.ProductSkusList)
     {
