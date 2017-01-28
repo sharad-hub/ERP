@@ -59,6 +59,7 @@
     <Compile Include="Constants.cs" />
     <Compile Include="DTO\ProductDTO.cs" />
     <Compile Include="DTO\ProductSKUDTO.cs" />
+    <Compile Include="DTO\SaveSkusDTO.cs" />
     <Compile Include="DTO\SelectItemDTO.cs" />
     <Compile Include="Models\Access\AccessType.cs" />
     <Compile Include="Models\BuyerMaster.cs" />

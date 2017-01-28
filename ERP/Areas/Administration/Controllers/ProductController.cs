@@ -2,6 +2,7 @@
 using ERP.Entities;
 using ERP.Entities.Models;
 using ERP.Extensions;
+using ERP.Models;
 using ERP.Services;
 using Newtonsoft.Json;
 using Repository.Pattern.Infrastructure;
@@ -260,9 +261,17 @@ namespace ERP.Areas.Administration.Controllers
         #endregion
        
 
-        public ActionResult AddProductSKU(long id)
+        public ActionResult ManageSKUs(long id)
         {
-            return View(id);
+            var product = _productService.Query().Include(s => s.ProductSkus)
+                .Select(x=>x).Where(x=>x.ProductID==id).FirstOrDefault();
+            var modal = new AddProductSkusVM
+            {
+                ProductID = id,
+                ProductName = product.ProductName,
+                ProductSKUs = product.ProductSkus == null ? null : product.ProductSkus.ToList()
+            };
+            return View(modal);
         }
         [HttpPost]
         public ActionResult AddProductSKU(ProductSKU productSku)

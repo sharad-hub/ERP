@@ -1,0 +1,192 @@
+﻿@model ERP.Models.AddProductSkusVM
+
+@{
+    ViewBag.Title = "Manage Product SKUs";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Scripts/angular.js"></script>
+<script src="~/Scripts/angular-resource.js"></script>
+<script src="~/Scripts/linq.js"></script>
+<script src="~/app/app.module.js"></script>
+<script src="~/app/controller/manageSkusController.js"></script>
+<script src="~/app/service/manageSkusService.js"></script>
+<style>
+     .form-horizontal .control-label  {
+         text-align:left;
+         padding:2px;
+    }
+</style>
+<input type="hidden" id="hdnMasterObject" value="@Newtonsoft.Json.JsonConvert.SerializeObject(Model, Newtonsoft.Json.Formatting.Indented, new Newtonsoft.Json.JsonSerializerSettings { ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore })"   /> 
+<div ng-app="erpApp" ng-controller="manageSkusController">
+    {{MasterObject.ProductName}}
+    <form name="theForm">
+        <div class="form-horizontal">
+            <ul id="validationSummary"></ul>
+            <div class="form-group">
+                <div class="col-md-2">
+                    <label for="MRP" class="control-label col-md-12"> MRP </label>
+                    <input type="text" ng-model="sku.MRP" id="MRP" class="form-control" />
+                    <div id="validation_for_MRP"></div>
+                </div>
+                <div class="col-md-2">
+                    <label for="UnitPrice" class="control-label col-md-12"> Unit Price </label>
+                    <input type="text" ng-model="sku.UnitPrice" id="UnitPrice" class="form-control" />
+                    <div id="validation_for_UnitPrice"></div>
+                </div>
+                <div class="col-md-2">
+                    <label for="BasicPrice" class="control-label col-md-12"> Basic Price </label>
+                    <input type="text" ng-model="sku.BasicPrice" id="BasicPrice" class="form-control" />
+                    <div id="validation_for_BasicPrice"></div>
+                </div>
+
+                <div class="col-md-3">
+                    <label for="ProductGrossWeight" class="control-label col-md-12"> Gross Weight </label>
+                    <input type="text" ng-model="sku.ProductGrossWeight" id="ProductGrossWeight" class="form-control" />
+                    <div id="validation_for_ProductGrossWeight"></div>
+                </div>
+                <div class="col-md-3">
+                    <label for="ProductNetWeight" class="control-label col-md-12">  Net Weight </label>
+                    <input type="text" ng-model="sku.ProductNetWeight" id="ProductNetWeight" class="form-control" />
+                    <div id="validation_for_ProductNetWeight"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-3">
+                    <label for="SKUSize" class="control-label col-md-12"> SKU Size </label>
+                    <input type="text" ng-model="sku.SKUSize" id="SKUSize" class="form-control" />
+                    <div id="validation_for_SKUSize"></div>
+                </div>
+                <div class="col-md-3">
+                    <label for="ReOrderLevel" class="control-label col-md-12"> ReOrderLevel </label>
+                    <input type="text" ng-model="sku.ReOrderLevel" id="ReOrderLevel" class="form-control" />
+                    <div id="validation_for_ReOrderLevel"></div>
+                </div>
+                <div class="col-md-3">
+                    <label for="MinimumStockLevel" class="control-label col-md-12"> Min StockLevel </label>
+                    <input type="text" ng-model="sku.MinimumStockLevel" id="MinimumStockLevel" class="form-control" />
+                    <div id="validation_for_MinimumStockLevel"></div>
+                </div>
+                <div class="col-md-3">
+                    <label for="MaximumStockLevel" class="control-label col-md-12"> Max StockLevel </label>
+                    <input type="text" ng-model="sku.MaximumStockLevel" id="MaximumStockLevel" class="form-control" />
+                    <div id="validation_for_MaximumStockLevel"></div>
+                </div>
+            </div>
+
+
+
+
+
+
+            <div class="form-group">
+                <div class="col-md-4">
+                    <input type="button" value="Add Sku" ng-show="currentIndex==0" class="btn btn-warning " ng-click="addProductSku()" />
+                    <input type="button" value="Update" ng-show="currentIndex!=0" class="btn btn-warning " ng-click="updateProductSku(currentIndex)" />
+                    <input type="button" value="Clear" class="btn btn-info" ng-click="cleanProductSku()" />
+                </div>
+
+            </div>
+        </div>
+    </form>
+    <div class="col-md-12">
+        <div class="box">
+            <div class="box-header with-border">
+                <h3 class="box-title">Product SKUs</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>
+                                SKU Size
+                            </th>
+                            <th>
+                                MRP
+                            </th>
+                            <th>
+                                Unit Price
+                            </th>
+                            <th>
+                                Basic Price
+                            </th>
+                            <th>
+                                Gross Wt
+                            </th>
+                            <th>
+                                Net Wt
+                            </th>
+                            <th>
+                                Re Order Level
+                            </th>
+                            <th>
+                                Min StockLevel
+                            </th>
+                            <th>
+                                Max StockLevel
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in ProductSkusList">
+                            <td>{{$index+1}}</td>
+                            <td>
+                                {{ item.SKUSize }}
+                            </td>
+                            <td>
+                                {{ item.MRP }}
+                            </td>
+                            <td>
+                                {{ item.UnitPrice }}
+                            </td>
+                            <td>
+                                {{ item.BasicPrice }}
+                            </td>
+                            <td>
+                                {{ item.ProductGrossWeight }}
+                            </td>
+                            <td>
+                                {{ item.ProductNetWeight }}
+                            </td>
+                            <td>
+                                {{ item.ReOrderLevel }}
+                            </td>
+                            <td>
+                                {{ item.MinimumStockLevel }}
+                            </td>
+                            <td>
+                                {{ item.MaximumStockLevel }}
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-info  btn-sm" ng-click="editProductSku(item,$index)">
+                                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                                </button>
+                                <button type="button" class="btn btn-danger btn-sm " ng-click="editProductSku(item,$index)">
+                                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                                </button>
+                                
+                            </td>
+                             
+                        </tr>
+                    </tbody>
+
+                </table>
+
+            </div>
+
+            <div class="box-footer clearfix">
+
+                <input type="button" value="Save Product Skus"  class="btn btn-success" ng-click="saveProductSkus()" />
+                @*<ul class="pagination pagination-sm no-margin pull-right">
+                    <li><a href="#">«</a></li>
+                    <li><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">»</a></li>
+                </ul>*@
+            </div>
+        </div>
+    </div>
+</div>

@@ -71,6 +71,14 @@
       <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.RegistrationByConvention.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.Practices.Unity.WebApi, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.AspNet.WebApi.4.0.1\lib\net45\Microsoft.Practices.Unity.WebApi.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Swashbuckle.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cd1bb07a5ac7c7bc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Swashbuckle.Core.5.5.3\lib\net40\Swashbuckle.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -215,8 +223,10 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\UnityMvcActivator.cs" />
+    <Compile Include="App_Start\UnityWebApiActivator.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
     <Compile Include="Areas\Administration\Controllers\BaseController.cs" />
@@ -282,6 +292,7 @@
     <Compile Include="Models\ModuleVM.cs" />
     <Compile Include="Models\OrderPostingVM.cs" />
     <Compile Include="Models\OrderProductVM.cs" />
+    <Compile Include="Models\Product\AddProductSkusVM.cs" />
     <Compile Include="Models\UserMenuVM.cs" />
     <Compile Include="Models\UserModuleVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -1081,7 +1092,10 @@
     <Content Include="AdminLTE\plugins\timepicker\js\bootstrap-timepicker.js" />
     <Content Include="AdminLTE\plugins\timepicker\js\bootstrap-timepicker.min.js" />
     <Content Include="app\app.module.js" />
+    <Content Include="app\controller\manageSkusController.js" />
     <Content Include="app\controller\buyerOrderPostingController.js" />
+    <Content Include="app\controller\ProductControllers.js" />
+    <Content Include="app\service\manageSkusService.js" />
     <Content Include="app\service\buyerOrderPostingService.js" />
     <Content Include="App_Readme\Elmah.txt" />
     <Content Include="Content\bootstrap.css" />
@@ -1236,7 +1250,7 @@
     <Content Include="Areas\Administration\Views\Product\AddProduct.cshtml" />
     <Content Include="Areas\Administration\Views\Product\AddProductGroup.cshtml" />
     <Content Include="Areas\Administration\Views\Product\AddProductSubGroup.cshtml" />
-    <Content Include="Areas\Administration\Views\Product\AddProductSKU.cshtml" />
+    <Content Include="Areas\Administration\Views\Product\ManageSKUs.cshtml" />
     <Content Include="Areas\Administration\Views\Product\AddProductColor.cshtml" />
     <Content Include="Areas\Administration\Views\Product\AddProductType.cshtml" />
     <Content Include="Areas\Administration\Views\Product\AddUnitOfMaterial.cshtml" />

@@ -3,6 +3,7 @@
 	return {
 		USERS_DOMAIN: resource,
 		GetFreeQuantityOnOrder: resource + "/buyers/order/GetFreeQuantityOnOrder",
-        PostBuyerOrder:resource+"/buyers/order/PlaceOrder"
+		PostBuyerOrder: resource + "/buyers/order/PlaceOrder",
+		saveProductSkus: resource + "/api/commonApi/SaveProductSkus"
 	}
 })());

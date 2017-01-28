@@ -125,5 +125,35 @@ namespace ERP.ApiControllers
                 Name = x.UOM
             });
         }
+
+        [HttpPost]
+        [Route("SaveProductSkus")]
+        public IHttpActionResult SaveProductSkus(SaveSkusDTO modal)
+        {
+            var skusToUpdate = modal.ProductSKUs.Where(x =>  x.ID != 0);
+            var skusToAdd = modal.ProductSKUs.Where(x =>  x.ID == 0);
+            _productSKUService.InsertRange(skusToAdd);
+            _unitOfWorkAsync.SaveChanges();
+            foreach(var sku in skusToUpdate){
+                try
+                {
+                    _productSKUService.Update(sku);
+                    _unitOfWorkAsync.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    _logservice.LogError("Error Occoured " + ex.Message);
+                    
+                }
+               
+            }
+           
+            //return _unitOfMaterialService.Queryable().Select(x => new SelectItemDTO
+            //{
+            //    Id = x.ID,
+            //    Name = x.UOM
+            //});
+            return Ok();
+        }
     }
 }
