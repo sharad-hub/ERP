@@ -8,6 +8,7 @@
 <script src="~/app/app.module.js"></script>
 <script src="~/app/service/buyerOrderPostingService.js"></script>
 <script src="~/app/controller/buyerOrderPostingController.js"></script>
+<script src="~/Scripts/angular-clock.js"></script>
 <style>
     .hide {
         display: none;
@@ -16,11 +17,14 @@
     .width8 {
         width: 8%;
     }
+    .danger{
+        border:1px solid red;
+    }
 </style>
 <div ng-app="erpApp" ng-controller="buyerOrderPostingController">
 
     Order No:<label id="lblOrderNumber">{{MasterObject.OrderNumber}}</label><br />
-    Order Date:<input type="text" id="txtOrderDate" /><br />
+    Order Date:<ds-widget-clock show-digital digital-format="format"></ds-widget-clock>
     Order Status: <label id="lblOrderStatus">{{MasterObject.OrderStatus}}</label><br />
     <hr />
     <input type="button" value="Add Product" class="btn-primary" ng-click="addProductToTable()" />
@@ -45,7 +49,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="product in OrderList">
+            <tr ng-repeat="product in OrderList" ng-class="validationClass">
                 <td class="hide">{{product.Product.ProductID}}</td>
                 <td>
 
@@ -60,7 +64,7 @@
                         <option value="">---Select---</option>
                     </select>
                 </td>
-                <td ng-hide="product.Product.IsMultipleSKUs"> <b>N/A</b></td>
+                <td ng-hide="product.Product.IsMultipleSKUs">{{product.Product.ProductNetWeight}}</td>
                 <td>
 
                     {{product.Product.UOMMain.UOM}}

@@ -148,7 +148,7 @@ namespace ERP.Areas.Buyers.Controllers
                         buyerOrderItems.Add(obj);
                     }
                     if (buyerOrderItems.Count>0)
-                    _buyerOrderItemService.InsertGraphRange(buyerOrderItems);
+                    _buyerOrderItemService.InsertRange(buyerOrderItems);
                     _unitOfWorkAsync.SaveChanges();
                     _unitOfWorkAsync.Commit();
                 }
