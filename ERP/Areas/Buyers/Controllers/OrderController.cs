@@ -194,11 +194,21 @@ namespace ERP.Areas.Buyers.Controllers
         }
         public ActionResult OrderTracker()
         {
-            return View();
+            int userId = 0;
+            var tempId = User.Identity.GetUserID();
+            Int32.TryParse(tempId, out userId);
+            var userReferenceID = User.Identity.GetUserReferenceID();
+            double buyerId = 0;
+            double.TryParse(userReferenceID, out buyerId);
+            var buyer = _buyerService.Queryable().Where(x => x.BuyerId == buyerId).FirstOrDefault();
+            var products = _buyerOrderService.Query().Include(x => x.OrderStatus).Select(x => x).Where(Y => Y.BuyerID == buyer.BuyerId).ToList();
+            return View(products);
+            
         }
-        public ActionResult OrderDetails()
+        public ActionResult OrderDetails(long buyerOrderID)
         {
-            return View();
+            var orderdetails = _buyerOrderItemService.Queryable().Where(Y => Y.BuyerOrderId == buyerOrderID).ToList();
+            return View(orderdetails);
         }
     }
 }
